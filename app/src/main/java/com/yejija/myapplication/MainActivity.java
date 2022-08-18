@@ -86,6 +86,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // 일자리 사이트 크롤링
+        Button button3 = (Button) findViewById(R.id.button3);
+        button3.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), SubActivityJobs.class);
+            startActivity(intent);
+        });
+
 
 
         // 위치 관리자 객체 참조하기

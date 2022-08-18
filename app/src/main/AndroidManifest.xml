@@ -27,6 +27,10 @@
         <activity
             android:name=".SubActivityMap"
             android:exported="false" />
+
+        <activity
+            android:name=".SubActivityJobs"
+            android:exported="false" />
         <!-- 스플래시 액티비티 -->
         <activity
             android:name=".SplashActivity"
