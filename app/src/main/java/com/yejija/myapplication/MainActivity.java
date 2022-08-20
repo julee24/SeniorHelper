@@ -13,10 +13,12 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -25,15 +27,18 @@ import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 import android.content.pm.Signature;
-
-
-
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
     private Button button1;
     private TextView txtResult;
     String currentAddress;
+
+    //
+    Button btn_tel;
+    String tel_number;
+    //
 
     public static ArrayList<SeniorCenterVO> SeniorCenterLoc = new ArrayList<>();
 
@@ -93,7 +98,32 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        //전화 기능
+        Intent intent1 = getIntent();
+        tel_number = intent1.getStringExtra("number");
 
+        btn_tel = findViewById(R.id.button5);
+
+        btn_tel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Log.v("tel: ", ""+((Save_tel) MainActivity.this.getApplication()).getSomeVariable());
+                if (((Save_tel) MainActivity.this.getApplication()).getSomeVariable() == null) {
+                    Toast.makeText(getApplicationContext(),"저장된 번호가 없습니다. 번호를 저장해주세요",Toast.LENGTH_LONG).show();
+                    Intent intent2 = new Intent(getApplicationContext(), com.yejija.myapplication.Setting.class);
+                    startActivity(intent2);
+                } else {
+                    Intent intent3 = new Intent("android.intent.action.DIAL", Uri.parse(((Save_tel) MainActivity.this.getApplication()).getSomeVariable()));
+                    //여기 전역변수로 바꾸기
+                    //startActivity(new Intent("android.intent.action.DIAL", Uri.parse(tel_number)));
+                    startActivity(intent3);
+                }
+
+
+            }
+
+        });
 
         // 위치 관리자 객체 참조하기
         final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);

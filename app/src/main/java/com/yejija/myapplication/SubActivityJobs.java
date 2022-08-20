@@ -41,6 +41,8 @@ public class SubActivityJobs extends AppCompatActivity {
     ArrayList<Jobnotice> mData =null;
     ////
 
+    //int t = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,12 +70,15 @@ public class SubActivityJobs extends AppCompatActivity {
                 //final StringBuilder builder_age = new StringBuilder(); // 나이
 
                 try {
-                    Document doc = Jsoup.connect("https://goldenjob.or.kr/job/find-person.asp").get(); //크롤링할 주소
-                    Elements links_name = doc.select("a");  //직장 이름
-                    Elements links_all = doc.select("td"); //직종
-                    builder_name.append(links_name).append("\n");
-                    builder_all.append(links_all).append("\n");
-
+                    for (int t=1;t<10; t++ ) {
+                        String urlname = "https://goldenjob.or.kr/job/find-person.asp?keyfield=&keyword=&p=" + t;
+                        Log.v("url", urlname);
+                        Document doc = Jsoup.connect(urlname).get(); //크롤링할 주소
+                        Elements links_name = doc.select("a");  //직장 이름
+                        Elements links_all = doc.select("td"); //직종
+                        builder_name.append(links_name).append("\n");
+                        builder_all.append(links_all).append("\n");
+                    }
                 } catch (IOException e) {
                     builder_name.append("Error");
                 }
@@ -101,16 +106,20 @@ public class SubActivityJobs extends AppCompatActivity {
                         //// 문제 일어나면 여기 삭제!
 //                        mData = new ArrayList<Jobnotice>();
 
-                        for (int i = 0; i < 15; i++){
+                        //Log.v("jname 크기", "" + JobPlace.size());
+
+                        for (int i = 0; i < JobPlace.size(); i++){
                             Jobnotice job = new Jobnotice();
+                            //Log.v("구인상태",JobAvail.get(i));
+                            if (JobAvail.get(i).equals("state-ing")) {
 
-                            if (JobAvail.get(i)=="구인중") break;
-
-                            job.jname = JobPlace.get(i);
-                            job.jtype = JobType.get(i);
-                            job.jage = JobAge.get(i);
-                            job.jloc = JobLoc.get(i);
-                            mData.add(job);
+                                job.jname = JobPlace.get(i);
+                                job.jtype = JobType.get(i);
+                                job.jage = JobAge.get(i);
+                                job.jloc = JobLoc.get(i);
+                                mData.add(job);
+                            }
+                            else break;
                         }
 
 
@@ -235,18 +244,17 @@ public void extract_name(String text){
         String text2="";
         JobAvail = new ArrayList<String>(120);
         while(true){
-            int index = text.indexOf("ing\">");    //찾는 문자열 위치 찾기
+            int index = text.indexOf("구인상태</span><span class=\"");    //찾는 문자열 위치 찾기
 
             if(index == -1) break;  //없으면 종료
 
             //text2 = text.substring(index+5); // 문자열을 찾은 위치로 재저장
-            text = text.substring(index+5);
-            int eindex = text.indexOf("<");
+            text = text.substring(index+24);
+            int eindex = text.indexOf("\">");
             text2 = text.substring(0,eindex);
             text = text.substring(eindex+1);
             // text 끝
             JobAvail.add(text2);
-
         }
     }
 
