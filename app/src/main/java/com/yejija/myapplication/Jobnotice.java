@@ -1,5 +1,7 @@
 package com.yejija.myapplication;
 
+import android.content.Context;
+
 public class Jobnotice {
     String jname; //회사이름
     String jtype; //직장 타입

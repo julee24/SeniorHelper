@@ -19,11 +19,13 @@ public class BaseAdapterEx extends BaseAdapter{
     ArrayList<Jobnotice> mSearchData= null;
     //
 
-    public BaseAdapterEx(Context context, ArrayList<Jobnotice> data){
-        mContext = context;
-        mData = data;
-        mSearchData = data;
+    public BaseAdapterEx(Context context, ArrayList<Jobnotice> mSearchdata){
+        this.mContext = context;
+        //this.mData = data;
+        this.mSearchData = mSearchdata;
         mLayoutInflater = LayoutInflater.from(mContext);
+        this.mData = new ArrayList<Jobnotice>();
+        this.mData.addAll(mSearchdata);
     }
     //8.22 mData to mSearchData
     @Override
@@ -51,6 +53,9 @@ public class BaseAdapterEx extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent){
         View itemLayout = convertView;
         ViewHolder viewHolder = null;
+        //
+        final Jobnotice jobnotice = mSearchData.get(position);
+        //
         //어뎁터뷰가 재사용할 뷰를 넘겨주지 않은 경우에만 새로운 뷰를 생성.
         if(itemLayout == null){
             itemLayout = mLayoutInflater.inflate(R.layout.list_view_item_layout, null);

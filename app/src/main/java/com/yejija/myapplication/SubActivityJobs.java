@@ -40,7 +40,8 @@ public class SubActivityJobs extends AppCompatActivity {
 
     ////big change
     ListView mListView = null;
-    BaseAdapterEx mAdapter = null;
+    private BaseAdapterEx mAdapter;
+    BaseAdapterEx mAdapterTemp;
     ArrayList<Jobnotice> mData =null;
     ////
 
@@ -77,19 +78,21 @@ public class SubActivityJobs extends AppCompatActivity {
         //8.22
         searchbox.addTextChangedListener(new TextWatcher() {
             @Override
+            public void afterTextChanged(Editable s) {
+
+                String searchText = searchbox.getText().toString();
+                //mAdapter.filter(searchText);
+                mAdapter.filter(searchText);
+//
+            }
+
+            @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-
-                String searchText = searchbox.getText().toString();
-                mAdapter.filter(searchText);
 //
             }
         });
@@ -164,7 +167,9 @@ public class SubActivityJobs extends AppCompatActivity {
                             }
                             else break;
                         }
+                        Jobnotice mSearchData = new Jobnotice();
                         mAdapter = new BaseAdapterEx(SubActivityJobs.this, mData);
+                        //mAdapterTemp = mAdapter;
 
                         mListView.setAdapter(mAdapter);
 
