@@ -1,12 +1,16 @@
 package com.yejija.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,6 +39,7 @@ public class SubActivityJobs extends AppCompatActivity {
     private ArrayList<String> JobAge;
     private ArrayList<String> JobLoc;
     private ArrayList<String> JobAvail;
+    private ArrayList<String> JobUrl;
 
     //
 
@@ -49,6 +54,8 @@ public class SubActivityJobs extends AppCompatActivity {
     EditText searchbox = null;
     ArrayList<Jobnotice> mSearchData =null;
     //
+
+    //온클릭
 
     //int t = 1;
 
@@ -96,10 +103,28 @@ public class SubActivityJobs extends AppCompatActivity {
 //
             }
         });
-        //8.22
-//
+        //8.
 
+        //온클릭 웹뷰
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                //
+//                Fruit fruit = fruitList.get(position);
+//                Toast.makeText(MainActivity.this, fruit.getName(),
+//                        Toast.LENGTH_SHORT).show();
+                String job = mData.get(position).getUrl();
+                String jobUrl = "https://goldenjob.or.kr/job/find-person_view.asp?idx=" + job;
+                Intent intent = new Intent(SubActivityJobs.this, WebViewActivity.class);
+                intent.putExtra("job", jobUrl);
+                startActivity(intent);
+
+            }
+        });
+        //온클릭
     }
+//
 
     private void getWebsite() {
 
@@ -130,13 +155,15 @@ public class SubActivityJobs extends AppCompatActivity {
                         //result.setText(extract_temp(builder_name.toString()) + ", " + extract_cast(builder_all.toString()));
                         name = builder_name.toString();
                         all = builder_all.toString();
-                        //Log.v("hello1", name);
-                        Log.v("hello2", all);
+                        //Log.v("hello1", all);
+                        //Log.v("hello2", name);
                         extract_name(name);
                         extract_type(all);
                         extract_age(all);
                         extract_loc(all);
                         extract_avail(all);
+                        extract_site(name);
+
 //                        //여기 for문로 정리해보기
 //                        textView4.setText(JobPlace.get(0));
 //                        textView5.setText(JobPlace.get(1));
@@ -159,6 +186,7 @@ public class SubActivityJobs extends AppCompatActivity {
                                 job.jtype = JobType.get(i);
                                 job.jage = JobAge.get(i);
                                 job.jloc = JobLoc.get(i);
+                                job.jurl = JobUrl.get(i);
                                 mData.add(job);
                                 //
                                 //
@@ -221,6 +249,7 @@ public void extract_name(String text){
 
     }
 }
+
 
 
     public void extract_type(String text){
@@ -301,6 +330,31 @@ public void extract_name(String text){
             JobAvail.add(text2);
         }
     }
+
+    //사이트 주소 추출
+    public void extract_site(String text){
+        boolean isFirst = true; //처음인지 검사
+        String text2="";
+        JobUrl = new ArrayList<String>(120);
+        while(true){
+            int index = text.indexOf("idx=");    //찾는 문자열 위치 찾기
+
+            if(index == -1) break;  //없으면 종료
+
+            //text2 = text.substring(index+5); // 문자열을 찾은 위치로 재저장
+            text = text.substring(index+4);
+            int eindex = text.indexOf("\"");
+            text2 = text.substring(0,eindex);
+            text = text.substring(eindex+1);
+            // text 끝
+            JobUrl.add(text2);
+
+        }
+    }
+
+    //site form: /find-person_view.asp?idx=905&amp;p=1&amp;keyword=&amp;keyfield=
+
+
 
 
 

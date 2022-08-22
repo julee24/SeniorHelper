@@ -8,6 +8,7 @@ public class Jobnotice {
     String jloc; //직장 위치
     String jtrue; //아직 모집중인지 아닌지.
     String jage; // 나이
+    String jurl; //사이트
 
     public String getName(){
         return jname;
@@ -22,5 +23,9 @@ public class Jobnotice {
 
     public String getAge(){
         return jage;
+    }
+
+    public String getUrl(){
+        return jurl;
     }
 }

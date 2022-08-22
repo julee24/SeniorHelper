@@ -38,6 +38,10 @@
         <activity
             android:name=".Setting"
             android:exported="false" />
+
+        <activity
+            android:name=".WebViewActivity"
+            android:exported="false" />
         <!-- 스플래시 액티비티 -->
         <activity
             android:name=".SplashActivity"
