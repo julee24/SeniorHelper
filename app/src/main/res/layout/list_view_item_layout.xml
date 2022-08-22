@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@+id/centerShim"
-        android:fontFamily="@font/pretendardbold"
+        android:fontFamily="@font/pretendardregular"
         android:gravity="center"
         android:text="직장"
         android:textSize="20dp" />
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@+id/centerShim"
-        android:fontFamily="@font/pretendardbold"
+        android:fontFamily="@font/pretendardregular"
         android:gravity="center"
         android:text="직종"
         android:textSize="20dp" />
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/name_text"
         android:layout_toLeftOf="@+id/centerShim"
-        android:fontFamily="@font/pretendardbold"
+        android:fontFamily="@font/pretendardregular"
         android:gravity="center"
         android:text="위치"
         android:textSize="15dp" />
@@ -58,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/name_text"
-        android:fontFamily="@font/pretendardbold"
+        android:fontFamily="@font/pretendardregular"
         android:layout_toRightOf="@+id/centerShim"
 
         android:gravity="center"

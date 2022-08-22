@@ -1,7 +1,10 @@
 package com.yejija.myapplication;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -41,6 +44,11 @@ public class SubActivityJobs extends AppCompatActivity {
     ArrayList<Jobnotice> mData =null;
     ////
 
+    // 8/22
+    EditText searchbox = null;
+    ArrayList<Jobnotice> mSearchData =null;
+    //
+
     //int t = 1;
 
     @Override
@@ -56,7 +64,37 @@ public class SubActivityJobs extends AppCompatActivity {
 //        textView7 = (TextView)findViewById(R.id.textView7);
 //        textView8 = (TextView)findViewById(R.id.textView8);
         mData = new ArrayList<Jobnotice>();
+        //8.22
+        mSearchData = new ArrayList<Jobnotice>();
+        //mSearchData = new ArrayList<Jobnotice>();
+        searchbox = (EditText) findViewById(R.id.job_search);
+        mListView = (ListView) findViewById(R.id.list_view);
+        //
         getWebsite();
+        //mAdapter = new BaseAdapterEx(SubActivityJobs.this, mData);
+        //mListView.setAdapter(mAdapter);
+
+        //8.22
+        searchbox.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                String searchText = searchbox.getText().toString();
+                mAdapter.filter(searchText);
+//
+            }
+        });
+        //8.22
+//
 
     }
 
@@ -85,6 +123,7 @@ public class SubActivityJobs extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+
                         //result.setText(extract_temp(builder_name.toString()) + ", " + extract_cast(builder_all.toString()));
                         name = builder_name.toString();
                         all = builder_all.toString();
@@ -118,15 +157,15 @@ public class SubActivityJobs extends AppCompatActivity {
                                 job.jage = JobAge.get(i);
                                 job.jloc = JobLoc.get(i);
                                 mData.add(job);
+                                //
+                                //
+                                //mSearchData.add(job);
+                                //
                             }
                             else break;
                         }
-
-
                         mAdapter = new BaseAdapterEx(SubActivityJobs.this, mData);
-                        //원래 그냥 (this, mData였다)
 
-                        mListView = (ListView) findViewById(R.id.list_view);
                         mListView.setAdapter(mAdapter);
 
                         //// 여기까지 수정한것!
@@ -257,6 +296,7 @@ public void extract_name(String text){
             JobAvail.add(text2);
         }
     }
+
 
 
 

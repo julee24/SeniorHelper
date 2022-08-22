@@ -6,6 +6,18 @@
     android:layout_height="match_parent">
 
     <!-- 맨 위 회사, 직종, 위치, 나이 구별해주는 부분 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText android:id="@+id/job_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="검색어를 입력하세요" />
+
+    </LinearLayout>
+<!--id 오류가 나는 이유..?-->
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,14 +29,16 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:textColor="#FFFFFF"
             android:text="회사"
-            android:fontFamily="@font/pretendardregular"
-            android:background="#f8ecc9"/>
+            android:fontFamily="@font/pretendardbold"
+            android:background="#204C4C"/>
 
         <View
             android:id="@+id/centerShim"
             android:layout_height="match_parent"
             android:layout_width="1dp"
+            android:visibility="invisible"
             android:color="#FFFF"
             android:layout_centerHorizontal="true"/>
 
@@ -33,9 +47,10 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:textColor="#FFFFFF"
             android:text="직종"
-            android:fontFamily="@font/pretendardregular"
-            android:background="#f8ecc9"/>
+            android:fontFamily="@font/pretendardbold"
+            android:background="#204C4C"/>
 
 
     </LinearLayout>
@@ -52,7 +67,7 @@
             android:gravity="center"
             android:text="위치"
             android:layout_below="@id/name"
-            android:fontFamily="@font/pretendardregular"
+            android:fontFamily="@font/pretendardbold"
             android:background="#e6e6e6" />
 
         <View
@@ -60,6 +75,7 @@
             android:layout_height="match_parent"
             android:layout_width="1dp"
             android:color="#FFFF"
+            android:visibility="invisible"
             android:layout_centerHorizontal="true"/>
 
         <TextView android:id="@+id/age"
@@ -68,7 +84,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="나이"
-            android:fontFamily="@font/pretendardregular"
+            android:fontFamily="@font/pretendardbold"
             android:background="#e6e6e6"/>
 
     </LinearLayout>
