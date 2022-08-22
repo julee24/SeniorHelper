@@ -10,65 +10,62 @@
         android:id="@+id/button3"
         android:layout_width="162dp"
         android:layout_height="107dp"
-        android:layout_marginBottom="25dp"
         android:backgroundTint="#204C4C"
         android:fontFamily="@font/pretendardsemibold"
         android:text="일자리 찾기"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/button1"
+        app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/txtResult" />
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="162dp"
         android:layout_height="107dp"
-        android:layout_marginTop="35dp"
         android:fontFamily="@font/pretendardsemibold"
         android:text="경로당 찾기?button2"
+        app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintLeft_toRightOf="@+id/button3"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtResult"
-        />
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
     <Button
         android:id="@+id/button1"
         android:layout_width="162dp"
         android:layout_height="107dp"
-        android:text="구청 접속하기Button1"
         android:fontFamily="@font/pretendardsemibold"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
+        android:text="구청 접속하기Button1"
+        app:layout_constraintBottom_toTopOf="@+id/guideline9"
         app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3"
-        app:layout_constraintHorizontal_chainStyle="spread"/>
+        app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="162dp"
         android:layout_height="107dp"
-        android:layout_marginTop="25dp"
-        android:text="일기 쓰기Button4"
         android:fontFamily="@font/pretendardsemibold"
-        app:layout_constraintRight_toRightOf="parent"
+        android:text="일기 쓰기Button4"
+        app:layout_constraintBottom_toTopOf="@+id/guideline9"
         app:layout_constraintLeft_toRightOf="@+id/button1"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
-
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
 
     <Button
         android:id="@+id/button5"
         android:layout_width="162dp"
         android:layout_height="107dp"
-        android:layout_marginTop="25dp"
-        android:text="보호자 전화 걸기"
         android:fontFamily="@font/pretendardsemibold"
+        android:text="보호자 전화 걸기"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
         app:layout_constraintEnd_toEndOf="@+id/button3"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/button1"
-        app:layout_constraintTop_toBottomOf="@+id/button1" />
-
+        app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
     <TextView
         android:id="@+id/textView2"
@@ -88,28 +85,53 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/loc"
-        tools:layout_editor_absoluteY="-81dp"
-        tools:ignore="MissingConstraints"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/loc"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/txtResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="35dp"
-        android:text="현재 위치"
         android:fontFamily="@font/pretendardbold"
+        android:text="현재 위치"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-         />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
