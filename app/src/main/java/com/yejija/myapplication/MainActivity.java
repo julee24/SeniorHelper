@@ -74,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
         ManagePublicData.getInstance().parseSeniorCenter.execute();
 
         txtResult = (TextView)findViewById(R.id.txtResult);
-        txtResult.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), SubActivityMap.class);
-            startActivity(intent);
-        });
+//        txtResult.setOnClickListener(v -> {
+//            Intent intent = new Intent(getApplicationContext(), SubActivityMap.class);
+//            startActivity(intent);
+//        });
 
         Button button = (Button) findViewById(R.id.button1);
         button.setOnClickListener(v -> {
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button button2 = (Button) findViewById(R.id.button2);
         button2.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), SubActivity.class);
+            Intent intent = new Intent(getApplicationContext(), SubActivityMap.class);
             startActivity(intent);
         });
 
