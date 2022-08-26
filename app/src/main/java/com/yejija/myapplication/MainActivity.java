@@ -97,11 +97,13 @@ public class MainActivity extends AppCompatActivity {
 //        NavController navController = Navigation.findNavController(this, R.id.navHostFragment);
 //        NavigationUI.setupWithNavController(navigationView, navController);
 
+
         final TextView textTitle = findViewById(R.id.textTitle);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
 
                 switch(menuItem.getItemId()){
                     case R.id.nav_home:
@@ -133,7 +135,9 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 return false;
+
             }
+
         });
 
 //        getAppKeyHash();
@@ -287,22 +291,16 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    @Override
+    public void onBackPressed() {
+        // 이 코드에서는 메소드를 오버라이드해서 드로어가 열려있다면 닫아주고,
+        // 아니라면 super.onBackPressed를 호출해 원래 onBackPressed()의 기능을 하도록 한 것이다.
+        DrawerLayout drawer = findViewById(R.id.drawerLayout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            // DrawerLayout 닫기
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
 }
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//
-//        Button button = (Button) findViewById(R.id.button1);
-//        button.setOnClickListener(v -> {
-//            Intent intent = new Intent(getApplicationContext(), SubActivity.class);
-//            startActivity(intent);
-//        });
-//
-//        Button button2 = (Button) findViewById(R.id.button2);
-//        button2.setOnClickListener(v -> {
-//            Intent intent = new Intent(getApplicationContext(), SubActivity.class);
-//            startActivity(intent);
-//        });
-//    }
-//}
