@@ -1,9 +1,19 @@
 package com.yejija.myapplication;
 
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -18,6 +28,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -29,9 +40,10 @@ import java.util.List;
 import android.content.pm.Signature;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
+
 
 public class MainActivity extends AppCompatActivity {
-    private Button button1;
     private TextView txtResult;
     String currentAddress;
 
@@ -68,7 +80,61 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
 
+        findViewById(R.id.imageMenu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // start에 지정된 Drawer 열기
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+
+        NavigationView navigationView = findViewById(R.id.navigationView);
+        navigationView.setItemIconTintList(null);
+
+//        NavController navController = Navigation.findNavController(this, R.id.navHostFragment);
+//        NavigationUI.setupWithNavController(navigationView, navController);
+
+        final TextView textTitle = findViewById(R.id.textTitle);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                switch(menuItem.getItemId()){
+                    case R.id.nav_home:
+                        menuItem.setChecked(true);
+                        Intent intent = new Intent(getApplicationContext(), SubActivity.class);
+                        startActivity(intent);
+                        drawerLayout.closeDrawers();
+                        return true;
+
+                    case R.id.nav_edit:
+                        menuItem.setChecked(true);
+                        Intent intent2 = new Intent(getApplicationContext(), Setting.class);
+                        startActivity(intent2);
+                        drawerLayout.closeDrawers();
+                        return true;
+
+                    case R.id.nav_profile:
+                        menuItem.setChecked(true);
+                        Intent intent3 = new Intent(getApplicationContext(), Jobnotice.class);
+                        startActivity(intent3);
+                        drawerLayout.closeDrawers();
+                        return true;
+                    case R.id.nav_settings:
+                        menuItem.setChecked(true);
+                        Intent intent4 = new Intent(getApplicationContext(), Save_tel.class);
+                        startActivity(intent4);
+                        drawerLayout.closeDrawers();
+                        return true;
+                }
+
+                return false;
+            }
+        });
 
 //        getAppKeyHash();
         ManagePublicData.getInstance().parseSeniorCenter.execute();
