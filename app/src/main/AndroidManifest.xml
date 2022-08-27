@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.DIAL_PHONE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:name=".Save_tel"
         android:allowBackup="true"
@@ -46,6 +48,10 @@
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />
+
+        <activity android:name=".SubActivityDiary"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
 
         <!-- 스플래시 액티비티 -->
         <activity

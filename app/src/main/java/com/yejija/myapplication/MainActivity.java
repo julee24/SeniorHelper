@@ -169,6 +169,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        //일기쓰기
+        Button button4 = (Button) findViewById(R.id.button4);
+        button4.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), SubActivityDiary.class);
+            startActivity(intent);
+        });
+
         //전화 기능
         Intent intent1 = getIntent();
         tel_number = intent1.getStringExtra("number");
