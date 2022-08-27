@@ -1,19 +1,25 @@
 package com.yejija.myapplication;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -22,6 +28,15 @@ import java.util.Date;
 import java.util.Locale;
 
 public class fragment_userInfo extends Fragment {
+    String name;
+    String age;
+    String date;
+    EditText edtName, edtAge;
+
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+
+
 
     @NonNull
     @Override
@@ -32,6 +47,8 @@ public class fragment_userInfo extends Fragment {
         Calendar calendar = Calendar.getInstance();
         Date currentDate = Calendar.getInstance().getTime();
         btnDoB.setText(new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(currentDate));
+        Log.e("hi", name+"?");
+
 
         DatePickerDialog.OnDateSetListener dpDialog = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -51,6 +68,8 @@ public class fragment_userInfo extends Fragment {
 
         };
 
+
+
         btnDoB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,28 +77,50 @@ public class fragment_userInfo extends Fragment {
             }
         });
 
+        pref = getActivity().getSharedPreferences("pref", Activity.MODE_PRIVATE);
+        editor = pref.edit();
+        name = pref.getString("name", "");
+        age = pref.getString("age", "");
+        //date = pref.getString("date", "");
+        edtName = rootView.findViewById(R.id.edtName);
+        edtName.setText(String.valueOf(name));
+        edtAge = rootView.findViewById(R.id.edtAge);
+        edtAge.setText(String.valueOf(age));
+
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText edtName, edtAge;
-                edtName = rootView.findViewById(R.id.edtName);
-                edtAge = rootView.findViewById(R.id.edtAge);
 
-                String name = edtName.getText().toString();
-                String age = edtAge.getText().toString();
-                String date = btnDoB.getText().toString();
+                name = edtName.getText().toString();
+                age = edtAge.getText().toString();
+                date = btnDoB.getText().toString();
+
+                editor.putString("name", name);
+                editor.putString("age", age);
+                editor.apply();
+
 
                 if(name.replace(" ", "").equals("") || age.replace(" ", "").equals("")) {
                     Toast.makeText(getContext(), "정보를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Toast.makeText(getContext(), "이름 : " + name + "/ 나이 : " + age + " / " + date, Toast.LENGTH_SHORT).show();
+                    Log.e("hello", name+"!!");
                 }
+
+
             }
+
+
+
         });
+
 
         return rootView;
     }
+
+    
+
 
 
 }
