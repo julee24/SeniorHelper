@@ -12,16 +12,18 @@
         android:layout_margin="40dp"
         android:layout_gravity="center_horizontal"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:text="이 름"
-                android:textSize="16sp"
-                android:textStyle="bold"
+                android:fontFamily="@font/pretendardsemibold"
+                android:textSize="18sp"
                 android:layout_gravity="center"/>
             <EditText
                 android:id="@+id/edtName"
@@ -31,6 +33,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:textSize="15sp"
+                android:fontFamily="@font/pretendardmedium"
                 android:hint="홍길동"
                 android:inputType="text"
                 android:singleLine="true"
@@ -45,16 +48,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:text="나 이"
-                android:textStyle="bold"
-                android:textSize="16sp"
+                android:fontFamily="@font/pretendardsemibold"
+                android:textSize="18sp"
                 android:layout_gravity="center"/>
             <EditText
                 android:id="@+id/edtAge"
-                android:layout_width="80dp"
+                android:layout_width="90dp"
                 android:layout_height="35dp"
                 android:layout_margin="5dp"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp"
                 android:textSize="15sp"
                 android:hint="나이"
                 android:inputType="number"
@@ -70,7 +72,7 @@
             android:layout_gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textSize="15sp"
+            android:textSize="16sp"
             android:hint="생년월일"
             android:background="@drawable/edittext_draw"/>
         <Button
@@ -79,7 +81,7 @@
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
-            android:textStyle="bold"
+            android:fontFamily="@font/pretendardbold"
             android:text="저 장"
             android:textSize="15sp"
             android:textColor="#FFFFFF"
