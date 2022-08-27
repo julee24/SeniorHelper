@@ -122,10 +122,11 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.nav_profile:
                         menuItem.setChecked(true);
-                        Intent intent3 = new Intent(getApplicationContext(), Jobnotice.class);
+                        Intent intent3 = new Intent(getApplicationContext(), ProfileActivity.class);
                         startActivity(intent3);
                         drawerLayout.closeDrawers();
                         return true;
+
                     case R.id.nav_settings:
                         menuItem.setChecked(true);
                         Intent intent4 = new Intent(getApplicationContext(), Save_tel.class);
