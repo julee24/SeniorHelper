@@ -104,7 +104,7 @@ public class fragment_userInfo extends Fragment {
                     Toast.makeText(getContext(), "정보를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(getContext(), "이름 : " + name + "/ 나이 : " + age + " / " + date, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "이름 : " + name + "/ 나이 : " + age + " / " + date + "저장 완료", Toast.LENGTH_SHORT).show();
                     Log.e("hello", name+"!!");
                 }
 

@@ -17,7 +17,7 @@
         android:layout_gravity="center"
 
         android:layout_marginTop="116dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="20dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/fragmentContainerView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +36,8 @@
             android:layout_gravity="center"
 
             android:adjustViewBounds="true"
-
+            android:minHeight="200dp"
+            android:minWidth="200dp"
             android:maxWidth="200dp"
 
             android:maxHeight="200dp"
@@ -66,7 +67,7 @@
         android:name="com.yejija.myapplication.fragment_userInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="142dp"
+        android:layout_marginBottom="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

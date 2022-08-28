@@ -107,26 +107,23 @@ public class MainActivity extends AppCompatActivity {
 
                 switch(menuItem.getItemId()){
                     case R.id.nav_home:
-                        menuItem.setChecked(true);
                         drawerLayout.closeDrawers();
                         return true;
 
                     case R.id.nav_edit:
-                        menuItem.setChecked(true);
                         Intent intent2 = new Intent(getApplicationContext(), Setting.class);
                         startActivity(intent2);
                         drawerLayout.closeDrawers();
                         return true;
 
                     case R.id.nav_profile:
-                        menuItem.setChecked(true);
                         Intent intent3 = new Intent(getApplicationContext(), ProfileActivity.class);
                         startActivity(intent3);
                         drawerLayout.closeDrawers();
                         return true;
 
                     case R.id.nav_settings:
-                        menuItem.setChecked(true);
+//                        menuItem.setChecked(true);
                         Intent intent4 = new Intent(getApplicationContext(), Save_tel.class);
                         startActivity(intent4);
                         drawerLayout.closeDrawers();

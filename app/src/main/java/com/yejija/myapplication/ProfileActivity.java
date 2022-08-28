@@ -1,10 +1,6 @@
 package com.yejija.myapplication;
 
-import java.io.File;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
