@@ -1,18 +1,26 @@
 package com.yejija.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -29,7 +37,6 @@ public class SubActivityJobs extends AppCompatActivity {
     private TextView textView6;
     private TextView textView7;
     private TextView textView8;
-
     //
     private String name;
     private String all;
@@ -74,13 +81,16 @@ public class SubActivityJobs extends AppCompatActivity {
         mData = new ArrayList<Jobnotice>();
         //8.22
         mSearchData = new ArrayList<Jobnotice>();
-        //mSearchData = new ArrayList<Jobnotice>();
         searchbox = (EditText) findViewById(R.id.job_search);
         mListView = (ListView) findViewById(R.id.list_view);
+        Toolbar toolbar = findViewById (R.id.toolbar_job);
+        setSupportActionBar (toolbar);
+
         //
         getWebsite();
         //mAdapter = new BaseAdapterEx(SubActivityJobs.this, mData);
         //mListView.setAdapter(mAdapter);
+
 
         //8.22
         searchbox.addTextChangedListener(new TextWatcher() {
@@ -104,7 +114,6 @@ public class SubActivityJobs extends AppCompatActivity {
             }
         });
         //8.
-
         //온클릭 웹뷰
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -125,7 +134,27 @@ public class SubActivityJobs extends AppCompatActivity {
         //온클릭
     }
 //
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.menu_job, menu);
 
+    return true;
+}
+
+    //앱바(App Bar)에 표시된 액션 또는 오버플로우 메뉴가 선택되면
+    //액티비티의 onOptionsItemSelected() 메서드가 호출
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onOptionsItemSelected (@NonNull MenuItem item){
+        final EditText layout = (EditText) findViewById(R.id.job_search);
+        switch (item.getItemId()) {
+            case R.id.item1:
+                layout.setVisibility(View.VISIBLE);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     private void getWebsite() {
 
         new Thread(new Runnable() {

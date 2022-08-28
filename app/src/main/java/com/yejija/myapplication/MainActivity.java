@@ -108,8 +108,6 @@ public class MainActivity extends AppCompatActivity {
                 switch(menuItem.getItemId()){
                     case R.id.nav_home:
                         menuItem.setChecked(true);
-                        Intent intent = new Intent(getApplicationContext(), SubActivity.class);
-                        startActivity(intent);
                         drawerLayout.closeDrawers();
                         return true;
 
