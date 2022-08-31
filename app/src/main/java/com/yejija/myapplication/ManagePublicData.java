@@ -64,10 +64,11 @@ public class ManagePublicData
         @Override
         protected String doInBackground(String... params) {
 
-            for (int i = 1; i < 4000; i += 100) { //i가 왜 5000까지지...
+            for (int i = 1; i < 4000; i += 50) { //i가 왜 5000까지지...
                 try {
                     //String url = "http://openapi.seoul.go.kr:8088/(인증키)/xml/SearchPublicToiletPOIService/" + i + "/" + (i + 999) + "/";
-                    String url = "http://openapi.seoul.go.kr:8088/79527649756a756c3130326d4a517543/xml/OdsnBuildingInfo/" + i + "/" + (i + 99) + "/";
+                    String url = "http://openapi.seoul.go.kr:8088/79527649756a756c3130326d4a517543/xml/OdsnBuildingInfo/" + i + "/" + (i + 49) + "/";
+                    //(50,49)(100,99),(200,199)(1000,999)
                     XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
                     XmlPullParser parser = factory.newPullParser();
                     URL xmlUrl = new URL(url);

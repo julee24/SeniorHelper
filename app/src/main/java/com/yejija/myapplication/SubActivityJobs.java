@@ -296,7 +296,7 @@ public void extract_name(String text){
             text2 = text.substring(0,eindex);
             text = text.substring(eindex+1);
             // text 끝
-            JobType.add(text2);
+            JobType.add("직종: "+text2);
 
         }
     }
@@ -316,7 +316,7 @@ public void extract_name(String text){
             text2 = text.substring(0,eindex);
             text = text.substring(eindex+1);
             // text 끝
-            JobAge.add(text2);
+            JobAge.add("나이: "+text2);
 
         }
     }

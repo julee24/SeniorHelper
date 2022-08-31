@@ -1,68 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp">
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    android:elevation="5dp">
 
-    <!--여기가 리스트 내용물-->
-    <View
-        android:id="@+id/centerShim"
+    <RelativeLayout
         android:layout_height="match_parent"
-        android:layout_width="0dp"
-        android:visibility="invisible"
-        android:layout_centerHorizontal="true"/>
-
-    <TextView
-        android:id="@+id/name_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/centerShim"
-        android:fontFamily="@font/pretendardregular"
-        android:gravity="center"
-        android:text="직장"
-        android:textSize="20dp" />
-
-    <TextView
-        android:id="@+id/number_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/centerShim"
-        android:fontFamily="@font/pretendardregular"
-        android:gravity="center"
-        android:text="직종"
-        android:textSize="20dp" />
-    <!-- android:layout_toRightOf="@id/name_text" -->
-
-    <View
-        android:id="@+id/centerShim3"
+        android:background="@drawable/list_item"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/name_text"
-        android:background="#e6e6e6" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="7dp"
+        android:padding="25dp"
+        android:elevation="5dp">
 
-    <TextView
-        android:id="@+id/loc_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/name_text"
-        android:layout_toLeftOf="@+id/centerShim"
-        android:fontFamily="@font/pretendardregular"
-        android:gravity="center"
-        android:text="위치"
-        android:textSize="15dp" />
+        <View
+            android:id="@+id/centerShim"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:visibility="invisible" />
 
-    <TextView
-        android:id="@+id/age_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/name_text"
-        android:fontFamily="@font/pretendardregular"
-        android:layout_toRightOf="@+id/centerShim"
+        <View
+            android:id="@+id/rightShim"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/centerShim"
+            android:visibility="invisible"
+            />
 
-        android:gravity="center"
-        android:text="나이"
-        android:textSize="15dp" />
+        <View
+            android:id="@+id/centerShim2"
+            android:layout_width="15dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:visibility="invisible" />
+
+        <View
+            android:id="@+id/rightShim2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/centerShim2"
+            android:visibility="invisible" />
+
+
+        <TextView
+            android:id="@+id/name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/rightShim2"
+            android:fontFamily="@font/pretendardregular"
+            android:gravity="center"
+            android:text="직장"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+
+        <TextView
+            android:id="@+id/number_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/age_text"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/rightShim2"
+            android:fontFamily="@font/pretendardregular"
+            android:gravity="center"
+            android:text="직종"
+            android:textColor="#000000"
+            android:textSize="15dp" />
+        <!-- android:layout_toRightOf="@id/name_text" -->
+
+
+        <!--    <ImageView-->
+        <!--        android:id="@+id/imageView3"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_alignLeft="@+id/loc_text"-->
+        <!--        android:layout_alignTop="@+id/loc_text"-->
+        <!--        android:layout_alignRight="@+id/loc_text"-->
+        <!--        android:layout_alignBottom="@+id/loc_text"-->
+        <!--        android:layout_marginTop="5dp"-->
+        <!--        android:layout_marginBottom="5dp"-->
+        <!--        android:gravity="center"-->
+        <!--        android:scaleType="center"-->
+        <!--        app:srcCompat="@drawable/box2" />-->
+
+        <TextView
+            android:id="@+id/loc_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/name_text"
+            android:layout_alignBottom="@id/number_text"
+            android:layout_toRightOf="@+id/rightShim"
+            android:background="@drawable/locationbox"
+            android:fontFamily="@font/pretendardregular"
+            android:gravity="center"
+            android:text="위치"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/age_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/empty_text"
+            android:layout_toLeftOf="@+id/rightShim2"
+            android:fontFamily="@font/pretendardregular"
+            android:gravity="center"
+            android:text="나이"
+            android:textColor="#000000"
+            android:textSize="15dp" />
+
+
+        <TextView
+            android:id="@+id/empty_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name_text"
+            android:layout_toLeftOf="@+id/rightShim"
+            android:fontFamily="@font/pretendardregular"
+            android:gravity="center"
+            android:text=""
+            android:textSize="5dp" />
+
+    </RelativeLayout>
+
 
 </RelativeLayout>
+

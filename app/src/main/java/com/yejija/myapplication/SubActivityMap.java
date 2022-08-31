@@ -42,6 +42,8 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
     double currentLocLat;
     double currentLocLon;
 
+    public int onlyonce=0;
+
 //    class MapPoints{
 //        double lat;
 //        double lon;
@@ -118,8 +120,9 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
                 markers[i].setItemName(MainActivity.SeniorCenterLoc.get(i).getCenterName());
                 markers[i].setTag(i);
                 markers[i].setMapPoint(markerpoints[i]);
-                markers[i].setMarkerType(MapPOIItem.MarkerType.BluePin);
-                markers[i].setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
+                markers[i].setMarkerType(MapPOIItem.MarkerType.CustomImage);
+                markers[i].setSelectedMarkerType(MapPOIItem.MarkerType.CustomImage);
+                markers[i].setCustomImageResourceId(R.drawable.housepin1);
                 mMapView.addPOIItem(markers[i]);
             }
             else{
@@ -189,8 +192,10 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
 
         min = distance.indexOf(Collections.min(distance));
         mMapView.removePOIItem(markers[min]);
-        markers[min].setMarkerType(MapPOIItem.MarkerType.RedPin);
+        markers[min].setMarkerType(MapPOIItem.MarkerType.CustomImage);
+        markers[min].setCustomImageResourceId(R.drawable.housepin);
         mMapView.addPOIItem(markers[min]);
+        //mMapView.setZoomLevel(1, true);
         Log.v("hello2", " " + min);
         //8/10
         txtname.setText(MainActivity.SeniorCenterLoc.get(min).getCenterName());
