@@ -36,25 +36,30 @@
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/drawable/edittext_draw.xml" value="0.1345" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/drawable/ic_launcher_background.xml" value="0.137" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/drawable/item_color.xml" value="0.1345" />
+        <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/drawable/jobcall.xml" value="0.134" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/drawable/list_item.xml" value="0.1345" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/drawable/locationbox.xml" value="0.1335" />
+        <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/drawable/mapbackground.xml" value="0.1335" />
+        <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/drawable/saturation.xml" value="0.133" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/drawable/select_button.xml" value="0.1395" />
+        <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/drawable/shadow.xml" value="0.134" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/drawable/shadowfile.xml" value="0.1325" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/drawable/title_background.xml" value="0.1345" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/activity_diary.xml" value="0.24818840579710144" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/activity_jobs.xml" value="0.1265625" />
-        <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/activity_map.xml" value="0.1234375" />
-        <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/activity_map2.xml" value="0.264" />
+        <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/activity_map2.xml" value="0.176" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/activity_profile.xml" value="0.12395833333333334" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/activity_webview.xml" value="0.12552083333333333" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/fragment1.xml" value="0.264" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/fragment2.xml" value="0.24818840579710144" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/fragment3.xml" value="0.24818840579710144" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/fragment_userinfo.xml" value="0.12395833333333334" />
-        <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/job_list.xml" value="0.2" />
+        <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/job_list.xml" value="0.3761904761904762" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/job_list2.xml" value="0.12395833333333334" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/job_list3.xml" value="0.12395833333333334" />
+        <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/job_list_2.xml" value="0.1234375" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/list_view_item_layout.xml" value="0.3156498673740053" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/list_view_item_layout2.xml" value="0.3328671328671329" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/SeniorHelper/app/src/main/res/layout/menu_bottom.xml" value="0.24818840579710144" />

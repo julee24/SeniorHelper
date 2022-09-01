@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:startColor="@android:color/transparent"
+        android:centerColor="#00FF0000"
+        android:endColor="#A4A4A4"
+        android:angle="270">
+    </gradient>
+</shape>
+
+
+<!--    android:startColor="@android:color/transparent"-->
+<!--    android:endColor="#ffe6e6e6"-->
+<!--    android:angle="270"-->
+
+<!--<layer-list xmlns:android="http://schemas.android.com/apk/res/android">-->
+
+<!--    <item android:top="5dp"-->
+<!--        android:left="5dp"-->
+<!--        android:right="5dp"-->
+<!--        android:bottom="5dp">-->
+<!--        <shape android:shape="rectangle">-->
+<!--            <solid android:color="#00000000"/>-->
+<!--        </shape>-->
+
+<!--    </item>-->
+
+<!--    &lt;!&ndash;  left shadow &ndash;&gt;-->
+<!--    <item>-->
+<!--        <shape android:shape="rectangle">-->
+<!--            <gradient-->
+<!--                android:angle="180"-->
+<!--                android:centerColor="#00FF0000"-->
+<!--                android:centerX="0.98"-->
+<!--                android:endColor="#5C000000"-->
+<!--                android:startColor="#00FF0000" />-->
+<!--        </shape>-->
+<!--    </item>-->
+<!--    &lt;!&ndash;  right shadow &ndash;&gt;-->
+<!--    <item>-->
+<!--        <shape android:shape="rectangle">-->
+<!--            <gradient-->
+<!--                android:angle="360"-->
+<!--                android:centerColor="#00FF0000"-->
+<!--                android:centerX="0.98"-->
+<!--                android:endColor="#5C000000"-->
+<!--                android:startColor="#00FF0000" />-->
+<!--        </shape>-->
+<!--    </item>-->
+<!--    &lt;!&ndash;  top shadow &ndash;&gt;-->
+<!--&lt;!&ndash;    <item>&ndash;&gt;-->
+<!--&lt;!&ndash;        <shape android:shape="rectangle">&ndash;&gt;-->
+<!--&lt;!&ndash;            <gradient&ndash;&gt;-->
+<!--&lt;!&ndash;                android:angle="270"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:centerColor="#00FF0000"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:centerY="0.1"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:endColor="#00FF0000"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:startColor="#6B000000" />&ndash;&gt;-->
+<!--&lt;!&ndash;            <corners android:radius="8dp" />&ndash;&gt;-->
+<!--&lt;!&ndash;        </shape>&ndash;&gt;-->
+<!--&lt;!&ndash;    </item>&ndash;&gt;-->
+<!--    &lt;!&ndash;  bottom shadow &ndash;&gt;-->
+<!--    <item>-->
+<!--        <shape android:shape="rectangle">-->
+<!--            <gradient-->
+<!--                android:angle="90"-->
+<!--                android:centerY="0.05"-->
+<!--                android:startColor="#6B000000"-->
+<!--                android:centerColor="#00FF0000"-->
+<!--                android:endColor="#00FF0000"  />-->
+<!--        </shape>-->
+<!--    </item>-->
+<!--</layer-list>-->
+<!--&lt;!&ndash;    android:centerColor="#00FF0000"&ndash;&gt;-->
+<!--&lt;!&ndash;    android:endColor="#00FF0000"&ndash;&gt;-->
+<!--&lt;!&ndash;    android:startColor="#6B000000"&ndash;&gt;-->

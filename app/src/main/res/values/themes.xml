@@ -9,8 +9,14 @@
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
+        <item name="colorTertiary">@color/gray</item>
+        <!--투명바 설정-->
+        <!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
+<!--        <item name="android:windowLightStatusBar">true</item>-->
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!--아래가 기본 status bar에 대한 코드-->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorTertiary</item>
+        <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
         <!--<item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

@@ -17,6 +17,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
+
+
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -71,9 +73,6 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //    }
 //
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        getAppKeyHash();
         ManagePublicData.getInstance().parseSeniorCenter.execute();
+        //이게 async부분일수도
 
         txtResult = (TextView)findViewById(R.id.txtResult);
 //        txtResult.setOnClickListener(v -> {
