@@ -16,6 +16,7 @@ import androidx.navigation.ui.NavigationUI;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 
 
@@ -147,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button button = (Button) findViewById(R.id.button1);
         button.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), SubActivity.class);
+            Intent intent = new Intent(getApplicationContext(), GuList.class);
             startActivity(intent);
         });
 
@@ -172,8 +173,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //전화 기능
+        /*
         Intent intent1 = getIntent();
         tel_number = intent1.getStringExtra("number");
+         */
 
         btn_tel = findViewById(R.id.button5);
 
@@ -181,13 +184,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                if (tel_number == null){
+                    tel_number = ((Save_tel) MainActivity.this.getApplication()).getSomeVariable();
+                }
+
                 Log.v("tel: ", ""+((Save_tel) MainActivity.this.getApplication()).getSomeVariable());
-                if (((Save_tel) MainActivity.this.getApplication()).getSomeVariable() == null) {
-                    Toast.makeText(getApplicationContext(),"저장된 번호가 없습니다. 번호를 저장해주세요",Toast.LENGTH_LONG).show();
+                if ( tel_number== null) {
+                    Toast.makeText(getApplicationContext(),"저장된 번호가 없습니다."+System.lineSeparator()+"번호를 저장해주세요",Toast.LENGTH_LONG).show();
                     Intent intent2 = new Intent(getApplicationContext(), com.yejija.myapplication.Setting.class);
                     startActivity(intent2);
                 } else {
-                    Intent intent3 = new Intent("android.intent.action.DIAL", Uri.parse(((Save_tel) MainActivity.this.getApplication()).getSomeVariable()));
+                    Intent intent3 = new Intent("android.intent.action.DIAL", Uri.parse(tel_number));
                     //여기 전역변수로 바꾸기
                     //startActivity(new Intent("android.intent.action.DIAL", Uri.parse(tel_number)));
                     startActivity(intent3);
@@ -294,6 +301,8 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+
+    //번호 저장
     @Override
     public void onBackPressed() {
         // 이 코드에서는 메소드를 오버라이드해서 드로어가 열려있다면 닫아주고,
@@ -305,5 +314,39 @@ public class MainActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        saveState();
+    }
+
+    protected void onStart(){
+        super.onStart();
+        restoreState();
+    }
+
+    protected void saveState(){
+        SharedPreferences pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("tel_num", tel_number);
+
+        editor.commit();
+    }
+
+    protected void restoreState(){
+        SharedPreferences pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+        if((pref != null) && (pref.contains("tel_num"))){
+            tel_number = pref.getString("tel_num", "");
+        }
+    }
+
+    protected void clearPref() {
+        SharedPreferences pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.clear();
+        tel_number = null;
+        editor.commit();
     }
 }

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.app.Application;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,46 +36,14 @@ public class Setting extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((Save_tel) Setting.this.getApplication()).setSomeVariable("tel:"+edit_tel.getText().toString());
-                //Intent i = new Intent(Setting.this, MainActivity.class);
-                //i.putExtra("number", tel_number);
-                //startActivity(i);
+                    ((Save_tel) Setting.this.getApplication()).setSomeVariable("tel:" + edit_tel.getText().toString());
+                    //Intent i = new Intent(Setting.this, MainActivity.class);
+                    //i.putExtra("number", tel_number);
+                    //startActivity(i);
+                    Toast.makeText(getApplicationContext(), "번호가 저장됐습니다", Toast.LENGTH_LONG).show();
             }
         });
 
     }
-    @Override
-    protected void onPause(){
-        super.onPause();
-        saveState();
-    }
 
-    @Override
-    protected void onStart(){
-        super.onStart();
-        restoreState();
-    }
-
-    protected void saveState(){
-        SharedPreferences pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putString("number", ((Save_tel) this.getApplication()).getSomeVariable());
-        editor.commit();
-
-    }
-
-    protected void restoreState() {
-        SharedPreferences pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
-        ((Save_tel) Setting.this.getApplication()).setSomeVariable(pref.getString("number", ""));
-        //((Save_tel) context.getApplicationContext()).tel_num = pref.getString("number", "");
-    }
-
-    protected void clearPref(){
-        SharedPreferences pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        editor.clear();
-        ((Save_tel) Setting.this.getApplication()).setSomeVariable(null);
-        //((Save_tel) context.getApplicationContext()).tel_num = null;
-        editor.commit();
-    }
 }
