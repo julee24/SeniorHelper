@@ -26,17 +26,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textSize="26sp"
-            android:text="OO월 OO일"/>
+            android:text="OO월 OO일"
+            android:fontFamily="@font/pretendardbold"
+            android:textSize="26sp" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/locationTextView"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentRight="true"-->
-<!--            android:layout_centerVertical="true"-->
-<!--            android:textSize="13sp"-->
-<!--            android:text="강남구 삼성동"/>-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/locationTextView"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentRight="true"-->
+        <!--            android:layout_centerVertical="true"-->
+        <!--            android:textSize="13sp"-->
+        <!--            android:text="강남구 삼성동"/>-->
 
     </RelativeLayout>
 
@@ -77,7 +78,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="8dp"
-                    android:src="@drawable/imagetoset" />
+                    android:src="@drawable/insert_picture" />
+<!--                android:src="@drawable/imagetoset"-->
 
             </LinearLayout>
 
@@ -108,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
-                app:filledColor="#FF6600"
+                app:filledColor="#5CAB7D"
                 app:emptyColor="#a8aeb8"
                 app:rangeCount="5"
                 app:sliderRadiusPercent="0.4"
@@ -125,31 +127,31 @@
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:src="@drawable/smile1_48"/>
+                    android:src="@drawable/smile1"/>
 
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:src="@drawable/smile2_48"/>
+                    android:src="@drawable/smile2"/>
 
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:src="@drawable/smile3_48"/>
+                    android:src="@drawable/smile3"/>
 
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:src="@drawable/smile4_48"/>
+                    android:src="@drawable/smile4"/>
 
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:src="@drawable/smile5_48"/>
+                    android:src="@drawable/smile5"/>
 
             </LinearLayout>
 
@@ -172,22 +174,21 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="20dp"
-            android:background="@drawable/select_button"
+            android:background="@drawable/button_round"
             android:text="@string/save_button"
             android:textColor="@android:color/white"
-            app:backgroundTint="#00000000"
-            app:backgroundTintMode="add" />
+            app:backgroundTint="#5CAB7D" />
 
         <Button
             android:id="@+id/deleteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:background="@drawable/select_button"
+            android:background="@drawable/button_round"
             android:text="@string/delete_button"
             android:textColor="@android:color/white"
-            app:backgroundTint="#00000000"
-            app:backgroundTintMode="add" />
+            app:backgroundTint="#5CAB7D"
+            />
 
         <Button
             android:id="@+id/closeButton"
@@ -195,11 +196,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
-            android:background="@drawable/select_button"
+            android:background="@drawable/button_round"
             android:text="@string/close_button"
             android:textColor="@android:color/white"
-            app:backgroundTint="#00000000"
-            app:backgroundTintMode="add" />
+            app:backgroundTint="#5CAB7D"
+            />
 
     </RelativeLayout>
 

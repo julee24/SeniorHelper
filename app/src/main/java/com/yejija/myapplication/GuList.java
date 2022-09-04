@@ -3,6 +3,7 @@ package com.yejija.myapplication;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,9 +19,12 @@ import java.util.List;
 
 public class GuList extends AppCompatActivity {
 
-    private ArrayList<GuItem> lo_data = null;
+
     private ArrayList<GuItem> data = null;
     private ArrayList<String> web = null;
+    String local_web ;
+    String local_gu;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +32,9 @@ public class GuList extends AppCompatActivity {
         /* xml과 연결 */
         setContentView(R.layout.gu_list);
 
-        ListView listView1 = (ListView) findViewById(R.id.lo_listview);
         ListView listView2 = (ListView) findViewById(R.id.gu_listview);
-
+        TextView gu_icon = (TextView) findViewById(R.id.gu_icon);
+        TextView gu_name = (TextView) findViewById(R.id.gu_name);
 
         /* 서버와 연동했닫면 값을 받아서 띄울 수 있지만,
          * 연동이 되어있지 않으므로
@@ -152,15 +156,6 @@ public class GuList extends AppCompatActivity {
         listView2.setAdapter(adapter);
 
 
-
-        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://news.seoul.go.kr/welfare/archives/695"));
-                startActivity(intent);
-            }
-        });
-
         /* 아이템 클릭시 작동 */
         listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -180,7 +175,35 @@ public class GuList extends AppCompatActivity {
 
 
 
+        Intent intent = getIntent();
+        String address = intent.getStringExtra("address") + "청";
+
+        gu_icon.setText("구청");
+        gu_name.setText(address);
+
+
+        //Log.e("hi",test+"!");
+
+        for (int i=0;i<data.size();i++){
+            local_gu = data.get(i).getName() ;
+            Log.v("b", local_gu+"mm");
+            if(local_gu.equals(address)){
+                Log.v("hello", i+"??");
+                Log.v("hi", web.get(i)+"!!");
+                local_web = web.get(i);
+            }
+            else{continue;}
+        }
+
+        gu_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(local_web));
+                startActivity(intent);
+            }
+        });
+
+
     }
 
 }
-

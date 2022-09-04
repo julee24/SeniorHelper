@@ -146,11 +146,11 @@ public class MainActivity extends AppCompatActivity {
 //            startActivity(intent);
 //        });
 
-        Button button = (Button) findViewById(R.id.button1);
-        button.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), GuList.class);
-            startActivity(intent);
-        });
+//        Button button = (Button) findViewById(R.id.button1);
+//        button.setOnClickListener(v -> {
+//            Intent intent = new Intent(getApplicationContext(), GuList.class);
+//            startActivity(intent);
+//        });
 
         Button button2 = (Button) findViewById(R.id.button2);
         button2.setOnClickListener(v -> {
@@ -287,6 +287,13 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     txtResult.setText(currentAddress);
+
+                    Button button = (Button) findViewById(R.id.button1);
+                    button.setOnClickListener(v -> {
+                        Intent myIntent = new Intent(MainActivity.this, GuList.class);
+                        myIntent.putExtra("address", currentAddress);
+                        startActivity(myIntent);
+                    });
                 }
 
             }

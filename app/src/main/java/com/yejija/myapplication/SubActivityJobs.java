@@ -2,6 +2,7 @@ package com.yejija.myapplication;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -48,6 +49,7 @@ public class SubActivityJobs extends AppCompatActivity {
     private ArrayList<String> JobAvail;
     private ArrayList<String> JobUrl;
 
+    private TextView textView;
     //
 
     ////big change
@@ -73,6 +75,7 @@ public class SubActivityJobs extends AppCompatActivity {
         //layout 설정하는 곳
         setContentView(R.layout.job_list);
 
+        textView = (TextView) findViewById(R.id.callbutton);
 //        textView4 = (TextView)findViewById(R.id.textView4);
 //        textView5 = (TextView)findViewById(R.id.textView5);
 //        textView6 = (TextView)findViewById(R.id.textView6);
@@ -90,6 +93,16 @@ public class SubActivityJobs extends AppCompatActivity {
         getWebsite();
         //mAdapter = new BaseAdapterEx(SubActivityJobs.this, mData);
         //mListView.setAdapter(mAdapter);
+
+
+        //전화하기
+        textView = (TextView) findViewById(R.id.callbutton);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent("android.intent.action.DIAL", Uri.parse("tel:"+"02-6220-8640")));
+            }
+        });
 
 
         //8.22

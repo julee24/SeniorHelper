@@ -1,95 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:layout_marginLeft="4dp"
-    android:layout_marginRight="4dp"
-    android:layout_marginBottom="4dp"
-    app:cardBackgroundColor="#FFFFFFFF"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="5dp">
+    android:layout_height="wrap_content" >
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="7dp"
+        android:background="@drawable/list_item"
+        android:elevation="5dp"
+        android:padding="12dp"
         android:visibility="visible">
 
         <ImageView
             android:id="@+id/moodImageView"
             android:layout_width="54dp"
             android:layout_height="54dp"
-            android:layout_gravity="center_vertical"
+            android:layout_alignTop="@+id/dateandweather"
+            android:layout_alignBottom="@+id/contentsTextView"
             android:padding="5dp"
-            app:srcCompat="@drawable/smile5_48" />
+            app:srcCompat="@drawable/smile5" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:id="@+id/dateandweather"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_marginStart="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_toRightOf="@+id/moodImageView"
+            android:background="@drawable/locationbox">
 
             <TextView
-                android:id="@+id/contentsTextView"
-                android:layout_width="match_parent"
+                android:id="@+id/dateTextView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="내용"
-                android:textSize="24sp" />
+                android:padding="5dp"
+                android:text="02월 10일"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+            <ImageView
+                android:id="@+id/weatherImageView"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_toRightOf="@+id/dateTextView"
+                android:src="@drawable/weather_icon_1" />
 
-                <ImageView
-                    android:id="@+id/weatherImageView"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_alignParentLeft="true"
-                    android:src="@drawable/weather_icon_1" />
 
-                <ImageView
-                    android:id="@+id/pictureExistsImageView"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@+id/weatherImageView"
-                    android:src="@drawable/picture_128" />
+        </RelativeLayout>
 
-<!--                <TextView-->
-<!--                    android:id="@+id/locationTextView"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_centerHorizontal="true"-->
-<!--                    android:layout_centerVertical="true"-->
-<!--                    android:text="강남구 삼성동"-->
-<!--                    android:textSize="16sp" />-->
 
-                <TextView
-                    android:id="@+id/dateTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:text="02월 10일"
-                    android:textColor="#FF0000FF"
-                    android:textSize="16sp" />
+        <ImageView
+            android:id="@+id/pictureExistsImageView"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/dateandweather"
+            android:src="@drawable/picture_128" />
 
-            </RelativeLayout>
+        <TextView
+            android:id="@+id/contentsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dateandweather"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/moodImageView"
+            android:padding="5dp"
+            android:text="내용"
+            android:textSize="24sp" />
 
-        </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="7dp"
+        android:background="@drawable/list_item"
+        android:elevation="5dp"
         android:orientation="vertical"
+        android:padding="12dp"
         android:visibility="gone">
 
         <ImageView
@@ -97,70 +98,65 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_gravity="center_vertical"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="15dp"
             android:padding="5dp"
             android:src="@drawable/noimagefound" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/moodImageView2"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_below="@+id/pictureImageView"
+            android:layout_alignTop="@+id/contentsTextView2"
+            android:layout_alignBottom="@+id/dateandweather2"
+            android:padding="5dp"
+            app:srcCompat="@drawable/smile5" />
+
+        <RelativeLayout
+            android:id="@+id/dateandweather2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_below="@+id/contentsTextView2"
+            android:layout_marginStart="5dp"
+            android:layout_toRightOf="@+id/moodImageView2"
+            android:backgroundTint="#E7E6E6">
 
             <TextView
-                android:id="@+id/contentsTextView2"
-                android:layout_width="match_parent"
+                android:id="@+id/dateTextView2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="내용"
-                android:textSize="24sp" />
+                android:padding="5dp"
+                android:text="02월 10일"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+            <ImageView
+                android:id="@+id/weatherImageView2"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_toRightOf="@+id/dateTextView2"
+                android:src="@drawable/weather_icon_1" />
 
-                <ImageView
-                    android:id="@+id/moodImageView2"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    app:srcCompat="@drawable/smile5_48" />
+        </RelativeLayout>
 
-                <ImageView
-                    android:id="@+id/weatherImageView2"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@+id/moodImageView2"
-                    android:src="@drawable/weather_icon_1" />
+        <TextView
+            android:id="@+id/contentsTextView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/moodImageView2"
+            android:padding="5dp"
+            android:text="내용"
+            android:textSize="24sp"
+            android:layout_below="@+id/pictureImageView"/>
 
-<!--                <TextView-->
-<!--                    android:id="@+id/locationTextView2"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_centerHorizontal="true"-->
-<!--                    android:layout_centerVertical="true"-->
-<!--                    android:text="강남구 삼성동"-->
-<!--                    android:textSize="16sp" />-->
 
-                <TextView
-                    android:id="@+id/dateTextView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:text="02월 10일"
-                    android:textColor="#FF0000FF"
-                    android:textSize="16sp" />
+    </RelativeLayout>
 
-            </RelativeLayout>
 
-        </LinearLayout>
 
-    </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</RelativeLayout>

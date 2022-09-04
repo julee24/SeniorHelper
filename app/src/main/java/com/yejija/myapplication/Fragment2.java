@@ -229,7 +229,8 @@ public class Fragment2 extends Fragment {
             com.yejija.myapplication.AppConstants.println("picturePath : " + picturePath);
 
             if (picturePath == null || picturePath.equals("")) {
-                pictureImageView.setImageResource(R.drawable.noimagefound);
+                pictureImageView.setImageResource(R.drawable.insert_picture);
+                //pictureImageView.setImageResource(R.drawable.noimagefound);
             } else {
                 setPicture(item.getPicture(), 1);
             }
@@ -250,7 +251,8 @@ public class Fragment2 extends Fragment {
             setDateString(currentDateString);
 
             contentsInput.setText("");
-            pictureImageView.setImageResource(R.drawable.noimagefound);
+            pictureImageView.setImageResource(R.drawable.insert_picture);
+            //pictureImageView.setImageResource(R.drawable.noimagefound);
             setMood("2");
         }
 
@@ -332,103 +334,106 @@ public class Fragment2 extends Fragment {
         switch(id) {
 
             case com.yejija.myapplication.AppConstants.CONTENT_PHOTO:
-                builder = new AlertDialog.Builder(context);
-
-                builder.setTitle("사진 메뉴 선택");
-                builder.setSingleChoiceItems(R.array.array_photo, 0, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        selectedPhotoMenu = whichButton;
-                    }
-                });
-                builder.setPositiveButton("선택", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        if(selectedPhotoMenu == 0 ) {
-                            showPhotoCaptureActivity();
-                        } else if(selectedPhotoMenu == 1) {
-                            showPhotoSelectionActivity();
-                        }
-                    }
-                });
-                builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-
-                    }
-                });
-
+//                builder = new AlertDialog.Builder(context);
+//
+//                builder.setTitle("사진 메뉴 선택");
+//                builder.setSingleChoiceItems(R.array.array_photo, 0, new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int whichButton) {
+//                        selectedPhotoMenu = whichButton;
+//                    }
+//                });
+//                builder.setPositiveButton("선택", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int whichButton) {
+//                        if(selectedPhotoMenu == 0 ) {
+//                            showPhotoCaptureActivity();
+//                        } else if(selectedPhotoMenu == 1) {
+//                            showPhotoSelectionActivity();
+//                        }
+//                    }
+//                });
+//                builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int whichButton) {
+//
+//                    }
+//                });
+//
+//                break;
+                showPhotoSelectionActivity();
                 break;
 
             case com.yejija.myapplication.AppConstants.CONTENT_PHOTO_EX:
-                builder = new AlertDialog.Builder(context);
+//                builder = new AlertDialog.Builder(context);
+//
+//                builder.setTitle("사진 메뉴 선택");
+//                builder.setSingleChoiceItems(R.array.array_photo_ex, 0, new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int whichButton) {
+//                        selectedPhotoMenu = whichButton;
+//                    }
+//                });
+//                builder.setPositiveButton("선택", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int whichButton) {
+//                        if(selectedPhotoMenu == 0) {
+//                            showPhotoCaptureActivity();
+//                        } else if(selectedPhotoMenu == 1) {
+//                            showPhotoSelectionActivity();
+//                        } else if(selectedPhotoMenu == 2) {
+//                            isPhotoCanceled = true;
+//                            isPhotoCaptured = false;
+//
+//                            pictureImageView.setImageResource(R.drawable.picture1);
+//                        }
+//                    }
+//                });
+//                builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int whichButton) {
+//
+//                    }
+//                });
 
-                builder.setTitle("사진 메뉴 선택");
-                builder.setSingleChoiceItems(R.array.array_photo_ex, 0, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        selectedPhotoMenu = whichButton;
-                    }
-                });
-                builder.setPositiveButton("선택", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        if(selectedPhotoMenu == 0) {
-                            showPhotoCaptureActivity();
-                        } else if(selectedPhotoMenu == 1) {
-                            showPhotoSelectionActivity();
-                        } else if(selectedPhotoMenu == 2) {
-                            isPhotoCanceled = true;
-                            isPhotoCaptured = false;
-
-                            pictureImageView.setImageResource(R.drawable.picture1);
-                        }
-                    }
-                });
-                builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-
-                    }
-                });
-
+                showPhotoSelectionActivity();
                 break;
 
             default:
                 break;
         }
 
-        AlertDialog dialog = builder.create();
-        dialog.show();
+//        AlertDialog dialog = builder.create();
+//        dialog.show();
     }
 
-    public void showPhotoCaptureActivity() {
-        try {
-            file = createFile();
-            if (file.exists()) {
-                file.delete();
-            }
+//    public void showPhotoCaptureActivity() {
+//        try {
+//            file = createFile();
+//            if (file.exists()) {
+//                file.delete();
+//            }
+//
+//            file.createNewFile();
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        if(Build.VERSION.SDK_INT >= 24) {
+//            uri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID, file);
+//        } else {
+//            uri = Uri.fromFile(file);
+//        }
+//
+//        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+//
+//        startActivityForResult(intent, com.yejija.myapplication.AppConstants.REQ_PHOTO_CAPTURE);
+//
+//    }
 
-            file.createNewFile();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        if(Build.VERSION.SDK_INT >= 24) {
-            uri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID, file);
-        } else {
-            uri = Uri.fromFile(file);
-        }
-
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-
-        startActivityForResult(intent, com.yejija.myapplication.AppConstants.REQ_PHOTO_CAPTURE);
-
-    }
-
-    private File createFile() {
-        String filename = createFilename();
-        File outFile = new File(context.getFilesDir(), filename);
-        Log.d("Main", "File path : " + outFile.getAbsolutePath());
-
-        return outFile;
-    }
+//    private File createFile() {
+//        String filename = createFilename();
+//        File outFile = new File(context.getFilesDir(), filename);
+//        Log.d("Main", "File path : " + outFile.getAbsolutePath());
+//
+//        return outFile;
+//    }
 
     public void showPhotoSelectionActivity() {
         Intent intent = new Intent();
@@ -630,3 +635,4 @@ public class Fragment2 extends Fragment {
     }
 
 }
+

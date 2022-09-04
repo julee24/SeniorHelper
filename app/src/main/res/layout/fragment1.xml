@@ -10,7 +10,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
         <lib.kingja.switchbutton.SwitchMultiButton
             android:id="@+id/switchButton"
@@ -20,29 +21,32 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:padding="8dp"
+            app:selectedColor="#5CAB7D"
+            app:selectedTab="0"
             app:strokeRadius="5dp"
             app:strokeWidth="1dp"
-            app:selectedTab="0"
-            app:selectedColor="#eb7b00"
             app:switchTabs="@array/switch_tabs"
-            app:textSize="14sp" />
+            app:textSize="22sp" />
 
         <Button
             android:id="@+id/todayWriteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/select_button"
-            android:text="@string/write_today"
+            android:background="@drawable/button_round"
+            android:elevation="5dp"
+            android:fontFamily="@font/pretendardbold"
+            android:padding="8dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:stateListAnimator="@null"
+            android:text="오늘 일기 작성하기"
             android:textColor="@android:color/white"
-            app:backgroundTint="#00000000"
-            app:backgroundTintMode="add" />
+            android:textSize="22dp" />
 
     </RelativeLayout>
 
