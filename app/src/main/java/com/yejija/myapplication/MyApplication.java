@@ -17,7 +17,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
-public class MyApplication extends Application {
+public class MyApplication extends Save_tel {
     private static final String TAG = "MyApplication";
     public static RequestQueue requestQueue;
 

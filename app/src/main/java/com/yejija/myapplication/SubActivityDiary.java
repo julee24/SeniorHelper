@@ -339,9 +339,12 @@ public class SubActivityDiary extends AppCompatActivity implements OnTabItemSele
         url += "?gridx=" + Math.round(gridX);
         url += "&gridy=" + Math.round(gridY);
 
+        Log.v("roundX", "" +Math.round(gridX));
+        Log.v("roundY", "" +Math.round(gridY));
+
         Map<String,String> params = new HashMap<String,String>();
 
-        MyApplication.send(AppConstants.REQ_WEATHER_BY_GRID, Request.Method.GET, url, params, this);
+        MyApplication.send(AppConstants.REQ_WEATHER_BY_GRID, Request.Method.GET, url, params, SubActivityDiary.this);
     }
 
 
@@ -349,7 +352,7 @@ public class SubActivityDiary extends AppCompatActivity implements OnTabItemSele
         if (responseCode == 200) {
             if (requestCode == AppConstants.REQ_WEATHER_BY_GRID) {
                 // Grid 좌표를 이용한 날씨 정보 처리 응답
-                //println("response -> " + response);
+                println("response -> " + response);
 
                 XmlParserCreator parserCreator = new XmlParserCreator() {
                     @Override
@@ -422,3 +425,4 @@ public class SubActivityDiary extends AppCompatActivity implements OnTabItemSele
     }
 
 }
+
