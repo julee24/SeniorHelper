@@ -70,8 +70,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/input_contents_hint"
-                    android:maxLines="1"
-                    android:textSize="32sp" />
+                    android:textSize="32sp"
+                    android:singleLine="true"
+                    android:imeOptions="actionDone"/>
 
                 <ImageView
                     android:id="@+id/pictureImageView"

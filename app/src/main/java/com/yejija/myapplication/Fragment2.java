@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -109,6 +110,7 @@ public class Fragment2 extends Fragment {
         return rootView;
     }
 
+
     private void initUI(ViewGroup rootView) {
 
         weatherIcon = rootView.findViewById(R.id.weatherIcon);
@@ -116,6 +118,8 @@ public class Fragment2 extends Fragment {
         //locationTextView = rootView.findViewById(R.id.locationTextView);
 
         contentsInput = rootView.findViewById(R.id.contentsInput);
+
+
         pictureImageView = rootView.findViewById(R.id.pictureImageView);
         pictureImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -633,6 +637,9 @@ public class Fragment2 extends Fragment {
 
         return picturePath;
     }
+
+
+
 
 }
 

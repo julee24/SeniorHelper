@@ -29,7 +29,12 @@
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="검색어를 입력하세요" />
+            android:hint="검색어를 입력하세요"
+            android:singleLine="true"
+            android:imeOptions="actionDone"/>
+<!--        android:singleLine="true"-->
+<!--        android:imeOptions="actionDone"-->
+        <!--검색 한줄만-->
 
     </LinearLayout>
 
@@ -92,18 +97,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.87"/>
+            app:layout_constraintGuide_begin="104dp" />
 
-        <TextView android:id="@+id/copyright"
-            android:layout_width="match_parent"
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline18"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.62"/>
+
+<!--        <TextView android:id="@+id/copyright"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center"-->
+<!--            android:textColor="#000000"-->
+<!--            android:text="Copyright © 서울노인복지센터 All rights reserved."-->
+<!--            android:textSize="12sp"-->
+<!--            android:fontFamily="@font/pretendardmedium"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/guideline17"-->
+<!--            />-->
+
+        <ImageView android:id="@+id/source"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:gravity="center"
-            android:textColor="#000000"
-            android:text="Copyright © 서울노인복지센터 All rights reserved."
-            android:textSize="12sp"
-            android:fontFamily="@font/pretendardmedium"
+            android:src="@drawable/source"
             app:layout_constraintBottom_toTopOf="@+id/guideline17"
+            app:layout_constraintTop_toBottomOf="@+id/guideline18"
             />
 
 

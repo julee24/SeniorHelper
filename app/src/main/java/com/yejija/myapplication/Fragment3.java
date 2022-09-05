@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -91,6 +92,7 @@ public class Fragment3 extends Fragment {
         legent1.setEnabled(false);
 
         chart.setEntryLabelColor(Color.WHITE);
+
         chart.setEntryLabelTextSize(10f);
 
 
@@ -171,14 +173,14 @@ public class Fragment3 extends Fragment {
         dataSet.setSelectionShift(5f);
 
         ArrayList<Integer> colors = new ArrayList<>();
-        for (int c : ColorTemplate.JOYFUL_COLORS) {
+        for (int c : ColorTemplate.VORDIPLOM_COLORS) { // 파이 그래프 색 변경
             colors.add(c);
         }
         dataSet.setColors(colors);
 
         PieData data = new PieData(dataSet);
         data.setValueTextSize(22.0f);
-        data.setValueTextColor(Color.WHITE);
+        data.setValueTextColor(Color.BLACK); // piechart안 값 txt 색상변경
 
         chart.setData(data);
         chart.invalidate();
