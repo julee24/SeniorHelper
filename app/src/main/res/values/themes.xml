@@ -24,6 +24,15 @@
         <!-- delete action bar -->
     </style>
 
+    <!--window style-->
+    <style name="AppDialogTheme" parent="@style/Theme.MyApplication.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    <!---->
+
     <style name="SplashTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:windowBackground">@drawable/splash</item>
     </style>

@@ -137,6 +137,8 @@ public class ManagePublicData
                 //MainActivity.mainTextView.append(getSeniorCenterVOArrayList().get(i).getCenterName() + " ");
                 MainActivity.SeniorCenterLoc.add(getSeniorCenterVOArrayList().get(i));
             }
+
+            //SubActivity.fa.finish();
         }
     }
 }

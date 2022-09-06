@@ -30,7 +30,8 @@
         <meta-data android:name="com.kakao.sdk.AppKey" android:value="7947271957296b6017458678a8697885"/>
         <activity
             android:name=".SubActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppDialogTheme"/>
 
         <activity
             android:name=".SubActivityMap"

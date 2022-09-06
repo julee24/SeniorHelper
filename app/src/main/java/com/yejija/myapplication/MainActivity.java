@@ -136,9 +136,15 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-//        getAppKeyHash();
+
+        // 로딩 스크린 구현 activity
+        // activity 안에 ManagePublicData.getInstance().parseSeniorCenter.execute();가 포함되어 있으므로 합칠때는 밑에 execute 줄 제거
+        //아 하고 ManagePublicData안에 마지막 OnPostExecute에서는 .finish() 주석 풀기!
+        //Intent intent7 = new Intent(getApplicationContext(), SubActivity.class);
+        //startActivity(intent7);
         ManagePublicData.getInstance().parseSeniorCenter.execute();
-        //이게 async부분일수도
+        //async
+
 
         txtResult = (TextView)findViewById(R.id.txtResult);
 //        txtResult.setOnClickListener(v -> {
