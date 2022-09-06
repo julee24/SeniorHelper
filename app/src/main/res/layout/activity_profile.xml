@@ -6,71 +6,165 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <LinearLayout
-
-        android:id="@+id/linearLayout"
-
-        android:layout_width="0dp"
-
-        android:layout_height="wrap_content"
-
-        android:layout_gravity="center"
-
-        android:layout_marginTop="116dp"
-        android:layout_marginBottom="20dp"
+        android:id="@+id/txtLogin"
+        android:layout_width="351dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="200dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/fragmentContainerView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            android:id="@+id/user_image"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/pretendardsemibold"
+                android:text="이 름"
+                android:textSize="18sp" />
 
-            android:layout_width="200dp"
+            <EditText
+                android:id="@+id/edtName"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/edittext_draw"
+                android:fontFamily="@font/pretendardmedium"
+                android:hint="홍길동"
+                android:inputType="text"
+                android:maxLength="16"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:singleLine="true"
+                android:textSize="15sp" />
+        </LinearLayout>
 
-            android:layout_height="200dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            android:layout_gravity="center"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/pretendardsemibold"
+                android:text="번호"
+                android:textSize="18sp" />
 
-            android:adjustViewBounds="true"
-            android:minHeight="200dp"
-            android:minWidth="200dp"
-            android:maxWidth="200dp"
+            <EditText
+                android:id="@+id/edtAge"
+                android:layout_width="90dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/edittext_draw"
+                android:hint="번호1"
+                android:inputType="number"
+                android:maxLength="3"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textSize="15sp" />
 
-            android:maxHeight="200dp"
-            app:srcCompat="@drawable/ic_image" />
+            <EditText
+                android:id="@+id/edtAge2"
+                android:layout_width="90dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/edittext_draw"
+                android:hint="번호2"
+                android:inputType="number"
+                android:maxLength="4"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/edtAge3"
+                android:layout_width="90dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/edittext_draw"
+                android:hint="번호3"
+                android:inputType="number"
+                android:maxLength="4"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/pretendardsemibold"
+                android:text="생일"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/edtbirth"
+                android:layout_width="90dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/edittext_draw"
+                android:hint="년"
+                android:inputType="number"
+                android:maxLength="4"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/edtbirth2"
+                android:layout_width="90dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/edittext_draw"
+                android:hint="월"
+                android:inputType="number"
+                android:maxLength="2"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/edtbirth3"
+                android:layout_width="90dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/edittext_draw"
+                android:hint="일"
+                android:inputType="number"
+                android:maxLength="2"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textSize="15sp" />
+        </LinearLayout>
 
         <Button
-
-            android:id="@+id/btn_UploadPicture"
-
-            android:layout_width="200dp"
-
+            android:id="@+id/btnSave"
+            android:layout_width="100dp"
             android:layout_height="40dp"
-
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
             android:background="@drawable/button_draw2"
+            android:fontFamily="@font/pretendardbold"
+            android:text="저 장"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
 
-            android:onClick="onClick"
-            android:text="사진 선택"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
 
     </LinearLayout>
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:name="com.yejija.myapplication.fragment_userInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="150dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

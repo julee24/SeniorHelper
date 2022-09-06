@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Yejija</string>
+    <string name="app_name">옹심이</string>
 
     <string name="tab_title1">목록</string>
     <string name="tab_title2">작성</string>
@@ -18,4 +18,7 @@
     <string name="graph1_title">기분별 비율</string>
     <string name="graph2_title">요일별 기분</string>
     <string name="graph3_title">기분 변화</string>
+
+    <string name="next">다음</string>
+    <string name="start">시작</string>
 </resources>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "173609419553",
+    "firebase_url": "https://my-application-ebb87-default-rtdb.firebaseio.com",
+    "project_id": "my-application-ebb87",
+    "storage_bucket": "my-application-ebb87.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:173609419553:android:a79b3e14963a61cb96b460",
+        "android_client_info": {
+          "package_name": "com.yejija.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "173609419553-curs6obgden7a1uvkq8lt6t35pddkbmh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yejija.myapplication",
+            "certificate_hash": "731323a4781ddcf8589aaa0ea34076fc988b4035"
+          }
+        },
+        {
+          "client_id": "173609419553-0slvfrpcgfb4fopk66al6pf0j3cbcnqa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKXVf62isstUmHPoaCFBXimu-XnF-apJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "173609419553-0slvfrpcgfb4fopk66al6pf0j3cbcnqa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

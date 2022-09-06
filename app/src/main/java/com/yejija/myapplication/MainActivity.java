@@ -8,11 +8,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -34,6 +29,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -43,21 +39,35 @@ import java.util.List;
 import android.content.pm.Signature;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 
 public class MainActivity extends AppCompatActivity {
     private TextView txtResult;
     String currentAddress;
-
-    //
     Button btn_tel;
     String tel_number;
-    //
+    private DatabaseReference mDatabase;
+    User user;
+    public static Context context_main;
+    SharedPreferences pref2;
+    SharedPreferences.Editor editor2;
+    String post;
+    private String userName, year, month, day, num;
 
     public static ArrayList<SeniorCenterVO> SeniorCenterLoc = new ArrayList<>();
 
-//
 //    private void getAppKeyHash() {
 //        try {
 //            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
@@ -79,6 +89,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+
+        // 최초 실행 여부를 판단 ->>>
+        SharedPreferences sharedPreferences = getSharedPreferences("checkFirstAccess", Activity.MODE_PRIVATE);
+        boolean checkFirstAccess = sharedPreferences.getBoolean("checkFirstAccess", false);
+        context_main = this;
+        pref2 = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+        editor2 = pref2.edit();
+        post = pref2.getString("post", "hello");
+        Log.v("초기화",post);
+
+        if (!checkFirstAccess) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("checkFirstAccess", true);
+            editor.apply();
+
+            Intent tutorialIntent = new Intent(MainActivity.this, TutorialActivity.class);
+            startActivity(tutorialIntent);
+            writeNewUser("홍길동" , "010","1234", "5678", "2099", "12", "30", null);
+        }
 
         final DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
 
@@ -86,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                // start에 지정된 Drawer 열기
+                UserProfile(post);
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
@@ -94,16 +125,11 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.navigationView);
         navigationView.setItemIconTintList(null);
 
-//        NavController navController = Navigation.findNavController(this, R.id.navHostFragment);
-//        NavigationUI.setupWithNavController(navigationView, navController);
-
-
         final TextView textTitle = findViewById(R.id.textTitle);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
 
                 switch(menuItem.getItemId()){
                     case R.id.nav_home:
@@ -111,21 +137,13 @@ public class MainActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.nav_edit:
-                        Intent intent2 = new Intent(getApplicationContext(), Setting.class);
-                        startActivity(intent2);
+                        updateNum(post);
                         drawerLayout.closeDrawers();
                         return true;
 
                     case R.id.nav_profile:
                         Intent intent3 = new Intent(getApplicationContext(), ProfileActivity.class);
                         startActivity(intent3);
-                        drawerLayout.closeDrawers();
-                        return true;
-
-                    case R.id.nav_settings:
-//                        menuItem.setChecked(true);
-                        Intent intent4 = new Intent(getApplicationContext(), Save_tel.class);
-                        startActivity(intent4);
                         drawerLayout.closeDrawers();
                         return true;
                 }
@@ -139,24 +157,14 @@ public class MainActivity extends AppCompatActivity {
 
         // 로딩 스크린 구현 activity
         // activity 안에 ManagePublicData.getInstance().parseSeniorCenter.execute();가 포함되어 있으므로 합칠때는 밑에 execute 줄 제거
-        //아 하고 ManagePublicData안에 마지막 OnPostExecute에서는 .finish() 주석 풀기!
-        //Intent intent7 = new Intent(getApplicationContext(), SubActivity.class);
-        //startActivity(intent7);
+        // 아 하고 ManagePublicData안에 마지막 OnPostExecute에서는 .finish() 주석 풀기!
+        // Intent intent7 = new Intent(getApplicationContext(), SubActivity.class);
+        // startActivity(intent7);
         ManagePublicData.getInstance().parseSeniorCenter.execute();
         //async
 
 
         txtResult = (TextView)findViewById(R.id.txtResult);
-//        txtResult.setOnClickListener(v -> {
-//            Intent intent = new Intent(getApplicationContext(), SubActivityMap.class);
-//            startActivity(intent);
-//        });
-
-//        Button button = (Button) findViewById(R.id.button1);
-//        button.setOnClickListener(v -> {
-//            Intent intent = new Intent(getApplicationContext(), GuList.class);
-//            startActivity(intent);
-//        });
 
         Button button2 = (Button) findViewById(R.id.button2);
         button2.setOnClickListener(v -> {
@@ -190,22 +198,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (tel_number == null){
-                    tel_number = ((Save_tel) MainActivity.this.getApplication()).getSomeVariable();
-                }
-
-                Log.v("tel: ", ""+((Save_tel) MainActivity.this.getApplication()).getSomeVariable());
-                if ( tel_number== null) {
-                    Toast.makeText(getApplicationContext(),"저장된 번호가 없습니다."+System.lineSeparator()+"번호를 저장해주세요",Toast.LENGTH_LONG).show();
-                    Intent intent2 = new Intent(getApplicationContext(), com.yejija.myapplication.Setting.class);
-                    startActivity(intent2);
-                } else {
-                    Intent intent3 = new Intent("android.intent.action.DIAL", Uri.parse(tel_number));
-                    //여기 전역변수로 바꾸기
-                    //startActivity(new Intent("android.intent.action.DIAL", Uri.parse(tel_number)));
-                    startActivity(intent3);
-                }
-
+                readNum(post);
 
             }
 
@@ -318,8 +311,6 @@ public class MainActivity extends AppCompatActivity {
     //번호 저장
     @Override
     public void onBackPressed() {
-        // 이 코드에서는 메소드를 오버라이드해서 드로어가 열려있다면 닫아주고,
-        // 아니라면 super.onBackPressed를 호출해 원래 onBackPressed()의 기능을 하도록 한 것이다.
         DrawerLayout drawer = findViewById(R.id.drawerLayout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             // DrawerLayout 닫기
@@ -361,5 +352,127 @@ public class MainActivity extends AppCompatActivity {
         editor.clear();
         tel_number = null;
         editor.commit();
+    }
+
+    public void writeNewUser(String userName, String num1, String num2, String num3, String year, String month, String day, String num) {
+        user = new User(userName, num1, num2, num3, year, month, day, num);
+
+        DatabaseReference pushedPostRef = mDatabase.child("users").push();
+
+        pushedPostRef.setValue(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Write was successful!
+                        post = pushedPostRef.getKey();
+                        editor2.putString("post", post);
+                        editor2.apply();
+                        Toast.makeText(getApplicationContext(), "저장을 완료했습니다.", Toast.LENGTH_SHORT).show();
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Write failed
+                        Toast.makeText(getApplicationContext(), "저장을 실패했습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
+    private void UserProfile(String post){
+        mDatabase.child("users").child(post).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+
+                userName = user.getuserName();
+                year = user.getyear();
+                month = user.getmonth();
+                day = user.getday();
+
+                NavigationView navigationView = (NavigationView) findViewById(R.id.navigationView);
+//                navigationView.OnNavigationItemSelectedListener(this);
+                //View nav_header_view = navigationView.inflateHeaderView(R.layout.nav_header_main);
+                View nav_header_view = navigationView.getHeaderView(0);
+                TextView profile_name = (TextView) nav_header_view.findViewById(R.id.profile_name);
+                TextView profile_birth = (TextView) nav_header_view.findViewById(R.id.profile_birth);
+                TextView profile_month = (TextView) nav_header_view.findViewById(R.id.profile_month);
+                TextView profile_day = (TextView) nav_header_view.findViewById(R.id.profile_day);
+                // 위치바꿈
+                profile_name.setText(userName);
+                profile_birth.setText(year);
+                profile_month.setText(month);
+                profile_day.setText(day);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+            }
+        });
+    }
+
+    private void readNum(String post) {
+
+        mDatabase.child("users").child(post).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                } else {
+
+                    User user = task.getResult().getValue(User.class);
+                    num = user.getnum();
+
+                    button_pressed();
+                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                }
+            }
+        });
+    }
+
+    public void button_pressed(){
+        Log.v("넘이멀까: ", "헤에에잉"+num);
+        if (num == null) {
+            Toast.makeText(getApplicationContext(),"저장된 번호가 없습니다. 번호를 저장해주세요",Toast.LENGTH_LONG).show();
+            Intent intent12 = new Intent(getApplicationContext(), com.yejija.myapplication.Setting.class);
+            startActivity(intent12);
+        } else {
+
+            Intent intent3 = new Intent("android.intent.action.DIAL", Uri.parse("tel:"+num));
+            //여기 전역변수로 바꾸기
+            //startActivity(new Intent("android.intent.action.DIAL", Uri.parse(tel_number)));
+            startActivity(intent3);
+
+        }
+
+    }
+
+    private void updateNum(String post){
+
+        mDatabase.child("users").child(post).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase2", "Error getting data", task.getException());
+                }
+                else {
+
+                    User user = task.getResult().getValue(User.class);
+                    num = user.getnum();
+                    //Log.v("멀까요", ""+num);
+                    if (num == null) {
+                        Toast.makeText(getApplicationContext(), "번호를 저장해주세요.", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Intent intent2 = new Intent(getApplicationContext(), ReSetting.class);
+                        startActivity(intent2);
+                    }
+                }
+            }
+        });
     }
 }

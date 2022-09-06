@@ -117,7 +117,7 @@ public class Fragment3 extends Fragment {
         xAxis3.setTextColor(Color.rgb(255, 192, 56));
         xAxis3.setCenterAxisLabels(true);
         xAxis3.setGranularity(1f);
-        xAxis3.setValueFormatter(new ValueFormatter() {
+        xAxis3.setValueFormatter(new MyValueFormatter() {
             private final SimpleDateFormat mFormat = new SimpleDateFormat("MM-dd", Locale.KOREA);
 
             @Override

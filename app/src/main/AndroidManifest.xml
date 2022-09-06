@@ -45,6 +45,9 @@
             android:name=".Setting"
             android:exported="false" />
 
+        <activity android:name=".ReSetting"
+            android:exported="false" />
+
         <activity
             android:name=".GuList"
             android:exported="true"/>
@@ -60,6 +63,9 @@
         <activity android:name=".SubActivityDiary"
             android:windowSoftInputMode="adjustPan">
         </activity>
+
+        <activity android:name=".TutorialActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
 
         <!-- 스플래시 액티비티 -->
         <activity
