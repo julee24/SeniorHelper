@@ -138,7 +138,7 @@ public class ManagePublicData
                 MainActivity.SeniorCenterLoc.add(getSeniorCenterVOArrayList().get(i));
             }
 
-            //SubActivity.fa.finish();
+            SubActivity.fa.finish();
         }
     }
 }

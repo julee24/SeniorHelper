@@ -84,7 +84,7 @@
             android:imeOptions="actionDone"
             android:textSize="22sp" />
 
-        </LinearLayout>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/phonetitle"

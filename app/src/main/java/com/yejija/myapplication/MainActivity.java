@@ -30,6 +30,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -49,6 +50,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import java.util.Calendar;
+import java.util.Locale;
 
 import org.w3c.dom.Text;
 
@@ -65,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences.Editor editor2;
     String post;
     private String userName, year, month, day, num;
+
 
     public static ArrayList<SeniorCenterVO> SeniorCenterLoc = new ArrayList<>();
 
@@ -110,6 +114,18 @@ public class MainActivity extends AppCompatActivity {
             startActivity(tutorialIntent);
             writeNewUser("홍길동" , "010","1234", "5678", "2099", "12", "30", null);
         }
+        else{
+            Intent intent7 = new Intent(getApplicationContext(), SubActivity.class);
+            startActivity(intent7);
+        }
+
+        // 로딩 스크린 구현 activity
+        // activity 안에 ManagePublicData.getInstance().parseSeniorCenter.execute();가 포함되어 있으므로 합칠때는 밑에 execute 줄 제거
+        // 아 하고 ManagePublicData안에 마지막 OnPostExecute에서는 .finish() 주석 풀기!
+//        Intent intent7 = new Intent(getApplicationContext(), SubActivity.class);
+//        startActivity(intent7);
+        //ManagePublicData.getInstance().parseSeniorCenter.execute();
+        //async
 
         final DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
 
@@ -121,6 +137,14 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
+
+
+//        profileImage.setImageResource(R.drawable.dark_profile);
+//        profileImage.setImageResource(R.drawable.light_profile);
+
+
+
+
 
         NavigationView navigationView = findViewById(R.id.navigationView);
         navigationView.setItemIconTintList(null);
@@ -160,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
         // 아 하고 ManagePublicData안에 마지막 OnPostExecute에서는 .finish() 주석 풀기!
         // Intent intent7 = new Intent(getApplicationContext(), SubActivity.class);
         // startActivity(intent7);
-        ManagePublicData.getInstance().parseSeniorCenter.execute();
+        //ManagePublicData.getInstance().parseSeniorCenter.execute();
         //async
 
 
@@ -396,6 +420,25 @@ public class MainActivity extends AppCompatActivity {
 //                navigationView.OnNavigationItemSelectedListener(this);
                 //View nav_header_view = navigationView.inflateHeaderView(R.layout.nav_header_main);
                 View nav_header_view = navigationView.getHeaderView(0);
+
+                // set profileImage by time 프로필 사진 & 시간별 효과
+//                Calendar c = Calendar.getInstance();
+//                int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
+//
+//                ImageView profileImage = (ImageView) nav_header_view.findViewById(R.id.profilePicture);
+//
+//                if(timeOfDay >= 0 && timeOfDay < 8){
+//                    profileImage.setImageResource(R.drawable.dark_profile);
+//                }else if(timeOfDay >= 8 && timeOfDay < 18){
+//                    profileImage.setImageResource(R.drawable.light_profile);
+//                }else if(timeOfDay >= 18 && timeOfDay < 24){
+//                    profileImage.setImageResource(R.drawable.dark_profile);
+//                }
+
+                //year = year.substring(2);
+                month = String.format(Locale.KOREA,"%02d", Integer.valueOf(month));
+                day = String.format(Locale.KOREA,"%02d", Integer.valueOf(day));
+
                 TextView profile_name = (TextView) nav_header_view.findViewById(R.id.profile_name);
                 TextView profile_birth = (TextView) nav_header_view.findViewById(R.id.profile_birth);
                 TextView profile_month = (TextView) nav_header_view.findViewById(R.id.profile_month);
@@ -405,6 +448,8 @@ public class MainActivity extends AppCompatActivity {
                 profile_birth.setText(year);
                 profile_month.setText(month);
                 profile_day.setText(day);
+
+
 
             }
 

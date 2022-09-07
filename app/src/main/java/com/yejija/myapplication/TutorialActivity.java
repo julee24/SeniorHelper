@@ -87,11 +87,19 @@ public class TutorialActivity extends AppCompatActivity {
                 else {
                     // 마지막 페이지라면 메인페이지로 이동
                     finish();
+                    Intent intent7 = new Intent(getApplicationContext(), SubActivity.class);
+                    startActivity(intent7);
 
                     //
                 }
             }
         });
+
+        // 로딩 스크린 구현 activity
+        // activity 안에 ManagePublicData.getInstance().parseSeniorCenter.execute();가 포함되어 있으므로 합칠때는 밑에 execute 줄 제거
+        // 아 하고 ManagePublicData안에 마지막 OnPostExecute에서는 .finish() 주석 풀기!
+        //ManagePublicData.getInstance().parseSeniorCenter.execute();
+        //async
     }
 
     // 하단 점(선택된 점, 선택되지 않은 점) 구현
