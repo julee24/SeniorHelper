@@ -17,10 +17,9 @@
             android:layout_height="107dp"
             android:background="@drawable/button_round"
             android:fontFamily="@font/pretendardsemibold"
-            android:text="일자리 찾기"
-            android:stateListAnimator="@null"
-            android:elevation="10dp"
+            android:text="일자리 탐색"
             android:textColor="#FFFFFF"
+            android:textSize="26sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline7"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -33,10 +32,9 @@
             android:layout_height="107dp"
             android:fontFamily="@font/pretendardsemibold"
             android:background="@drawable/button_round"
-            android:text="경로당 찾기"
-            android:stateListAnimator="@null"
-            android:elevation="10dp"
+            android:text="인근 경로당"
             android:textColor="#FFFFFF"
+            android:textSize="26sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline7"
             app:layout_constraintLeft_toRightOf="@+id/button3"
             app:layout_constraintRight_toRightOf="parent"
@@ -48,10 +46,9 @@
             android:layout_height="107dp"
             android:fontFamily="@font/pretendardsemibold"
             android:background="@drawable/button_round"
-            android:text="구청 접속하기"
-            android:stateListAnimator="@null"
-            android:elevation="10dp"
+            android:text="구청 사이트\n접속"
             android:textColor="#FFFFFF"
+            android:textSize="26sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
             app:layout_constraintEnd_toStartOf="@+id/button4"
             app:layout_constraintHorizontal_chainStyle="spread"
@@ -64,10 +61,9 @@
             android:layout_height="107dp"
             android:fontFamily="@font/pretendardsemibold"
             android:background="@drawable/button_round"
-            android:text="일기 쓰기"
-            android:stateListAnimator="@null"
-            android:elevation="10dp"
+            android:text="일기 작성"
             android:textColor="#FFFFFF"
+            android:textSize="26sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
             app:layout_constraintLeft_toRightOf="@+id/button1"
             app:layout_constraintRight_toRightOf="parent"
@@ -80,10 +76,9 @@
             android:layout_height="107dp"
             android:fontFamily="@font/pretendardsemibold"
             android:background="@drawable/button_round"
-            android:text="보호자 전화 걸기"
-            android:stateListAnimator="@null"
-            android:elevation="10dp"
+            android:text="보호자 전화"
             android:textColor="#FFFFFF"
+            android:textSize="26sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline10"
             app:layout_constraintEnd_toEndOf="@+id/button3"
             app:layout_constraintHorizontal_bias="0.0"
@@ -123,6 +118,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendardbold"
             android:text="현재 위치"
+            android:textSize="23sp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -164,8 +160,6 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.85" />
 
-
-
         <LinearLayout
             android:id="@+id/layoutToolBar"
             android:layout_width="match_parent"
@@ -190,21 +184,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:text="옹심이"
-                android:textSize="18sp"
+                android:fontFamily="@font/pretendardmedium"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
-        <!--        <fragment-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="0dp"-->
-        <!--        app:layout_constraintTop_toBottomOf="@id/layoutToolBar"-->
-        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--        android:id="@+id/navHostFragment"-->
-        <!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
-        <!--        app:defaultNavHost="true"-->
-        <!--        app:navGraph="@navigation/main"-->
-        <!--        />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
