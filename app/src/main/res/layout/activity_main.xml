@@ -85,18 +85,39 @@
             app:layout_constraintStart_toStartOf="@+id/button1"
             app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@drawable/paperlike2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guideline10" />
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/paperclip"-->
+        <!--            android:layout_width="80dp"-->
+        <!--            android:layout_height="80dp"-->
+        <!--            android:src="@drawable/paperclip2"-->
+        <!--            app:layout_constraintBottom_toTopOf="@+id/midBottom"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/midTop"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/guideline24"-->
+        <!--            />-->
+
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:text="행복합시다^^"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:text="즐겁고 행복한 하루되세요!"
+            android:fontFamily="@font/pretendardsemibold"
+            android:textColor="#000000"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button4"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="@+id/guideline10" />
 
 
         <ImageView
@@ -108,7 +129,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/loc"
             tools:ignore="MissingConstraints" />
 
@@ -158,7 +179,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.85" />
+            app:layout_constraintGuide_percent="0.87" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/textguide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.87" />
+
 
         <LinearLayout
             android:id="@+id/layoutToolBar"
@@ -192,6 +221,8 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
         android:layout_width="wrap_content"
@@ -199,6 +230,7 @@
         app:headerLayout="@layout/navigation_header"
         app:menu="@menu/navigation_menu"
         android:layout_gravity="start"/>
+
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

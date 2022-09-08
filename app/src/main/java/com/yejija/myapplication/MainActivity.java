@@ -69,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
     String post;
     private String userName, year, month, day, num;
 
+    public List<String> dayMorning = new ArrayList<>();
+    public List<String> dayAfternoon = new ArrayList<>();
+    public List<String> dayDinner = new ArrayList<>();
+    public List<String> dayNight = new ArrayList<>();
+
 
     public static ArrayList<SeniorCenterVO> SeniorCenterLoc = new ArrayList<>();
 
@@ -119,13 +124,45 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent7);
         }
 
-        // 로딩 스크린 구현 activity
-        // activity 안에 ManagePublicData.getInstance().parseSeniorCenter.execute();가 포함되어 있으므로 합칠때는 밑에 execute 줄 제거
-        // 아 하고 ManagePublicData안에 마지막 OnPostExecute에서는 .finish() 주석 풀기!
-//        Intent intent7 = new Intent(getApplicationContext(), SubActivity.class);
-//        startActivity(intent7);
-        //ManagePublicData.getInstance().parseSeniorCenter.execute();
-        //async
+        //하루 응원 멘트
+        dayMorning.add("좋은 아침입니다.");
+        dayMorning.add("오늘 하루 행복하세요!");
+        dayMorning.add("오늘도 웃으면서 하루를 시작해봐요!");
+
+        dayAfternoon.add("즐거운 오후 보내시길 바랍니다.");
+        dayAfternoon.add("오늘 오후도 활기차게 파이팅!");
+        dayAfternoon.add("점심은 꼭 잘 챙겨드세요!");
+
+        dayDinner.add("편히 쉬시고 내일도 파이팅입니다.");
+        dayDinner.add("편안한 저녁 보내시고 내일 뵙겠습니다.");
+        dayDinner.add("즐거운 저녁 시간 되세요.");
+
+        dayNight.add("새근새근…");
+        dayNight.add("좋은 꿈 꾸세요!");
+        dayNight.add("편안한 밤 되시고 좋은 꿈 꾸세요!");
+
+
+
+        //set profileImage by time 프로필 사진 & 시간별 효과
+        Calendar c = Calendar.getInstance();
+        int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
+
+        TextView quotes = (TextView) findViewById(R.id.textView2);
+
+        if(timeOfDay >= 0 && timeOfDay < 4){
+            quotes.setText(dayNight.get((int) (Math.random() * 3)));
+        }else if(timeOfDay >= 4 && timeOfDay < 11){
+            quotes.setText(dayMorning.get((int) (Math.random() * 3)));
+        }else if(timeOfDay >= 11 && timeOfDay < 15){
+            quotes.setText(dayAfternoon.get((int) (Math.random() * 3)));
+        }
+        else if(timeOfDay >= 15 && timeOfDay < 22){
+            quotes.setText(dayDinner.get((int) (Math.random() * 3)));
+        }
+        else if(timeOfDay >= 22 && timeOfDay < 24){
+            quotes.setText(dayNight.get((int) (Math.random() * 3)));
+        }
+
 
         final DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
 
@@ -137,13 +174,6 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
-
-
-//        profileImage.setImageResource(R.drawable.dark_profile);
-//        profileImage.setImageResource(R.drawable.light_profile);
-
-
-
 
 
         NavigationView navigationView = findViewById(R.id.navigationView);
@@ -177,16 +207,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
-
-        // 로딩 스크린 구현 activity
-        // activity 안에 ManagePublicData.getInstance().parseSeniorCenter.execute();가 포함되어 있으므로 합칠때는 밑에 execute 줄 제거
-        // 아 하고 ManagePublicData안에 마지막 OnPostExecute에서는 .finish() 주석 풀기!
-        // Intent intent7 = new Intent(getApplicationContext(), SubActivity.class);
-        // startActivity(intent7);
-        //ManagePublicData.getInstance().parseSeniorCenter.execute();
-        //async
-
 
         txtResult = (TextView)findViewById(R.id.txtResult);
 
@@ -279,13 +299,6 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
                 Log.e("test", "입출력 오류");
             }
-//            if (list != null) {
-//                if (list.size() == 0) {
-//                    txtResult.setText("해당되는 주소 정보는 없습니다");
-//                } else {
-//                    txtResult.setText(list.get(0).getAddressLine(0));
-//                }
-//            } // 원래 코드
 
             
             //구 만 뽑아내는거
@@ -417,23 +430,8 @@ public class MainActivity extends AppCompatActivity {
                 day = user.getday();
 
                 NavigationView navigationView = (NavigationView) findViewById(R.id.navigationView);
-//                navigationView.OnNavigationItemSelectedListener(this);
-                //View nav_header_view = navigationView.inflateHeaderView(R.layout.nav_header_main);
-                View nav_header_view = navigationView.getHeaderView(0);
 
-                // set profileImage by time 프로필 사진 & 시간별 효과
-//                Calendar c = Calendar.getInstance();
-//                int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
-//
-//                ImageView profileImage = (ImageView) nav_header_view.findViewById(R.id.profilePicture);
-//
-//                if(timeOfDay >= 0 && timeOfDay < 8){
-//                    profileImage.setImageResource(R.drawable.dark_profile);
-//                }else if(timeOfDay >= 8 && timeOfDay < 18){
-//                    profileImage.setImageResource(R.drawable.light_profile);
-//                }else if(timeOfDay >= 18 && timeOfDay < 24){
-//                    profileImage.setImageResource(R.drawable.dark_profile);
-//                }
+                View nav_header_view = navigationView.getHeaderView(0);
 
                 //year = year.substring(2);
                 month = String.format(Locale.KOREA,"%02d", Integer.valueOf(month));
