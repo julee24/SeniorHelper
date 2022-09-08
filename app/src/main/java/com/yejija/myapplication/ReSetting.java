@@ -1,8 +1,6 @@
 package com.yejija.myapplication;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,15 +13,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.yejija.myapplication.MainActivity;
-import com.yejija.myapplication.R;
-import com.yejija.myapplication.User;
 
 public class ReSetting extends AppCompatActivity{
     private DatabaseReference mDatabase;
-    private Button btnsave;
     EditText edit_tel;
-    String post, num;
+    String num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +30,11 @@ public class ReSetting extends AppCompatActivity{
         edit_tel = findViewById(R.id.edit_tel2);
 
         read_num(post);
-        btnsave = findViewById(R.id.btn_save2);
+        Button btnsave = findViewById(R.id.btn_save2);
 
-        btnsave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                update_num(post);
-                finish();
-            }
+        btnsave.setOnClickListener(v -> {
+            update_num(post);
+            finish();
         });
     }
 
@@ -52,8 +43,6 @@ public class ReSetting extends AppCompatActivity{
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
-                Log.v("유저프린트", ""+user);
-
                 num = user.getnum();
 
                 edit_tel.setText(num);

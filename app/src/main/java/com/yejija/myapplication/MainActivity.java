@@ -1,8 +1,6 @@
 package com.yejija.myapplication;
 
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -12,7 +10,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
 
 
 import android.content.pm.PackageManager;
@@ -24,17 +21,13 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.IOException;
-import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 import android.content.pm.Signature;
@@ -100,15 +93,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-
-        // 최초 실행 여부를 판단 ->>>
         SharedPreferences sharedPreferences = getSharedPreferences("checkFirstAccess", Activity.MODE_PRIVATE);
         boolean checkFirstAccess = sharedPreferences.getBoolean("checkFirstAccess", false);
         context_main = this;
         pref2 = getSharedPreferences("pref", Activity.MODE_PRIVATE);
         editor2 = pref2.edit();
         post = pref2.getString("post", "hello");
-        Log.v("초기화",post);
 
         if (!checkFirstAccess) {
             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -404,7 +394,7 @@ public class MainActivity extends AppCompatActivity {
                         post = pushedPostRef.getKey();
                         editor2.putString("post", post);
                         editor2.apply();
-                        Toast.makeText(getApplicationContext(), "저장을 완료했습니다.", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(), "저장을 완료했습니다.", Toast.LENGTH_SHORT).show();
 
                     }
                 })
@@ -447,8 +437,6 @@ public class MainActivity extends AppCompatActivity {
                 profile_month.setText(month);
                 profile_day.setText(day);
 
-
-
             }
 
             @Override
@@ -464,21 +452,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
                 } else {
 
                     User user = task.getResult().getValue(User.class);
                     num = user.getnum();
 
                     button_pressed();
-                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
                 }
             }
         });
     }
 
     public void button_pressed(){
-        Log.v("넘이멀까: ", "헤에에잉"+num);
         if (num == null) {
             Toast.makeText(getApplicationContext(),"저장된 번호가 없습니다. 번호를 저장해주세요",Toast.LENGTH_LONG).show();
             Intent intent12 = new Intent(getApplicationContext(), com.yejija.myapplication.Setting.class);
@@ -500,13 +485,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
-                    Log.e("firebase2", "Error getting data", task.getException());
                 }
                 else {
 
                     User user = task.getResult().getValue(User.class);
                     num = user.getnum();
-                    //Log.v("멀까요", ""+num);
                     if (num == null) {
                         Toast.makeText(getApplicationContext(), "번호를 저장해주세요.", Toast.LENGTH_SHORT).show();
                     }

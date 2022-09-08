@@ -7,8 +7,6 @@
     android:orientation="vertical"
     android:background="@color/buttoncolor">
 
-
-
     <TextView
         android:id="@+id/txtlabel"
         android:layout_width="match_parent"
@@ -88,7 +86,8 @@
             android:textSize="22sp"
             app:layout_constraintTop_toBottomOf="@+id/nametitle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:autofillHints="username" />
 
         <TextView
             android:id="@+id/phonetitle"
@@ -101,7 +100,6 @@
             app:layout_constraintTop_toBottomOf="@+id/guideline28"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
-
 
         <LinearLayout
             android:id="@+id/phone"
@@ -128,7 +126,8 @@
                 android:paddingRight="10dp"
                 android:singleLine="true"
                 android:imeOptions="actionDone"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                tools:ignore="Autofill" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -149,7 +148,8 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:singleLine="true"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                tools:ignore="Autofill" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -171,7 +171,8 @@
                 android:paddingRight="10dp"
                 android:singleLine="true"
                 android:imeOptions="actionDone"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                tools:ignore="Autofill" />
 
         </LinearLayout>
 
@@ -211,7 +212,8 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:singleLine="true"
-                android:textSize="22sp"/>
+                android:textSize="22sp"
+                tools:ignore="Autofill" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -231,7 +233,8 @@
                 android:paddingRight="10dp"
                 android:singleLine="true"
                 android:imeOptions="actionDone"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                tools:ignore="Autofill" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -251,7 +254,8 @@
                 android:paddingRight="10dp"
                 android:singleLine="true"
                 android:imeOptions="actionDone"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                tools:ignore="Autofill" />
         </LinearLayout>
 
         <androidx.constraintlayout.widget.Guideline

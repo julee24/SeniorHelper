@@ -12,7 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,14 +38,11 @@ public class TutorialActivity extends AppCompatActivity {
     private int[] layouts;
     private Button btnNext;
     private DatabaseReference mDatabase;
-    User user;
-    public static Context context_main;
-    public String postId;
+    Animation animFadeIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
@@ -55,6 +55,8 @@ public class TutorialActivity extends AppCompatActivity {
         btnNext = findViewById(R.id.btn_next);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        animFadeIn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
+
 
         // 변화될 레이아웃들 주소
         // 원하는 경우 레이아웃을 몇 개 더 추가
@@ -135,10 +137,43 @@ public class TutorialActivity extends AppCompatActivity {
 
             // 다음 / 시작 버튼 바꾸기
             if (position == layouts.length - 1) {
+                TextView tuto3 = findViewById(R.id.tuto3);
+                ImageView tuto = findViewById(R.id.tuto_menu);
+                TextView tuto32 = findViewById(R.id.text_tuto);
+                TextView tuto33 = findViewById(R.id.start);
+                tuto3.setVisibility(View.VISIBLE);
+                tuto3.startAnimation(animFadeIn);
+                tuto32.setVisibility(View.VISIBLE);
+                tuto32.startAnimation(animFadeIn);
+                tuto33.setVisibility(View.VISIBLE);
+                tuto33.startAnimation(animFadeIn);
+                tuto.setVisibility(View.VISIBLE);
+                tuto.startAnimation(animFadeIn);
                 // 마지막 페이지에서는 다음 버튼을 시작버튼으로 교체
                 btnNext.setText(getString(R.string.start)); // 다음 버튼을 시작버튼으로 글자 교체
             }
             else {
+                if (position == 0)
+                {
+                    TextView tuto1 = findViewById(R.id.textView3);
+                    TextView guide = findViewById(R.id.guide);
+                    ImageView point = findViewById(R.id.point);
+                    tuto1.setVisibility(View.VISIBLE);
+                    tuto1.startAnimation(animFadeIn);
+                    guide.setVisibility(View.VISIBLE);
+                    guide.startAnimation(animFadeIn);
+                    point.setVisibility(View.VISIBLE);
+                    point.startAnimation(animFadeIn);
+                }
+                else if (position == 1)
+                {
+                    TextView tuto2 = findViewById(R.id.textView4);
+                    TextView bottom = findViewById(R.id.con2);
+                    tuto2.setVisibility(View.VISIBLE);
+                    tuto2.startAnimation(animFadeIn);
+                    bottom.setVisibility(View.VISIBLE);
+                    bottom.startAnimation(animFadeIn);
+                }
 
                 // 마지막 페이지가 아니라면 다음과 건너띄기 버튼 출력
                 btnNext.setText(getString(R.string.next));
@@ -192,7 +227,6 @@ public class TutorialActivity extends AppCompatActivity {
         public boolean isViewFromObject(View view, Object obj) {
             return view == obj;
         }
-
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {

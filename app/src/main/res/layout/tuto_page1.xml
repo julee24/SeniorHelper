@@ -7,40 +7,53 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="354dp"
-        android:layout_height="326dp"
-        android:layout_margin="50dp"
-        android:layout_marginTop="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="안녕하세요!\n어르신을 위한 어플리케이션,\n옹심이 입니다."
         android:textSize="30sp"
+        android:lineSpacingExtra ="7dp"
+        android:lineSpacingMultiplier="1.15"
         android:fontFamily="@font/pretendardbold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toBottomOf="@+id/guideline29" />
 
     <TextView
+        android:id="@+id/guide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="236dp"
         android:text="계속 진행하시려면\n다음을 눌러주세요."
-        android:textSize="25sp"
+        android:textSize="23sp"
+        android:lineSpacingExtra ="7dp"
         android:fontFamily="@font/pretendardmedium"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toTopOf="@+id/guideline30"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/point"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="496dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/point" />
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline30"
+        app:srcCompat="@drawable/point"
+        tools:ignore="ContentDescription" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
