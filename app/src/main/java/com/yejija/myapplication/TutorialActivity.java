@@ -38,7 +38,7 @@ public class TutorialActivity extends AppCompatActivity {
     private int[] layouts;
     private Button btnNext;
     private DatabaseReference mDatabase;
-    Animation animFadeIn;
+    Animation animFadeIn, animFadeIn2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +56,7 @@ public class TutorialActivity extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         animFadeIn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
+        animFadeIn2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in2);
 
 
         // 변화될 레이아웃들 주소
@@ -137,6 +138,8 @@ public class TutorialActivity extends AppCompatActivity {
 
             // 다음 / 시작 버튼 바꾸기
             if (position == layouts.length - 1) {
+                // 마지막 페이지에서는 다음 버튼을 시작버튼으로 교체
+                btnNext.setText(getString(R.string.start)); // 다음 버튼을 시작버튼으로 글자 교체
                 TextView tuto3 = findViewById(R.id.tuto3);
                 ImageView tuto = findViewById(R.id.tuto_menu);
                 TextView tuto32 = findViewById(R.id.text_tuto);
@@ -145,14 +148,15 @@ public class TutorialActivity extends AppCompatActivity {
                 tuto3.startAnimation(animFadeIn);
                 tuto32.setVisibility(View.VISIBLE);
                 tuto32.startAnimation(animFadeIn);
-                tuto33.setVisibility(View.VISIBLE);
-                tuto33.startAnimation(animFadeIn);
                 tuto.setVisibility(View.VISIBLE);
                 tuto.startAnimation(animFadeIn);
-                // 마지막 페이지에서는 다음 버튼을 시작버튼으로 교체
-                btnNext.setText(getString(R.string.start)); // 다음 버튼을 시작버튼으로 글자 교체
+                tuto33.setVisibility(View.VISIBLE);
+                tuto33.startAnimation(animFadeIn2);
+
             }
             else {
+                btnNext.setText(getString(R.string.next));
+
                 if (position == 0)
                 {
                     TextView tuto1 = findViewById(R.id.textView3);
@@ -161,9 +165,9 @@ public class TutorialActivity extends AppCompatActivity {
                     tuto1.setVisibility(View.VISIBLE);
                     tuto1.startAnimation(animFadeIn);
                     guide.setVisibility(View.VISIBLE);
-                    guide.startAnimation(animFadeIn);
+                    guide.startAnimation(animFadeIn2);
                     point.setVisibility(View.VISIBLE);
-                    point.startAnimation(animFadeIn);
+                    point.startAnimation(animFadeIn2);
                 }
                 else if (position == 1)
                 {
@@ -172,11 +176,11 @@ public class TutorialActivity extends AppCompatActivity {
                     tuto2.setVisibility(View.VISIBLE);
                     tuto2.startAnimation(animFadeIn);
                     bottom.setVisibility(View.VISIBLE);
-                    bottom.startAnimation(animFadeIn);
+                    bottom.startAnimation(animFadeIn2);
                 }
 
                 // 마지막 페이지가 아니라면 다음과 건너띄기 버튼 출력
-                btnNext.setText(getString(R.string.next));
+
             }
         }
 
