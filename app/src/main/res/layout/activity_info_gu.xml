@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -20,9 +21,10 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#5CAB7D">
+        android:background="#5CAB7D"
+        android:fillViewport="true">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -31,66 +33,99 @@
                 android:id="@+id/gu_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/gu_image" />
+                android:adjustViewBounds="true"
+                android:orientation="vertical"
+                android:layout_margin="20dp"
+                android:src="@drawable/gu_image"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="-16dp"
+                tools:ignore="ContentDescription" />
 
-            <ImageView
-                android:layout_width="65dp"
-                android:layout_height="142dp"
-
-                android:layout_alignLeft="@+id/gu_image"
-                android:layout_alignTop="@+id/gu_image"
-                android:layout_alignRight="@+id/gu_image"
-                android:layout_alignBottom="@+id/gu_image"
-
-                android:layout_marginLeft="164dp"
-                android:layout_marginTop="256dp"
-                android:layout_marginRight="182dp"
-                android:layout_marginBottom="244dp"
-                android:src="@drawable/arrow3" />
-
-            <ImageView
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline42"
                 android:layout_width="wrap_content"
-                android:layout_height="91dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.18" />
 
-                android:layout_alignLeft="@+id/gu_image"
-                android:layout_alignTop="@+id/gu_image"
-                android:layout_alignRight="@+id/gu_image"
-                android:layout_alignBottom="@+id/gu_image"
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline43"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.45" />
 
-                android:layout_marginLeft="110dp"
-                android:layout_marginTop="260dp"
-                android:layout_marginRight="237dp"
-                android:layout_marginBottom="291dp"
-                android:src="@drawable/arrow2" />
+            <ImageView
+                android:id="@+id/arr"
+                android:layout_width="65dp"
+                android:layout_height="110dp"
+                app:layout_constraintTop_toBottomOf="@+id/guideline42"
+                app:layout_constraintRight_toLeftOf="@+id/guideline33"
+                android:src="@drawable/arrow3"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="100dp"
+                app:layout_constraintTop_toBottomOf="@+id/guideline42"
+                app:layout_constraintRight_toLeftOf="@+id/arr"
+                android:src="@drawable/arrow2"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
-
-
-                android:layout_marginLeft="0dp"
-
-                android:layout_marginTop="465dp"
-                android:layout_marginRight="0dp"
-                android:layout_marginBottom="36dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/info_textbox"
                 android:elevation="10dp"
                 android:fontFamily="@font/pretendardsemibold"
                 android:gravity="center"
                 android:lineSpacingMultiplier="1"
+                app:layout_constraintBottom_toBottomOf="@+id/guideline43"
+                app:layout_constraintLeft_toLeftOf="parent"
                 android:text="구청사이트 접속에서는\n시청, 의료기관, 구청 사이트에\n쉽게 들어갈 수 있어요!"
                 android:textAlignment="center"
                 android:textColor="#5CAB7D"
                 android:textSize="25sp" />
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                app:layout_constraintTop_toBottomOf="@+id/gu_image"
+                android:layout_margin="20dp"
+                android:src="@drawable/gu1"
+                tools:ignore="ContentDescription" />
 
-        </RelativeLayout>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.6" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/info_textbox"
+                android:elevation="10dp"
+                android:fontFamily="@font/pretendardsemibold"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1"
+                app:layout_constraintBottom_toBottomOf="@+id/guideline35"
+                android:text="원하는 곳을 누르시면,\n노인 복지 서비스 페이지로\n이동합니다."
+                android:textAlignment="center"
+                android:textColor="#5CAB7D"
+                android:textSize="25sp" />
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline35"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.85" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-
 
 
 </LinearLayout>

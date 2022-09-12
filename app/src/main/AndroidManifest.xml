@@ -59,6 +59,11 @@
         <activity
             android:name=".InfoJob"
             android:exported="false"/>
+        <activity android:name=".Infocitizen"
+            android:exported="false"/>
+
+        <activity android:name=".InfoGu"
+            android:exported="false"/>
 
         <activity
             android:name=".WebViewActivity"

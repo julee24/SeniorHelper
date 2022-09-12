@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff">
-
 
     <TextView
         android:layout_width="match_parent"
@@ -16,13 +16,13 @@
         android:fontFamily="@font/pretendardsemibold"
         android:text="인근 경로당"/>
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#5CAB7D">
+        android:background="#5CAB7D"
+        android:fillViewport="true">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -31,97 +31,129 @@
                 android:id="@+id/job_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/menu_citizen" />
+                android:orientation="vertical"
+                android:adjustViewBounds="true"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_margin="20dp"
+                android:src="@drawable/menu_citizen"
+                tools:ignore="ContentDescription" />
 
-            <ImageView
-                android:layout_width="65dp"
-                android:layout_height="142dp"
-
-                android:layout_alignLeft="@+id/job_image"
-                android:layout_alignTop="@+id/job_image"
-                android:layout_alignRight="@+id/job_image"
-                android:layout_alignBottom="@+id/job_image"
-
-                android:layout_marginLeft="347dp"
-                android:layout_marginTop="96dp"
-                android:layout_marginRight="-1dp"
-                android:layout_marginBottom="404dp"
-                android:src="@drawable/arrow3" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="91dp"
-
-                android:layout_alignLeft="@+id/job_image"
-                android:layout_alignTop="@+id/job_image"
-                android:layout_alignRight="@+id/job_image"
-                android:layout_alignBottom="@+id/job_image"
-
-                android:layout_marginLeft="290dp"
-                android:layout_marginTop="101dp"
-                android:layout_marginRight="57dp"
-                android:layout_marginBottom="450dp"
-                android:src="@drawable/arrow2" />
-
-            <TextView
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline42"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.15" />
 
-                android:layout_alignLeft="@+id/job_image"
-                android:layout_alignTop="@+id/job_image"
-                android:layout_alignRight="@+id/job_image"
-                android:layout_alignBottom="@+id/job_image"
 
-                android:layout_marginLeft="0dp"
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline40"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.25" />
 
-                android:layout_marginTop="309dp"
-                android:layout_marginRight="0dp"
-                android:layout_marginBottom="191dp"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@drawable/info_textbox"
                 android:elevation="10dp"
                 android:fontFamily="@font/pretendardsemibold"
+                app:layout_constraintTop_toBottomOf="@+id/guideline40"
                 android:gravity="center"
                 android:lineSpacingMultiplier="1"
                 android:text="인근 경로당에서는\n현재 위치 주변의 경로당들을\n볼 수 있어요"
-                android:textAlignment="center"
                 android:textColor="#5CAB7D"
                 android:textSize="25sp" />
 
+            <ImageView
+                android:id="@+id/arrow"
+                android:layout_width="65dp"
+                android:layout_height="100dp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline42"
+                app:layout_constraintRight_toRightOf="parent"
+                android:src="@drawable/arrow3"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_marginBottom="10dp"
+                android:layout_height="100dp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline42"
+                app:layout_constraintRight_toLeftOf="@+id/arrow"
+                android:src="@drawable/arrow2"
+                tools:ignore="ContentDescription" />
 
             <ImageView
                 android:id="@+id/citizen1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="405dp"
-                android:src="@drawable/citizen1" />
+                android:adjustViewBounds="true"
+                android:layout_margin="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/job_image"
+                android:src="@drawable/citizen1"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:layout_alignLeft="@+id/citizen1"
-                android:layout_alignTop="@+id/citizen1"
-                android:layout_alignRight="@+id/citizen1"
-                android:layout_alignBottom="@+id/citizen1"
-
-                android:layout_marginLeft="118dp"
-                android:layout_marginTop="489dp"
-                android:layout_marginRight="22dp"
-                android:layout_marginBottom="549dp"
-
                 android:background="@drawable/info_textbox"
                 android:elevation="10dp"
                 android:fontFamily="@font/pretendardsemibold"
-                android:gravity="center"
-                android:lineSpacingMultiplier="1"
+                app:layout_constraintTop_toBottomOf="@+id/guideline41"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:text="주변의 경로당을\n지도상으로 확인할 수 있고\n주소 확인도 가능해요"
                 android:textColor="#5CAB7D"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                android:gravity="center"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/info_textbox"
+                android:elevation="10dp"
+                android:fontFamily="@font/pretendardbold"
+                app:layout_constraintBottom_toTopOf="@+id/guideline43"
+                app:layout_constraintLeft_toRightOf="@+id/guideline32"
+                android:text="제일 가까운 경로당"/>
 
-        </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="27dp"
+                android:background="@drawable/info_textbox"
+                android:elevation="10dp"
+                android:fontFamily="@font/pretendardbold"
+                app:layout_constraintBottom_toTopOf="@+id/guideline41"
+                app:layout_constraintLeft_toRightOf="@+id/guideline32"
+                android:text="현재 위치"/>
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline41"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.75" />
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline43"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.66" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 

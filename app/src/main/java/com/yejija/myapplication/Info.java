@@ -8,6 +8,8 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.yejija.myapplication.Infocitizen;
+
 public class Info extends AppCompatActivity{
     LinearLayout job, citizen, gu, journal, call;
 
@@ -30,7 +32,21 @@ public class Info extends AppCompatActivity{
             }
         });
 
+        citizen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Infocitizen.class);
+                startActivity(intent);
+            }
+        });
 
+        gu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), InfoGu.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

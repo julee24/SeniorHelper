@@ -1,17 +1,16 @@
 package com.yejija.myapplication;
 
 import android.os.Bundle;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class InfoJob extends AppCompatActivity {
+import com.yejija.myapplication.R;
+
+public class Infocitizen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_info_job);
+        setContentView(R.layout.activity_info_citizen);
     }
-
-
 }
