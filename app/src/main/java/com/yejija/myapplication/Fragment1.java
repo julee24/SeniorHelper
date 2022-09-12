@@ -181,12 +181,8 @@ public class Fragment1 extends Fragment {
                 AppConstants.println("#" + i + " -> " + _id + ", " + weather + ", " +
                         locationX + ", " + locationY + ", " + contents + ", " +
                         mood + ", " + picture + ", " + createDateStr);
-//                AppConstants.println("#" + i + " -> " + _id + ", " + weather + ", " +
-//                        address + ", " + locationX + ", " + locationY + ", " + contents + ", " +
-//                        mood + ", " + picture + ", " + createDateStr);
 
                 items.add(new Note(_id, weather, locationX, locationY, contents, mood, picture, createDateStr));
-//                items.add(new Note(_id, weather, address, locationX, locationY, contents, mood, picture, createDateStr));
             }
 
             outCursor.close();

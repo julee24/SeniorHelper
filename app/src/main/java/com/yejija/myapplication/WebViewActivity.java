@@ -16,12 +16,7 @@ public class WebViewActivity extends AppCompatActivity {
     private String TAG = WebViewActivity.class.getSimpleName();
 
     private WebView webView = null;
-    //
     public String urlString;
-    //
-//    public WebViewActivity(String string){
-//        this.urlString = string;
-//    }
 
 
     @Override
@@ -34,10 +29,8 @@ public class WebViewActivity extends AppCompatActivity {
 
         webView = (WebView) findViewById(R.id.webview);
 
-        webView.setWebViewClient(new WebViewClient());  // 새 창 띄우기 않기
+        webView.setWebViewClient(new WebViewClient());
         webView.setWebChromeClient(new WebChromeClient());
-        //webView.setDownloadListener(new DownloadListener(){...});  // 파일 다운로드 설정
-        //에러 이유 모르겠음
 
         webView.getSettings().setLoadWithOverviewMode(true);  // WebView 화면크기에 맞추도록 설정 - setUseWideViewPort 와 같이 써야함
         webView.getSettings().setUseWideViewPort(true);  // wide viewport 설정 - setLoadWithOverviewMode 와 같이 써야함
@@ -46,7 +39,6 @@ public class WebViewActivity extends AppCompatActivity {
         webView.getSettings().setBuiltInZoomControls(false);  // 줌 확대/축소 버튼 여부
 
         webView.getSettings().setJavaScriptEnabled(true); // 자바스크립트 사용여부
-//        webview.addJavascriptInterface(new AndroidBridge(), "android");
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true); // javascript가 window.open()을 사용할 수 있도록 설정
         webView.getSettings().setSupportMultipleWindows(true); // 멀티 윈도우 사용 여부
 
@@ -54,7 +46,6 @@ public class WebViewActivity extends AppCompatActivity {
 
 
         //웹페이지 호출
-//        webView.loadUrl("http://www.naver.com");
         webView.loadUrl(urlString);
     }
 

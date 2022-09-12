@@ -14,9 +14,7 @@ public class SubActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         fa=this;
-        // 필요한지 확인
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //
+
         setContentView(R.layout.progress_dialog);
         ManagePublicData.getInstance().parseSeniorCenter.execute();
     }

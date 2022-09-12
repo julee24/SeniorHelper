@@ -83,7 +83,6 @@ public class ProfileActivity extends AppCompatActivity {
                 month = user.getmonth();
                 day = user.getday();
 
-
                 //텍스트뷰에 받아온 문자열 대입하기
                 et_user_name.setText(userName);
                 et_user_number.setText(num1);

@@ -10,6 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/text_tuto"
         app:layout_constraintLeft_toLeftOf="@+id/text_tuto"
         tools:ignore="UseCompoundDrawables">
@@ -25,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendardbold"
-            android:text=" 버튼을 누르면"
+            android:text="  버튼을 누르면"
             android:lineSpacingExtra ="7dp"
             android:textSize="25sp" />
     </LinearLayout>
@@ -35,6 +37,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/pretendardbold"
         android:text="여러 정보를 수정할 수 있어요!"
+        android:gravity="center"
         android:lineSpacingExtra ="7dp"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,6 +70,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendardbold"
             android:lineSpacingExtra="10dp"
+            android:gravity="center"
             android:text="자, 이제 시작해볼까요?\n오른쪽 아래 시작하기를 눌러주세요!"
             android:textSize="23sp"
             app:layout_constraintEnd_toEndOf="parent"

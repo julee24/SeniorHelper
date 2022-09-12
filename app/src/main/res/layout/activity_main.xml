@@ -94,18 +94,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/guideline10" />
 
-        <!--        <ImageView-->
-        <!--            android:id="@+id/paperclip"-->
-        <!--            android:layout_width="80dp"-->
-        <!--            android:layout_height="80dp"-->
-        <!--            android:src="@drawable/paperclip2"-->
-        <!--            app:layout_constraintBottom_toTopOf="@+id/midBottom"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/midTop"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toEndOf="@+id/guideline24"-->
-        <!--            />-->
-
-
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
@@ -118,7 +106,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline10" />
-
 
         <ImageView
             android:id="@+id/imageView"
@@ -145,6 +132,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/heretogether"
+            app:layout_constraintEnd_toStartOf="@+id/treeEnd"
+            app:layout_constraintBottom_toTopOf="@+id/squirrelFeet"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline6"
@@ -179,7 +173,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.87" />
+            app:layout_constraintGuide_percent="0.88" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/textguide"
@@ -188,6 +182,19 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.87" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/squirrelFeet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.89" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/treeEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95"/>
 
         <LinearLayout
             android:id="@+id/layoutToolBar"

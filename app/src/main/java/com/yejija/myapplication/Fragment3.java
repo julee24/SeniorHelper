@@ -186,56 +186,6 @@ public class Fragment3 extends Fragment {
         chart.invalidate();
     }
 
-//    private void setData2(HashMap<String,Integer> dataHash2) {
-//        ArrayList<BarEntry> entries = new ArrayList<>();
-//
-//        String[] keys = {"0", "1", "2", "3", "4", "5", "6"};
-//        int[] icons = {R.drawable.smile1, R.drawable.smile2,
-//                R.drawable.smile3, R.drawable.smile4,
-//                R.drawable.smile5};
-//
-//        for (int i = 0; i < keys.length; i++) {
-//            float value = 0.0f;
-//            Integer outValue = dataHash2.get(keys[i]);
-//            com.yejija.myapplication.AppConstants.println("#" + i + " -> " + outValue);
-//            if (outValue != null) {
-//                value = outValue.floatValue();
-//            }
-//
-//            Drawable drawable = null;
-//            if (value <= 1.0f) {
-//                drawable = getResources().getDrawable(icons[0]);
-//            } else if (value <= 2.0f) {
-//                drawable = getResources().getDrawable(icons[1]);
-//            } else if (value <= 3.0f) {
-//                drawable = getResources().getDrawable(icons[2]);
-//            } else if (value <= 4.0f) {
-//                drawable = getResources().getDrawable(icons[3]);
-//            } else if (value <= 5.0f) {
-//                drawable = getResources().getDrawable(icons[4]);
-//            }
-//
-//            entries.add(new BarEntry(Float.valueOf(String.valueOf(i+1)), value, drawable));
-//        }
-//
-//        BarDataSet dataSet2 = new BarDataSet(entries, getResources().getString(R.string.graph2_title));
-//        dataSet2.setColor(Color.rgb(240, 120, 124));
-//
-//        ArrayList<Integer> colors = new ArrayList<>();
-//        for (int c : ColorTemplate.JOYFUL_COLORS) {
-//            colors.add(c);
-//        }
-//        dataSet2.setColors(colors);
-//        dataSet2.setIconsOffset(new MPPointF(0, -10));
-//
-//        BarData data = new BarData(dataSet2);
-//        data.setValueTextSize(10f);
-//        data.setDrawValues(false);
-//        data.setBarWidth(0.8f);
-//
-//        chart2.setData(data);
-//        chart2.invalidate();
-//    }
 
     private void setData3(ArrayList<Float> dataKeys3, ArrayList<Integer> dataValues3) {
         ArrayList<Entry> entries = new ArrayList<>();
@@ -276,8 +226,6 @@ public class Fragment3 extends Fragment {
     public void loadStatData() {
         NoteDatabase database = NoteDatabase.getInstance(context);
 
-
-
         // first graph
         String sql = "select mood " +
                 "  , count(mood) " +
@@ -304,32 +252,6 @@ public class Fragment3 extends Fragment {
         setData1(dataHash1);
 
         // second graph
-//        sql = "select strftime('%w', create_date) " +
-//                "  , avg(mood) " +
-//                "from " + NoteDatabase.TABLE_NOTE + " " +
-//                "where create_date > '" + getMonthBefore(1) + "' " +
-//                "  and create_date < '" + getTomorrow() + "' " +
-//                "group by strftime('%w', create_date)";
-//
-//        cursor = database.rawQuery(sql);
-//        recordCount = cursor.getCount();
-//        com.yejija.myapplication.AppConstants.println("recordCount : " + recordCount);
-//
-//        HashMap<String,Integer> dataHash2 = new HashMap<String,Integer>();
-//        for (int i = 0; i < recordCount; i++) {
-//            cursor.moveToNext();
-//
-//            String weekDay = cursor.getString(0);
-//            int moodCount = cursor.getInt(1);
-//
-//            com.yejija.myapplication.AppConstants.println("#" + i + " -> " + weekDay + ", " + moodCount);
-//            dataHash2.put(weekDay, moodCount);
-//        }
-//
-//        setData2(dataHash2);
-
-
-        // third graph
         sql = "select strftime('%Y-%m-%d', create_date) " +
                 "  , avg(cast(mood as real)) " +
                 "from " + NoteDatabase.TABLE_NOTE + " " +

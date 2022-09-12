@@ -38,7 +38,6 @@ public class SubActivityJobs extends AppCompatActivity {
     private TextView textView6;
     private TextView textView7;
     private TextView textView8;
-    //
     private String name;
     private String all;
     private String a;
@@ -50,23 +49,14 @@ public class SubActivityJobs extends AppCompatActivity {
     private ArrayList<String> JobUrl;
 
     private TextView textView;
-    //
 
-    ////big change
     ListView mListView = null;
     private BaseAdapterEx mAdapter;
     BaseAdapterEx mAdapterTemp;
     ArrayList<Jobnotice> mData =null;
-    ////
 
-    // 8/22
     EditText searchbox = null;
     ArrayList<Jobnotice> mSearchData =null;
-    //
-
-    //온클릭
-
-    //int t = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,23 +66,14 @@ public class SubActivityJobs extends AppCompatActivity {
         setContentView(R.layout.job_list);
 
         textView = (TextView) findViewById(R.id.callbutton);
-//        textView4 = (TextView)findViewById(R.id.textView4);
-//        textView5 = (TextView)findViewById(R.id.textView5);
-//        textView6 = (TextView)findViewById(R.id.textView6);
-//        textView7 = (TextView)findViewById(R.id.textView7);
-//        textView8 = (TextView)findViewById(R.id.textView8);
         mData = new ArrayList<Jobnotice>();
-        //8.22
         mSearchData = new ArrayList<Jobnotice>();
         searchbox = (EditText) findViewById(R.id.job_search);
         mListView = (ListView) findViewById(R.id.list_view);
         Toolbar toolbar = findViewById (R.id.toolbar_job);
         setSupportActionBar (toolbar);
 
-        //
         getWebsite();
-        //mAdapter = new BaseAdapterEx(SubActivityJobs.this, mData);
-        //mListView.setAdapter(mAdapter);
 
 
         //전화하기
@@ -105,15 +86,12 @@ public class SubActivityJobs extends AppCompatActivity {
         });
 
 
-        //8.22
         searchbox.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {
 
                 String searchText = searchbox.getText().toString();
-                //mAdapter.filter(searchText);
                 mAdapter.filter(searchText);
-//
             }
 
             @Override
@@ -126,16 +104,12 @@ public class SubActivityJobs extends AppCompatActivity {
 //
             }
         });
-        //8.
+
         //온클릭 웹뷰
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                //
-//                Fruit fruit = fruitList.get(position);
-//                Toast.makeText(MainActivity.this, fruit.getName(),
-//                        Toast.LENGTH_SHORT).show();
                 String job = mData.get(position).getUrl();
                 String jobUrl = "https://goldenjob.or.kr/job/find-person_view.asp?idx=" + job;
                 Intent intent = new Intent(SubActivityJobs.this, WebViewActivity.class);
@@ -146,7 +120,7 @@ public class SubActivityJobs extends AppCompatActivity {
         });
         //온클릭
     }
-//
+
 @Override
 public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.menu_job, menu);
@@ -154,8 +128,6 @@ public boolean onCreateOptionsMenu(Menu menu) {
     return true;
 }
 
-    //앱바(App Bar)에 표시된 액션 또는 오버플로우 메뉴가 선택되면
-    //액티비티의 onOptionsItemSelected() 메서드가 호출
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected (@NonNull MenuItem item){
@@ -206,22 +178,9 @@ public boolean onCreateOptionsMenu(Menu menu) {
                         extract_avail(all);
                         extract_site(name);
 
-//                        //여기 for문로 정리해보기
-//                        textView4.setText(JobPlace.get(0));
-//                        textView5.setText(JobPlace.get(1));
-//                        textView6.setText(JobPlace.get(2));
-//                        textView7.setText(JobPlace.get(3));
-//                        textView8.setText(JobPlace.get(4));
-//                        //
-
-                        //// 문제 일어나면 여기 삭제!
-//                        mData = new ArrayList<Jobnotice>();
-
-                        //Log.v("jname 크기", "" + JobPlace.size());
-
                         for (int i = 0; i < JobPlace.size(); i++){
                             Jobnotice job = new Jobnotice();
-                            //Log.v("구인상태",JobAvail.get(i));
+
                             if (JobAvail.get(i).equals("state-ing")) {
 
                                 job.jname = JobPlace.get(i);
@@ -230,20 +189,13 @@ public boolean onCreateOptionsMenu(Menu menu) {
                                 job.jloc = JobLoc.get(i);
                                 job.jurl = JobUrl.get(i);
                                 mData.add(job);
-                                //
-                                //
-                                //mSearchData.add(job);
-                                //
+
                             }
                             else break;
                         }
                         Jobnotice mSearchData = new Jobnotice();
                         mAdapter = new BaseAdapterEx(SubActivityJobs.this, mData);
-                        //mAdapterTemp = mAdapter;
-
                         mListView.setAdapter(mAdapter);
-
-                        //// 여기까지 수정한것!
 
                     }
                 });
@@ -253,35 +205,16 @@ public boolean onCreateOptionsMenu(Menu menu) {
         }).start();
     }
 
-//    public String extract_temp(String text){
-//        boolean isFirst = true; //처음인지 검사
-//        String text2="";
-//
-//        while(true){
-//            int index = text.indexOf("ld=\">");    //찾는 문자열 위치 찾기
-//
-//            if(index == -1) break;  //없으면 종료
-//
-//            //text2 = text.substring(index+5); // 문자열을 찾은 위치로 재저장
-//            text = text.substring(index+5);
-//            int eindex = text.indexOf("<");
-//            text2 = text.substring(0,eindex);
-//            text = text.substring(eindex+1);
-//            // text 끝
-//
-//        }
-//        return text2;
-//    }
+
 public void extract_name(String text){
     boolean isFirst = true; //처음인지 검사
     String text2="";
     JobPlace = new ArrayList<String>(120);
     while(true){
-        int index = text.indexOf("ld=\">");    //찾는 문자열 위치 찾기
+        int index = text.indexOf("ld=\">");   //찾는 문자열 위치 찾기
 
         if(index == -1) break;  //없으면 종료
 
-        //text2 = text.substring(index+5); // 문자열을 찾은 위치로 재저장
         text = text.substring(index+5);
         int eindex = text.indexOf("<");
         text2 = text.substring(0,eindex);
@@ -295,15 +228,14 @@ public void extract_name(String text){
 
 
     public void extract_type(String text){
-        boolean isFirst = true; //처음인지 검사
+        boolean isFirst = true;
         String text2="";
         JobType = new ArrayList<String>(120);
         while(true){
-            int index = text.indexOf("직종</span>");    //찾는 문자열 위치 찾기
+            int index = text.indexOf("직종</span>");
 
-            if(index == -1) break;  //없으면 종료
+            if(index == -1) break;
 
-            //text2 = text.substring(index+5); // 문자열을 찾은 위치로 재저장
             text = text.substring(index+9);
             int eindex = text.indexOf("<");
             text2 = text.substring(0,eindex);
@@ -315,93 +247,77 @@ public void extract_name(String text){
     }
 
     public void extract_age(String text){
-        boolean isFirst = true; //처음인지 검사
+        boolean isFirst = true;
         String text2="";
         JobAge = new ArrayList<String>(120);
         while(true){
-            int index = text.indexOf("연령</span>");    //찾는 문자열 위치 찾기
+            int index = text.indexOf("연령</span>");
 
-            if(index == -1) break;  //없으면 종료
+            if(index == -1) break;
 
-            //text2 = text.substring(index+5); // 문자열을 찾은 위치로 재저장
             text = text.substring(index+9);
             int eindex = text.indexOf("<");
             text2 = text.substring(0,eindex);
             text = text.substring(eindex+1);
-            // text 끝
+
             JobAge.add("나이: "+text2);
 
         }
     }
 
     public void extract_loc(String text){
-        boolean isFirst = true; //처음인지 검사
+        boolean isFirst = true;
         String text2="";
         JobLoc = new ArrayList<String>(120);
         while(true){
-            int index = text.indexOf("지역</span>");    //찾는 문자열 위치 찾기
+            int index = text.indexOf("지역</span>");
 
-            if(index == -1) break;  //없으면 종료
+            if(index == -1) break;
 
-            //text2 = text.substring(index+5); // 문자열을 찾은 위치로 재저장
             text = text.substring(index+9);
             int eindex = text.indexOf("<");
             text2 = text.substring(0,eindex);
             text = text.substring(eindex+1);
-            // text 끝
             JobLoc.add(text2);
 
         }
     }
 
     public void extract_avail(String text){
-        boolean isFirst = true; //처음인지 검사
+        boolean isFirst = true;
         String text2="";
         JobAvail = new ArrayList<String>(120);
         while(true){
-            int index = text.indexOf("구인상태</span><span class=\"");    //찾는 문자열 위치 찾기
+            int index = text.indexOf("구인상태</span><span class=\"");
 
-            if(index == -1) break;  //없으면 종료
+            if(index == -1) break;
 
-            //text2 = text.substring(index+5); // 문자열을 찾은 위치로 재저장
             text = text.substring(index+24);
             int eindex = text.indexOf("\">");
             text2 = text.substring(0,eindex);
             text = text.substring(eindex+1);
-            // text 끝
             JobAvail.add(text2);
         }
     }
 
     //사이트 주소 추출
     public void extract_site(String text){
-        boolean isFirst = true; //처음인지 검사
+        boolean isFirst = true;
         String text2="";
         JobUrl = new ArrayList<String>(120);
         while(true){
-            int index = text.indexOf("idx=");    //찾는 문자열 위치 찾기
+            int index = text.indexOf("idx=");
 
-            if(index == -1) break;  //없으면 종료
+            if(index == -1) break;
 
-            //text2 = text.substring(index+5); // 문자열을 찾은 위치로 재저장
             text = text.substring(index+4);
             int eindex = text.indexOf("\"");
             text2 = text.substring(0,eindex);
             text = text.substring(eindex+1);
-            // text 끝
             JobUrl.add(text2);
 
         }
     }
-
-    //site form: /find-person_view.asp?idx=905&amp;p=1&amp;keyword=&amp;keyfield=
-
-
-
-
-
-
-
 
 }
 

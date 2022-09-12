@@ -66,9 +66,7 @@ public class ManagePublicData
 
             for (int i = 1; i < 4000; i += 50) { //i가 왜 5000까지지...
                 try {
-                    //String url = "http://openapi.seoul.go.kr:8088/(인증키)/xml/SearchPublicToiletPOIService/" + i + "/" + (i + 999) + "/";
                     String url = "http://openapi.seoul.go.kr:8088/79527649756a756c3130326d4a517543/xml/OdsnBuildingInfo/" + i + "/" + (i + 49) + "/";
-                    //(50,49)(100,99),(200,199)(1000,999)
                     XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
                     XmlPullParser parser = factory.newPullParser();
                     URL xmlUrl = new URL(url);
@@ -108,7 +106,6 @@ public class ManagePublicData
                                         CoordPoint ktmPt = TransCoord.getTransCoord(pt, TransCoord.COORD_TYPE_TM, TransCoord.COORD_TYPE_WGS84);
                                         lati = ktmPt.y;
                                         longi = ktmPt.x;
-                                        //SeniorCenterVOArrayList.add(new SeniorCenterVO(SeniorCenterVO.getCenterName(), SeniorCenterVO.getCenterAddress(), SeniorCenterVO.getCenterX(), SeniorCenterVO.getCenterY()));
                                         SeniorCenterVOArrayList.add(new SeniorCenterVO(SeniorCenterVO.getCenterName(), SeniorCenterVO.getCenterAddress(), lati, longi));
                                         Log.v("test", count + " " + lati+ " " + longi + " 경로당 : " + SeniorCenterVOArrayList.get(SeniorCenterVOArrayList.size() - 1).getCenterName());
                                         count ++;
@@ -133,8 +130,6 @@ public class ManagePublicData
             super.onPostExecute(result);
 
             for (int i = 0; i < managePublicData.getSeniorCenterVOArrayList().size(); i++) {
-                //MainActivity.mainTextView.append("\n");
-                //MainActivity.mainTextView.append(getSeniorCenterVOArrayList().get(i).getCenterName() + " ");
                 MainActivity.SeniorCenterLoc.add(getSeniorCenterVOArrayList().get(i));
             }
 

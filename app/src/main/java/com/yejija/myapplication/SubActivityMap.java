@@ -44,18 +44,6 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
 
     public int onlyonce=0;
 
-//    class MapPoints{
-//        double lat;
-//        double lon;
-//
-//        public MapPoints(double lat, double lon){
-//            this.lat = lat;
-//            this.lon = lon;
-//        }
-//    }
-
-    //public ArrayList<MapPoints> CenterLocations;
-
     MapPoint [] markerpoints = new MapPoint[MainActivity.SeniorCenterLoc.size()];
     MapPOIItem [] markers = new MapPOIItem[MainActivity.SeniorCenterLoc.size()];
 
@@ -67,9 +55,6 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
     int min;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,43 +64,13 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
 
 
         mMapView = (MapView) findViewById(R.id.map_view);
-        //mMapView.setDaumMapApiKey(MapApiConst.DAUM_MAPS_ANDROID_APP_API_KEY);
         mMapView.setCurrentLocationEventListener(this);
-//        float[] result = new float[1];
-        //float[] distance = new float[];
-
-
-        //장소하나 추가하는 것!
-//        MapPoint MARKER_POINT1 = MapPoint.mapPointWithGeoCoord(37.570595, 127.011317);
-//        MapPOIItem marker1 = new MapPOIItem();
-//        marker1.setItemName("노인정");
-//        marker1.setTag(0);
-//        marker1.setMapPoint(MARKER_POINT1);
-//        marker1.setMarkerType(MapPOIItem.MarkerType.BluePin);
-//        marker1.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
-//        mMapView.addPOIItem(marker1);
-
-// 이게 말이 되나 ㅋㅋㅋㅋㅋ
-//        for (int i=0; i<MainActivity.SeniorCenterLoc.size();i++){
-//            CenterLocations.add(new MapPoints(MainActivity.SeniorCenterLoc.get(MainActivity.SeniorCenterLoc.size() - 1).getCenterX(),MainActivity.SeniorCenterLoc.get(MainActivity.SeniorCenterLoc.size() - 1).getCenterY()));
-//        }
-        //
-
-        //MapPoint [] markers = new MapPoint[MainActivity.SeniorCenterLoc.size()];
-
-
 
 
         for (int i=0; i<MainActivity.SeniorCenterLoc.size();i++) {
-            //markerpoints[i] = MapPoint.mapPointWithGeoCoord(MainActivity.SeniorCenterLoc.get(MainActivity.SeniorCenterLoc.size() - 1).getCenterX(), MainActivity.SeniorCenterLoc.get(MainActivity.SeniorCenterLoc.size() - 1).getCenterY());
             markerpoints[i] = MapPoint.mapPointWithGeoCoord(MainActivity.SeniorCenterLoc.get(i).getCenterX(), MainActivity.SeniorCenterLoc.get(i).getCenterY());
             if (markerpoints[i] != null) {
-                //
-                //getDistance(results, MainActivity.SeniorCenterLoc.get(i).getCenterX(),MainActivity.SeniorCenterLoc.get(i).getCenterY());
-//                android.location.Location.distanceBetween(currentLocLat,currentLocLon,MainActivity.SeniorCenterLoc.get(i).getCenterX(),MainActivity.SeniorCenterLoc.get(i).getCenterY(),result);
-//                distance.add(result[0]);
-//                Log.v("hello", "current: " + currentLocLat + ", " + currentLocLon + " "+ String.valueOf(result[0])+" " + distance.indexOf(result[0]) + " & " + i);
-                //
+
                 markers[i] = new MapPOIItem();
                 markers[i].setItemName(MainActivity.SeniorCenterLoc.get(i).getCenterName());
                 markers[i].setTag(i);
@@ -129,26 +84,6 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
 
             }
         }
-        //
-        //markers[minDistance(results)].setMarkerType(MapPOIItem.MarkerType.RedPin);
-        //
-//        int min = distance.indexOf(Collections.min(distance));
-//        mMapView.removePOIItem(markers[min]);
-//        markers[min].setMarkerType(MapPOIItem.MarkerType.RedPin);
-//        mMapView.addPOIItem(markers[min]);
-//        Log.v("hello2", " " + min);
-        //
-        //
-
-        //맨 마지막 거만 기록됨...
-
-//        MapPoint.GeoCoordinate coord1 = MARKER_POINT1.getMapPointGeoCoord();
-//        //
-//        double c = coord1.latitude;
-//        double d = coord1.longitude;
-//        //how to use this...
-
-
 
 
         if (!checkLocationServicesStatus()) {
@@ -159,14 +94,12 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
             checkRunTimePermission();
         }
 
-
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mMapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading);
-        //TrackingModeOff -> 추적&나침반끄기, TrackingModeOnWithoutHeading -> 추적 O, 나침반 X, TrackingModeOnWithHeading -> 추적&나침반키기
         mMapView.setShowCurrentLocationMarker(false);
     }
 
@@ -174,20 +107,19 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
     public void onCurrentLocationUpdate(MapView mapView, MapPoint currentLocation, float accuracyInMeters) {
         MapPoint.GeoCoordinate mapPointGeo = currentLocation.getMapPointGeoCoord();
         Log.i(LOG_TAG, String.format("MapView onCurrentLocationUpdate (%f,%f) accuracy (%f)", mapPointGeo.latitude, mapPointGeo.longitude, accuracyInMeters));
-        //현재위치 좌표로
+
         currentLocLat = mapPointGeo.latitude;
         currentLocLon = mapPointGeo.longitude;
-        //8/10
+
         txtname = (TextView)findViewById(R.id.txtname);
         txtaddress = (TextView)findViewById(R.id.txtaddress);
-        //
+
         List<Float> distance = new ArrayList<Float>();
         float[] result = new float[1];
 
         for (int i=0; i<MainActivity.SeniorCenterLoc.size();i++) {
             android.location.Location.distanceBetween(currentLocLat,currentLocLon,MainActivity.SeniorCenterLoc.get(i).getCenterX(),MainActivity.SeniorCenterLoc.get(i).getCenterY(),result);
             distance.add(result[0]);
-            //Log.v("hello", "current: " + currentLocLat + ", " + currentLocLon + " "+ String.valueOf(result[0])+" " + distance.indexOf(result[0]) + " & " + i);
         }
 
         min = distance.indexOf(Collections.min(distance));
@@ -195,27 +127,9 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
         markers[min].setMarkerType(MapPOIItem.MarkerType.CustomImage);
         markers[min].setCustomImageResourceId(R.drawable.housepin);
         mMapView.addPOIItem(markers[min]);
-        //mMapView.setZoomLevel(1, true);
         Log.v("hello2", " " + min);
-        //8/10
         txtname.setText(MainActivity.SeniorCenterLoc.get(min).getCenterName());
         txtaddress.setText(MainActivity.SeniorCenterLoc.get(min).getCenterAddress());
-        //
-
-        //
-//        double len;
-//        double x, y;
-//        x = Math.cos(a)*6400*2*3.14/360)*Math.abs(b-d);
-
-        //바로 삭제가능
-//        MapPOIItem marker1 = new MapPOIItem();
-//        marker1.setItemName("현재위치");
-//        marker1.setTag(0);
-//        marker1.setMapPoint(currentLocation);
-//        marker1.setMarkerType(MapPOIItem.MarkerType.RedPin);
-//        //marker1.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
-//        mMapView.addPOIItem(marker1);
-        // 현재 위치가 눈에 안띄어서 넣긴 했는데 작은 파란색은 어떻게 없애는거지... 근데 더 큰 문제가 이게 누적됨...
 
     }
 
@@ -247,11 +161,7 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
     }
 
     private void onFinishReverseGeoCoding(String result) {
-//        Toast.makeText(LocationDemoActivity.this, "Reverse Geo-coding : " + result, Toast.LENGTH_SHORT).show();
     }
-
-
-
 
     /*
      * ActivityCompat.requestPermissions를 사용한 퍼미션 요청의 결과를 리턴받는 메소드입니다.
@@ -265,12 +175,7 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
         super.onRequestPermissionsResult(permsRequestCode, permissions, grandResults);
         if ( permsRequestCode == PERMISSIONS_REQUEST_CODE && grandResults.length == REQUIRED_PERMISSIONS.length) {
 
-            // 요청 코드가 PERMISSIONS_REQUEST_CODE 이고, 요청한 퍼미션 개수만큼 수신되었다면
-
             boolean check_result = true;
-
-
-            // 모든 퍼미션을 허용했는지 체크합니다.
 
             for (int result : grandResults) {
                 if (result != PackageManager.PERMISSION_GRANTED) {
@@ -282,11 +187,10 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
 
             if ( check_result ) {
                 Log.d("@@@", "start");
-                //위치 값을 가져올 수 있음
                 mMapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading);
-                //
+
                 mMapView.setShowCurrentLocationMarker(false);
-                //
+
             }
             else {
                 // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
@@ -308,24 +212,18 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
     }
 
     void checkRunTimePermission(){
-
         //런타임 퍼미션 처리
-        // 1. 위치 퍼미션을 가지고 있는지 체크합니다.
+
         int hasFineLocationPermission = ContextCompat.checkSelfPermission(SubActivityMap.this,
                 Manifest.permission.ACCESS_FINE_LOCATION);
 
 
         if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED ) {
 
-            // 2. 이미 퍼미션을 가지고 있다면
-            // ( 안드로이드 6.0 이하 버전은 런타임 퍼미션이 필요없기 때문에 이미 허용된 걸로 인식합니다.)
-
-
-            // 3.  위치 값을 가져올 수 있음
             mMapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading);
-//check here
 
-        } else {  //2. 퍼미션 요청을 허용한 적이 없다면 퍼미션 요청이 필요합니다. 2가지 경우(3-1, 4-1)가 있습니다.
+
+        } else {
 
             // 3-1. 사용자가 퍼미션 거부를 한 적이 있는 경우에는
             if (ActivityCompat.shouldShowRequestPermissionRationale(SubActivityMap.this, REQUIRED_PERMISSIONS[0])) {
@@ -347,8 +245,6 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
         }
 
     }
-
-
 
     //여기부터는 GPS 활성화를 위한 메소드들
     private void showDialogForLocationServiceSetting() {
@@ -421,11 +317,5 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
         }
         return plac;
     }
-    //
 
-//    public static void distanceBetween (double startLatitude,
-//                                        double startLongitude,
-//                                        double endLatitude,
-//                                        double endLongitude,
-//                                        float[] results)
 }

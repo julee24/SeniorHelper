@@ -70,23 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
     public static ArrayList<SeniorCenterVO> SeniorCenterLoc = new ArrayList<>();
 
-//    private void getAppKeyHash() {
-//        try {
-//            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
-//            for (Signature signature : info.signatures) {
-//                MessageDigest md;
-//                md = MessageDigest.getInstance("SHA");
-//                md.update(signature.toByteArray());
-//                String something = new String(Base64.encode(md.digest(), 0));
-//                Log.e("Hash key", something);
-//            }
-//        } catch (Exception e) {
-//            // TODO Auto-generated catch block
-//            Log.e("name not found", e.toString());
-//        }
-//    }
-//
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,19 +98,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //하루 응원 멘트
-        dayMorning.add("좋은 아침입니다.");
+        dayMorning.add("좋은 아침입니다");
         dayMorning.add("오늘 하루 행복하세요!");
         dayMorning.add("오늘도 웃으면서 하루를 시작해봐요!");
 
-        dayAfternoon.add("즐거운 오후 보내시길 바랍니다.");
+        dayAfternoon.add("즐거운 오후 보내시길 바랍니다");
         dayAfternoon.add("오늘 오후도 활기차게 파이팅!");
         dayAfternoon.add("점심은 꼭 잘 챙겨드세요!");
 
-        dayDinner.add("편히 쉬시고 내일도 파이팅입니다.");
-        dayDinner.add("편안한 저녁 보내시고 내일 뵙겠습니다.");
-        dayDinner.add("즐거운 저녁 시간 되세요.");
+        dayDinner.add("편히 쉬시고 내일도 파이팅입니다");
+        dayDinner.add("편안한 저녁 보내시고 내일 뵙겠습니다");
+        dayDinner.add("즐거운 저녁 시간 되세요");
 
-        dayNight.add("새근새근…");
+        dayNight.add("안녕히 주무세요");
         dayNight.add("좋은 꿈 꾸세요!");
         dayNight.add("편안한 밤 되시고 좋은 꿈 꾸세요!");
 
@@ -226,12 +209,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        //전화 기능
-        /*
-        Intent intent1 = getIntent();
-        tel_number = intent1.getStringExtra("number");
-         */
-
         btn_tel = findViewById(R.id.button5);
 
         btn_tel.setOnClickListener(new View.OnClickListener() {
@@ -249,9 +226,6 @@ public class MainActivity extends AppCompatActivity {
         final Geocoder geocoder = new Geocoder(this);
 
 
-//        button1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
             if ( Build.VERSION.SDK_INT >= 23 &&
                     ContextCompat.checkSelfPermission( getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
                 ActivityCompat.requestPermissions( MainActivity.this, new String[] {

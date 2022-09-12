@@ -87,9 +87,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
         TextView contentsTextView;
         TextView contentsTextView2;
 
-//        TextView locationTextView;
-//        TextView locationTextView2;
-
         TextView dateTextView;
         TextView dateTextView2;
 
@@ -110,9 +107,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
 
             contentsTextView = itemView.findViewById(R.id.contentsTextView);
             contentsTextView2 = itemView.findViewById(R.id.contentsTextView2);
-
-//            locationTextView = itemView.findViewById(R.id.locationTextView);
-//            locationTextView2 = itemView.findViewById(R.id.locationTextView2);
 
             dateTextView = itemView.findViewById(R.id.dateTextView);
             dateTextView2 = itemView.findViewById(R.id.dateTextView2);
@@ -157,9 +151,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
 
             contentsTextView.setText(item.getContents());
             contentsTextView2.setText(item.getContents());
-
-//            locationTextView.setText(item.getAddress());
-//            locationTextView2.setText(item.getAddress());
 
             dateTextView.setText(item.getCreateDateStr());
             dateTextView2.setText(item.getCreateDateStr());

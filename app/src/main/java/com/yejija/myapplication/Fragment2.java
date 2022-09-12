@@ -184,10 +184,6 @@ public class Fragment2 extends Fragment {
         moodSlider.setInitialIndex(2);
     }
 
-    //주소 나타내기
-//    public void setAddress(String data) {
-//        locationTextView.setText(data);
-//    }
 
     public void setDateString(String dateString) {
         dateTextView.setText(dateString);
@@ -256,22 +252,12 @@ public class Fragment2 extends Fragment {
 
             contentsInput.setText("");
             pictureImageView.setImageResource(R.drawable.insert_picture);
-            //pictureImageView.setImageResource(R.drawable.noimagefound);
             setMood("2");
         }
 
     }
 
-    /**
-     * ① 맑음
-     * ② 구름 조금
-     * ③ 구름 많음
-     * ④ 흐림
-     * ⑤ 비
-     * ⑥ 눈/비
-     * ⑦ 눈
-     *
-     */
+
     public void setWeather(String data) {
         com.yejija.myapplication.AppConstants.println("setWeather called : " + data);
 
@@ -338,106 +324,18 @@ public class Fragment2 extends Fragment {
         switch(id) {
 
             case com.yejija.myapplication.AppConstants.CONTENT_PHOTO:
-//                builder = new AlertDialog.Builder(context);
-//
-//                builder.setTitle("사진 메뉴 선택");
-//                builder.setSingleChoiceItems(R.array.array_photo, 0, new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int whichButton) {
-//                        selectedPhotoMenu = whichButton;
-//                    }
-//                });
-//                builder.setPositiveButton("선택", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int whichButton) {
-//                        if(selectedPhotoMenu == 0 ) {
-//                            showPhotoCaptureActivity();
-//                        } else if(selectedPhotoMenu == 1) {
-//                            showPhotoSelectionActivity();
-//                        }
-//                    }
-//                });
-//                builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int whichButton) {
-//
-//                    }
-//                });
-//
-//                break;
                 showPhotoSelectionActivity();
                 break;
 
             case com.yejija.myapplication.AppConstants.CONTENT_PHOTO_EX:
-//                builder = new AlertDialog.Builder(context);
-//
-//                builder.setTitle("사진 메뉴 선택");
-//                builder.setSingleChoiceItems(R.array.array_photo_ex, 0, new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int whichButton) {
-//                        selectedPhotoMenu = whichButton;
-//                    }
-//                });
-//                builder.setPositiveButton("선택", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int whichButton) {
-//                        if(selectedPhotoMenu == 0) {
-//                            showPhotoCaptureActivity();
-//                        } else if(selectedPhotoMenu == 1) {
-//                            showPhotoSelectionActivity();
-//                        } else if(selectedPhotoMenu == 2) {
-//                            isPhotoCanceled = true;
-//                            isPhotoCaptured = false;
-//
-//                            pictureImageView.setImageResource(R.drawable.picture1);
-//                        }
-//                    }
-//                });
-//                builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int whichButton) {
-//
-//                    }
-//                });
-
                 showPhotoSelectionActivity();
                 break;
 
             default:
                 break;
         }
-
-//        AlertDialog dialog = builder.create();
-//        dialog.show();
     }
 
-//    public void showPhotoCaptureActivity() {
-//        try {
-//            file = createFile();
-//            if (file.exists()) {
-//                file.delete();
-//            }
-//
-//            file.createNewFile();
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        if(Build.VERSION.SDK_INT >= 24) {
-//            uri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID, file);
-//        } else {
-//            uri = Uri.fromFile(file);
-//        }
-//
-//        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-//
-//        startActivityForResult(intent, com.yejija.myapplication.AppConstants.REQ_PHOTO_CAPTURE);
-//
-//    }
-
-//    private File createFile() {
-//        String filename = createFilename();
-//        File outFile = new File(context.getFilesDir(), filename);
-//        Log.d("Main", "File path : " + outFile.getAbsolutePath());
-//
-//        return outFile;
-//    }
 
     public void showPhotoSelectionActivity() {
         Intent intent = new Intent();
@@ -447,9 +345,7 @@ public class Fragment2 extends Fragment {
         startActivityForResult(intent, com.yejija.myapplication.AppConstants.REQ_PHOTO_SELECTION);
     }
 
-    /**
-     * 다른 액티비티로부터의 응답 처리
-     */
+
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
 
@@ -518,8 +414,7 @@ public class Fragment2 extends Fragment {
             final int halfHeight = height;
             final int halfWidth = width;
 
-            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
-            // height and width larger than the requested height and width.
+
             while ((halfHeight / inSampleSize) >= reqHeight
                     && (halfWidth / inSampleSize) >= reqWidth) {
                 inSampleSize *= 2;
@@ -537,10 +432,7 @@ public class Fragment2 extends Fragment {
         return curDateStr;
     }
 
-
-    /**
-     * 데이터베이스 레코드 추가
-     */
+    // 데이터베이스 레코드 추가
     private void saveNote() {
         //String address = locationTextView.getText().toString();
         String contents = contentsInput.getText().toString();
@@ -563,12 +455,9 @@ public class Fragment2 extends Fragment {
 
     }
 
-    /**
-     * 데이터베이스 레코드 수정
-     */
+    // 데이터베이스 레코드 수정
     private void modifyNote() {
         if (item != null) {
-            //String address = locationTextView.getText().toString();
             String contents = contentsInput.getText().toString();
 
             String picturePath = savePicture();
@@ -577,7 +466,6 @@ public class Fragment2 extends Fragment {
             String sql = "update " + NoteDatabase.TABLE_NOTE +
                     " set " +
                     "   WEATHER = '" + weatherIndex + "'" +
-                    //"   ,ADDRESS = '" + address + "'" +
                     "   ,LOCATION_X = '" + "" + "'" +
                     "   ,LOCATION_Y = '" + "" + "'" +
                     "   ,CONTENTS = '" + contents + "'" +
@@ -593,9 +481,7 @@ public class Fragment2 extends Fragment {
     }
 
 
-    /**
-     * 레코드 삭제
-     */
+    // 레코드 삭제
     private void deleteNote() {
         com.yejija.myapplication.AppConstants.println("deleteNote called.");
 

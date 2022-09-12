@@ -78,19 +78,19 @@ public class SubActivityDiary extends AppCompatActivity implements OnTabItemSele
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.tab1:
-                        Toast.makeText(getApplicationContext(), "첫 번째 탭 선택됨", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "첫 번째 탭 선택됨", Toast.LENGTH_LONG).show();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.container, fragment1).commit();
 
                         return true;
                     case R.id.tab2:
-                        Toast.makeText(getApplicationContext(), "두 번째 탭 선택됨", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "두 번째 탭 선택됨", Toast.LENGTH_LONG).show();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.container, fragment2).commit();
 
                         return true;
                     case R.id.tab3:
-                        Toast.makeText(getApplicationContext(), "세 번째 탭 선택됨", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "세 번째 탭 선택됨", Toast.LENGTH_LONG).show();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.container, fragment3).commit();
 
@@ -112,13 +112,13 @@ public class SubActivityDiary extends AppCompatActivity implements OnTabItemSele
                 .onGranted(new Action<List<String>>() {
                     @Override
                     public void onAction(List<String> permissions) {
-                        showToast("허용된 권한 갯수 : " + permissions.size());
+                        //showToast("허용된 권한 갯수 : " + permissions.size());
                     }
                 })
                 .onDenied(new Action<List<String>>() {
                     @Override
                     public void onAction(List<String> permissions) {
-                        showToast("거부된 권한 갯수 : " + permissions.size());
+                        //showToast("거부된 권한 갯수 : " + permissions.size());
                     }
                 })
                 .start();
@@ -138,9 +138,6 @@ public class SubActivityDiary extends AppCompatActivity implements OnTabItemSele
         }
     }
 
-    /**
-     * 데이터베이스 열기 (데이터베이스가 없을 때는 만들기)
-     */
     public void openDatabase() {
         // open database
         if (mDatabase != null) {
@@ -284,44 +281,6 @@ public class SubActivityDiary extends AppCompatActivity implements OnTabItemSele
         public void onStatusChanged(String provider, int status, Bundle extras) { }
     }
 
-//    public void getCurrentAddress() {
-//        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-//        List<Address> addresses = null;
-//
-//        try {
-//            addresses = geocoder.getFromLocation(
-//                    currentLocation.getLatitude(),
-//                    currentLocation.getLongitude(),
-//                    1);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        if (addresses != null && addresses.size() > 0) {
-//            currentAddress = null;
-//
-//            Address address = addresses.get(0);
-//            if (address.getLocality() != null) {
-//                currentAddress = address.getLocality();
-//            }
-//
-//            if (address.getSubLocality() != null) {
-//                if (currentAddress != null) {
-//                    currentAddress +=  " " + address.getSubLocality();
-//                } else {
-//                    currentAddress = address.getSubLocality();
-//                }
-//            }
-//
-//            String adminArea = address.getAdminArea();
-//            String country = address.getCountryName();
-//            println("Address : " + country + " " + adminArea + " " + currentAddress);
-//
-//            if (fragment2 != null) {
-//                fragment2.setAddress(currentAddress);
-//            }
-//        }
-//    }
 
     public void getCurrentWeather() {
 
@@ -384,7 +343,6 @@ public class SubActivityDiary extends AppCompatActivity implements OnTabItemSele
                         println("  날씨 : " + item.wfKor);
                         println("  기온 : " + item.temp + " C");
                         println("  강수확률 : " + item.pop + "%");
-
                         println("debug 1 : " + (int)Math.round(item.ws * 10));
                         float ws = Float.valueOf(String.valueOf((int)Math.round(item.ws * 10))) / 10.0f;
                         println("  풍속 : " + ws + " m/s");

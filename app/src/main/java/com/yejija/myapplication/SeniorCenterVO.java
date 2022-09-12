@@ -5,8 +5,6 @@ public class SeniorCenterVO {
     private String CenterAddress;
     private double CenterX;
     private double CenterY;
-    //private double latitude;
-    //private double longitude;
 
     public SeniorCenterVO(){}
 
