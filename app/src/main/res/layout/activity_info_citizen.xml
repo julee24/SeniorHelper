@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textColor="#5CAB7D"
+        android:layout_margin="17dp"
+        android:fontFamily="@font/pretendardsemibold"
+        android:text="인근 경로당"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#5CAB7D">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/job_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/menu_citizen" />
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="142dp"
+
+                android:layout_alignLeft="@+id/job_image"
+                android:layout_alignTop="@+id/job_image"
+                android:layout_alignRight="@+id/job_image"
+                android:layout_alignBottom="@+id/job_image"
+
+                android:layout_marginLeft="347dp"
+                android:layout_marginTop="96dp"
+                android:layout_marginRight="-1dp"
+                android:layout_marginBottom="404dp"
+                android:src="@drawable/arrow3" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="91dp"
+
+                android:layout_alignLeft="@+id/job_image"
+                android:layout_alignTop="@+id/job_image"
+                android:layout_alignRight="@+id/job_image"
+                android:layout_alignBottom="@+id/job_image"
+
+                android:layout_marginLeft="290dp"
+                android:layout_marginTop="101dp"
+                android:layout_marginRight="57dp"
+                android:layout_marginBottom="450dp"
+                android:src="@drawable/arrow2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignLeft="@+id/job_image"
+                android:layout_alignTop="@+id/job_image"
+                android:layout_alignRight="@+id/job_image"
+                android:layout_alignBottom="@+id/job_image"
+
+                android:layout_marginLeft="0dp"
+
+                android:layout_marginTop="309dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginBottom="191dp"
+                android:background="@drawable/info_textbox"
+                android:elevation="10dp"
+                android:fontFamily="@font/pretendardsemibold"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1"
+                android:text="인근 경로당에서는\n현재 위치 주변의 경로당들을\n볼 수 있어요"
+                android:textAlignment="center"
+                android:textColor="#5CAB7D"
+                android:textSize="25sp" />
+
+
+            <ImageView
+                android:id="@+id/citizen1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="405dp"
+                android:src="@drawable/citizen1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignLeft="@+id/citizen1"
+                android:layout_alignTop="@+id/citizen1"
+                android:layout_alignRight="@+id/citizen1"
+                android:layout_alignBottom="@+id/citizen1"
+
+                android:layout_marginLeft="118dp"
+                android:layout_marginTop="489dp"
+                android:layout_marginRight="22dp"
+                android:layout_marginBottom="549dp"
+
+                android:background="@drawable/info_textbox"
+                android:elevation="10dp"
+                android:fontFamily="@font/pretendardsemibold"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1"
+                android:text="주변의 경로당을\n지도상으로 확인할 수 있고\n주소 확인도 가능해요"
+                android:textColor="#5CAB7D"
+                android:textSize="25sp" />
+
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>
+

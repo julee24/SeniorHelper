@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#5CAB7D">
+
+        <TextView
+            android:id="@+id/intro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="아래 글자를 누르시면 \n해당 기능에 대한 설명들을\n볼 수 있습니다"
+            android:textSize="30sp"
+            android:lineSpacingExtra ="7dp"
+            android:lineSpacingMultiplier="1.2"
+            android:fontFamily="@font/pretendardbold"
+            android:layout_margin="14dp"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/job"
+        android:background="@drawable/info_textbox"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:gravity="start|center_vertical"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/job_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="'일자리 탐색' 사용 방법"
+            android:paddingLeft="15dp"
+            android:textColor="#000000"
+            android:fontFamily="@font/pretendardsemibold"
+            android:textSize="32sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/citizen"
+        android:background="@drawable/info_textbox"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:gravity="start|center_vertical"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/citizen_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="'인근 경로당' 사용 방법"
+            android:paddingLeft="15dp"
+            android:textColor="#000000"
+            android:fontFamily="@font/pretendardsemibold"
+            android:textSize="32sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/gu"
+        android:background="@drawable/info_textbox"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:gravity="start|center_vertical"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/gu_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="'구청 사이트 접속' 사용 방법"
+            android:paddingLeft="15dp"
+            android:textColor="#000000"
+            android:fontFamily="@font/pretendardsemibold"
+            android:textSize="32sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/journal"
+        android:background="@drawable/info_textbox"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:gravity="start|center_vertical"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/journal_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="'일기 작성' 사용 방법"
+            android:paddingLeft="15dp"
+            android:textColor="#000000"
+            android:fontFamily="@font/pretendardsemibold"
+            android:textSize="32sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/call"
+        android:background="@drawable/info_textbox"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:gravity="start|center_vertical"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/call_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="'보호자 전화' 사용 방법"
+            android:paddingLeft="15dp"
+            android:textColor="#000000"
+            android:fontFamily="@font/pretendardsemibold"
+            android:textSize="32sp" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

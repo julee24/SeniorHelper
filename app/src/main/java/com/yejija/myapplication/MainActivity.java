@@ -190,6 +190,12 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent3);
                         drawerLayout.closeDrawers();
                         return true;
+
+                    case R.id.nav_tuto:
+                        Intent intent4 = new Intent(getApplicationContext(), Info.class);
+                        startActivity(intent4);
+                        drawerLayout.closeDrawers();
+                        return true;
                 }
 
                 return false;

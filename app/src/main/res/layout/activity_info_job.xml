@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textColor="#5CAB7D"
+        android:layout_margin="17dp"
+        android:fontFamily="@font/pretendardsemibold"
+        android:text="일자리 탐색"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#5CAB7D">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/job_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/menu_job" />
+
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="142dp"
+
+                android:layout_alignLeft="@+id/job_image"
+                android:layout_alignTop="@+id/job_image"
+                android:layout_alignRight="@+id/job_image"
+                android:layout_alignBottom="@+id/job_image"
+
+                android:layout_marginLeft="-7dp"
+                android:layout_marginTop="111dp"
+                android:layout_marginRight="353dp"
+                android:layout_marginBottom="389dp"
+                android:src="@drawable/arrow1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="91dp"
+
+                android:layout_alignLeft="@+id/job_image"
+                android:layout_alignTop="@+id/job_image"
+                android:layout_alignRight="@+id/job_image"
+                android:layout_alignBottom="@+id/job_image"
+
+                android:layout_marginLeft="41dp"
+                android:layout_marginTop="116dp"
+                android:layout_marginRight="306dp"
+                android:layout_marginBottom="435dp"
+                android:src="@drawable/arrow2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignLeft="@+id/job_image"
+                android:layout_alignTop="@+id/job_image"
+                android:layout_alignRight="@+id/job_image"
+                android:layout_alignBottom="@+id/job_image"
+
+
+                android:layout_marginTop="309dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginBottom="191dp"
+                android:background="@drawable/info_textbox"
+                android:elevation="10dp"
+                android:fontFamily="@font/pretendardsemibold"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1"
+                android:text="일자리 탐색에서는\n나이, 지역, 직무에 따른\n일자리들을 구경할 수 있어요"
+                android:textAlignment="center"
+                android:textColor="#5CAB7D"
+                android:textSize="25sp" />
+
+
+            <ImageView
+                android:id="@+id/job1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:src="@drawable/job1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignLeft="@+id/job1"
+                android:layout_alignTop="@+id/job1"
+                android:layout_alignRight="@+id/job1"
+                android:layout_alignBottom="@+id/job1"
+
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="938dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="880dp"
+
+                android:background="@drawable/info_textbox2"
+                android:elevation="10dp"
+                android:fontFamily="@font/pretendardsemibold"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:textSize="25sp"
+                android:lineSpacingMultiplier="1"
+                android:text="회사, 나이, 위치, 직종 \n순서로 정보들을\n확인할 수 있어요" />
+
+            <ImageView
+                android:id="@+id/job2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="800dp"
+                android:src="@drawable/job2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignLeft="@+id/job2"
+                android:layout_alignTop="@+id/job2"
+                android:layout_alignRight="@+id/job2"
+                android:layout_alignBottom="@+id/job2"
+
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="940dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="900dp"
+
+                android:background="@drawable/info_textbox2"
+                android:elevation="10dp"
+                android:fontFamily="@font/pretendardsemibold"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:textSize="25sp"
+                android:lineSpacingMultiplier="1"
+                android:text="관심있는 직업을 고르고 누르면\n관련 페이지로 넘어가요" />
+
+
+            <ImageView
+                android:id="@+id/job3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1950dp"
+                android:src="@drawable/job3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="2400dp"
+
+                android:background="@drawable/info_textbox2"
+                android:textColor="#ffffff"
+                android:textSize="23sp"
+                android:text="전화하기"/>
+
+
+            <TextView
+                android:id="@+id/job_tv"
+                android:layout_width="match_parent"
+                android:layout_height="227dp"
+
+                android:layout_alignLeft="@+id/job3"
+                android:layout_alignTop="@+id/job3"
+                android:layout_alignRight="@+id/job3"
+                android:layout_alignBottom="@+id/job3"
+
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="464dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginBottom="635dp"
+                android:background="@drawable/info_textbox"
+                android:elevation="10dp"
+                android:fontFamily="@font/pretendardsemibold"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1"
+                android:text="맘에 드는 직업을 찾으셨나요?\n직업을 고르신 후 취업센터에 전화해요\n         를 누르면 전화가 걸립니다!"
+                android:textColor="#5CAB7D"
+                android:textSize="25sp" />
+
+            <ImageView
+                android:layout_width="73dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="2325dp"
+                android:layout_marginLeft="266dp"
+                android:src="@drawable/arrow4" />
+
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>
+
