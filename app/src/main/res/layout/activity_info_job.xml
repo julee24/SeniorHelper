@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -24,7 +25,6 @@
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fillViewport="true"
@@ -118,7 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.45" />
+                    app:layout_constraintGuide_percent="0.48" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline36"
@@ -126,6 +126,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:layout_constraintGuide_percent="0.15" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline59"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="330dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -182,11 +189,48 @@
                     app:layout_constraintGuide_percent="0.90"/>
 
 
+
+                아까 우리 웃을때 우리쪽 쳐다봄 나랑 눈마주침;;;
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/page5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/page2">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/job1"
+                    android:layout_margin="20dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:adjustViewBounds="true"/>
+
+
+                <ImageView
+                    android:layout_width="3dp"
+                    android:layout_height="2.8dp"
+                    android:src="@drawable/circle2"
+                    app:layout_constraintLeft_toRightOf="@id/guideline51"
+                    app:layout_constarintTop_toBottomOf="parent"
+                    />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline51"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.80"  />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/page3"
-                app:layout_constraintTop_toBottomOf="@+id/page2"
+                app:layout_constraintTop_toBottomOf="@+id/page5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -215,6 +259,7 @@
                     android:textSize="25sp"
                     android:text="관심있는 직업을 고르고 누르면 관련 페이지로 넘어가요" />
 
+
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/textboxtop1"
                     android:layout_width="wrap_content"
@@ -238,6 +283,8 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/page4"

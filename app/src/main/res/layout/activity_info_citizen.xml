@@ -13,7 +13,7 @@
         android:textSize="22sp"
         android:textColor="#5CAB7D"
         android:layout_margin="17dp"
-        android:fontFamily="@font/pretendardsemibold"
+        android:fontFamily="@font/pretendardbold"
         android:text="인근 경로당"/>
 
     <ScrollView
@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.15" />
+                app:layout_constraintGuide_percent="0.16" />
 
 
             <androidx.constraintlayout.widget.Guideline
@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.25" />
+                app:layout_constraintGuide_percent="0.24" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -95,9 +95,9 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/info_textbox"
+                android:background="@drawable/info_textbox2"
                 android:elevation="10dp"
                 android:fontFamily="@font/pretendardsemibold"
                 app:layout_constraintTop_toBottomOf="@+id/guideline41"
@@ -106,45 +106,98 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:text="주변의 경로당을\n지도상으로 확인할 수 있고\n주소 확인도 가능해요"
-                android:textColor="#5CAB7D"
+                android:textColor="#ffffff"
                 android:textSize="25sp"
                 android:gravity="center"/>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/info_textbox"
+                android:background="@drawable/info_textbox3"
                 android:elevation="10dp"
-                android:fontFamily="@font/pretendardbold"
-                app:layout_constraintBottom_toTopOf="@+id/guideline43"
-                app:layout_constraintLeft_toRightOf="@+id/guideline32"
-                android:text="제일 가까운 경로당"/>
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/guideline43"
+                app:layout_constraintLeft_toRightOf="@id/guideline37">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginBottom="27dp"
-                android:background="@drawable/info_textbox"
-                android:elevation="10dp"
-                android:fontFamily="@font/pretendardbold"
-                app:layout_constraintBottom_toTopOf="@+id/guideline41"
-                app:layout_constraintLeft_toRightOf="@+id/guideline32"
-                android:text="현재 위치"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#ffffff">
+
+                    <ImageView
+                        android:layout_width="38sp"
+                        android:layout_height="38sp"
+                        android:src="@drawable/housepin"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendardbold"
+                        android:textSize="20sp"
+                        android:textColor="#5CAB7D"
+                        android:padding="5sp"
+                        android:text=" 제일 가까운 경로당"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#ffffff">
+
+                    <ImageView
+                        android:layout_width="38sp"
+                        android:layout_height="38sp"
+                        android:src="@drawable/housepin1"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendardbold"
+                        android:textSize="20sp"
+                        android:textColor="#5CAB7D"
+                        android:padding="5sp"
+                        android:text=" 그 외 모든 경로당"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#ffffff">
+
+                    <ImageView
+                        android:layout_width="26sp"
+                        android:layout_height="26sp"
+                        android:layout_margin="6sp"
+                        android:src="@drawable/circle"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendardbold"
+                        android:text="  현재 위치"
+                        android:textColor="#5CAB7D"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+            </LinearLayout>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline41"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.75" />
+                app:layout_constraintGuide_percent="0.76" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline43"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.66" />
+                app:layout_constraintGuide_percent="0.63" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline32"
@@ -152,6 +205,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.5" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline37"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.42"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

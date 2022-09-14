@@ -121,7 +121,7 @@ public class GuList extends AppCompatActivity {
         //url
         web = new ArrayList<>();
 
-        web.add("https://news.seoul.go.kr/welfare/archives/695");
+        web.add("https://wis.seoul.go.kr/senior/service/certify.do");
         web.add("https://www.nhis.or.kr/nhis/index.do");
         web.add("https://www.nid.or.kr/main/main.aspx");
         web.add("http://gangnam.go.kr/pitapatgn/0802_elderlywelfare.html#two");
@@ -133,22 +133,22 @@ public class GuList extends AppCompatActivity {
         web.add("https://www.guro.go.kr/www/contents.do?key=2397&");
         web.add("https://www.geumcheon.go.kr/portal/contents.do?key=537");
         web.add("https://www.nowon.kr/www/info/info2/info2_03/info2_03_01/info2_03_01_02.jsp");
-        web.add("https://www.ddm.go.kr/www/index.do");
+        web.add("https://www.ddm.go.kr/www/contents.do?key=686");
         web.add("https://www.dobong.go.kr/Contents.asp?code=10003748");
-        web.add("https://www.dongjak.go.kr/portal/main/main.do");
-        web.add("https://www.mapo.go.kr/site/main/home");
-        web.add("https://www.sdm.go.kr/index.do");
-        web.add("https://www.seocho.go.kr/site/seocho/main.do");
-        web.add("https://www.sd.go.kr/main/index.do");
+        web.add("https://www.dongjak.go.kr/portal/main/contents.do?menuNo=200331");
+        web.add("https://www.mapo.go.kr/site/main/content/mapo05011204");
+        web.add("https://www.sdm.go.kr/welfare/old/careservice.do");
+        web.add("https://www.seocho.go.kr/site/seocho/04/10402030100002015070710.jsp");
+        web.add("https://www.sd.go.kr/main/contents.do?key=1541&");
         web.add("https://www.sb.go.kr/main/mainPage.do");
-        web.add("https://www.songpa.go.kr/www/index.do");
-        web.add("https://www.yangcheon.go.kr/site/yangcheon/main.do");
-        web.add("https://www.ydp.go.kr/www/index.do");
-        web.add("https://www.yongsan.go.kr/portal/main/main.do");
-        web.add("https://www.ep.go.kr/www/index.do");
+        web.add("https://www.songpa.go.kr/www/contents.do?key=2983&");
+        web.add("https://www.yangcheon.go.kr/site/yangcheon/ex/bbs/List.do?cbIdx=368");
+        web.add("https://www.ydp.go.kr/www/contents.do?key=3806&");
+        web.add("https://www.yongsan.go.kr/portal/main/contents.do?menuNo=200515");
+        web.add("https://www.ep.go.kr/www/contents.do?key=892");
         web.add("https://www.jongno.go.kr/portalMain.do;jsessionid=AWZALW4ng5ttDgXSJwuio58FzQJ7Vxuar69tjuZu6zNRPMu7bOygzNYaAh6dlzQB.was_servlet_engine1");
-        web.add("http://www.junggu.seoul.kr/index.jsp");
-        web.add("https://www.jungnang.go.kr/portal/main.do");
+        web.add("http://www.junggu.seoul.kr/content.do?cmsid=14386&sf_text4=G");
+        web.add("https://www.jungnang.go.kr/portal/bbs/list/B0000157.do?menuNo=200775");
 
 
         /* 리스트 속의 아이템 연결 */
