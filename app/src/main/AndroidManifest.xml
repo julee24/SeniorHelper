@@ -63,6 +63,10 @@
 
         <activity android:name=".InfoGu"
             android:exported="false"/>
+        <activity android:name=".InfoJourney"
+            android:exported="false"/>
+        <activity android:name=".InfoCall"
+            android:exported="false"/>
 
         <activity
             android:name=".WebViewActivity"
