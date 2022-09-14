@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -46,13 +47,6 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:adjustViewBounds="true"/>
 
-                <!--    <ImageView-->
-                <!--        android:id="@+id/job_image"-->
-                <!--        android:layout_width="match_parent"-->
-                <!--        android:layout_height="wrap_content"-->
-                <!--        app:layout_constraintTop_toTopOf="parent"-->
-                <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-                <!--        android:src="@drawable/menu_job" />-->
 
 
                 <ImageView
@@ -73,7 +67,7 @@
                     android:src="@drawable/arrow2" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingStart="40dp"
                     android:paddingEnd="40dp"
@@ -86,7 +80,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textboxguide1"
-                    android:text="일자리 탐색에서는\n나이, 지역, 직무에 따른\n일자리들을 구경할 수 있어요"
+                    android:text="일자리 탐색에서는\n회사. 나이, 지역, 직무에 따른\n일자리들을 구경할 수 있어요"
                     android:textAlignment="center"
                     android:textColor="#5CAB7D"
                     android:textSize="25sp"
@@ -165,21 +159,21 @@
                     android:gravity="center"
                     android:textColor="#ffffff"
                     android:textSize="25sp"
-                    android:text="회사, 나이, 위치, 직종\n순서로 정보들을\n확인할 수 있어요" />
+                    android:text="회사, 나이, 위치, 직종 순서로\n 정보들을 확인할 수 있어요" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/textboxtop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.57" />
+                    app:layout_constraintGuide_percent="0.54" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/textboxleft"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.30"/>
+                    app:layout_constraintGuide_percent="0.29927006" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/textboxright2"
@@ -188,9 +182,6 @@
                     android:orientation="vertical"
                     app:layout_constraintGuide_percent="0.90"/>
 
-
-
-                아까 우리 웃을때 우리쪽 쳐다봄 나랑 눈마주침;;;
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -202,10 +193,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/page2">
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/job1"
+                    android:src="@drawable/job4"
                     android:layout_margin="20dp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -213,19 +205,101 @@
 
 
                 <ImageView
-                    android:layout_width="3dp"
-                    android:layout_height="2.8dp"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/arrow1"
+                    app:layout_constraintRight_toRightOf="@id/guideline54"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline53"
+                    />
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="50dp"
                     android:src="@drawable/circle2"
                     app:layout_constraintLeft_toRightOf="@id/guideline51"
-                    app:layout_constarintTop_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline52"
                     />
+
+                <ImageView
+                    android:id="@+id/arrow"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/arrow1"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline55"
+                    tools:ignore="MissingConstraints" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/arrow2"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline56"
+                    app:layout_constraintLeft_toRightOf="@+id/arrow" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:background="@drawable/info_textbox2"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/pretendardsemibold"
+                    android:gravity="center"
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"
+                    android:text="원하시는 직업이 있으신가요?\n상단의 돋보기 이미지를 클릭하시면\n아래에 검색창이 떠서\n직업을 검색할 수 있어요"
+                    app:layout_constraintTop_toBottomOf="@+id/guideline57"
+                    />
+
+
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline51"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.83"  />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline52"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.80"  />
+                    app:layout_constraintGuide_percent="0.09"  />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline53"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.06"  />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline54"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.85"  />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline55"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.11"  />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline56"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.105"  />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline57"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.175"  />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -245,7 +319,7 @@
                     android:adjustViewBounds="true"/>
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="20dp"
                     app:layout_constraintTop_toBottomOf="@+id/textboxtop1"
@@ -257,7 +331,7 @@
                     android:gravity="center"
                     android:textColor="#ffffff"
                     android:textSize="25sp"
-                    android:text="관심있는 직업을 고르고 누르면 관련 페이지로 넘어가요" />
+                    android:text="관심있는 직업을 누르시면\n더 자세한 화면으로 넘어가요" />
 
 
                 <androidx.constraintlayout.widget.Guideline

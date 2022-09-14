@@ -48,6 +48,21 @@ public class Info extends AppCompatActivity{
             }
         });
 
+        journal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), InfoJourney.class);
+                startActivity(intent);
+            }
+        });
+
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), InfoCall.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

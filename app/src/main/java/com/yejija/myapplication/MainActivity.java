@@ -450,9 +450,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent12);
         } else {
 
-            Intent intent3 = new Intent("android.intent.action.DIAL", Uri.parse("tel:"+num));
-            //여기 전역변수로 바꾸기
-            //startActivity(new Intent("android.intent.action.DIAL", Uri.parse(tel_number)));
+            Intent intent3 = new Intent("android.intent.action.CALL", Uri.parse("tel:"+num));
             startActivity(intent3);
 
         }
