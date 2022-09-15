@@ -1,13 +1,21 @@
 package com.yejija.myapplication;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -15,6 +23,7 @@ public class Setting extends AppCompatActivity {
     EditText edit_tel;
     Button btn_save;
     private DatabaseReference mDatabase;
+    private final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +41,40 @@ public class Setting extends AppCompatActivity {
             finish();
         });
 
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
+
+        if (permissionCheck!= PackageManager.PERMISSION_GRANTED)
+        {
+
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CALL_PHONE))
+            {
+
+            }
+            else
+            {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, MY_PERMISSIONS_REQUEST_CALL_PHONE);
+
+            }
+        }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_CALL_PHONE: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                } else {
+
+                }
+                return;
+            }
+        }
+    }
+
     @Override
     protected void onPause(){
         super.onPause();
@@ -65,10 +107,9 @@ public class Setting extends AppCompatActivity {
 
         pushedPostRef.setValue(num)
                 .addOnSuccessListener(aVoid -> {
-//                        Toast.makeText(getApplicationContext(), "저장을 완료했습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "저장을 완료했습니다.", Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e -> {
-                    // Write failed
                     Toast.makeText(getApplicationContext(), "저장을 실패했습니다.", Toast.LENGTH_SHORT).show();
                 });
 

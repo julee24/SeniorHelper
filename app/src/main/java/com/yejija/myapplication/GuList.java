@@ -29,34 +29,16 @@ public class GuList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /* xml과 연결 */
+
         setContentView(R.layout.gu_list);
 
         ListView listView2 = (ListView) findViewById(R.id.gu_listview);
         TextView gu_icon = (TextView) findViewById(R.id.gu_icon);
         TextView gu_name = (TextView) findViewById(R.id.gu_name);
 
-        /* 서버와 연동했닫면 값을 받아서 띄울 수 있지만,
-         * 연동이 되어있지 않으므로
-         * 하드코딩으로 값을 집어넣는다.
-         * GuItem에 정의 한 구조대로 값을 넣을 수 있다.
-         */
-
-        /*
-        lo_data = new ArrayList<>();
-        SiItem si1 = new SiItem("서울시청");
-        lo_data.add("2", "강남구청");
-
-        SiAdapter adapter = new SiAdapter(this, R.layout.si_item, siData);
-        listView1.setAdapter(adapter);
-
-
-         */
-
-
 
         data = new ArrayList<>();
-        // 1번 아이템
+
         GuItem gu1 = new GuItem("2","강남구청");
         GuItem gu2 = new GuItem("2","강동구청");
         GuItem gu3 = new GuItem("2","강북구청");
@@ -88,7 +70,6 @@ public class GuList extends AppCompatActivity {
         GuItem gu28 = new GuItem("1", "중앙치매센터");
 
 
-        //리스트에 추가
         data.add(gu26);
         data.add(gu27);
         data.add(gu28);
@@ -118,7 +99,6 @@ public class GuList extends AppCompatActivity {
         data.add(gu24);
         data.add(gu25);
 
-        //url
         web = new ArrayList<>();
 
         web.add("https://wis.seoul.go.kr/senior/service/certify.do");
@@ -151,12 +131,10 @@ public class GuList extends AppCompatActivity {
         web.add("https://www.jungnang.go.kr/portal/bbs/list/B0000157.do?menuNo=200775");
 
 
-        /* 리스트 속의 아이템 연결 */
         GuAdapter adapter = new GuAdapter(this, R.layout.gu_item, data);
         listView2.setAdapter(adapter);
 
 
-        /* 아이템 클릭시 작동 */
         listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {
@@ -166,12 +144,6 @@ public class GuList extends AppCompatActivity {
             }
         });
 
-        /*
-        for (int i=0;i<=data.size();i++){
-            if (data.get(i) ==  )
-        }
-
-         */
 
 
 
@@ -182,7 +154,6 @@ public class GuList extends AppCompatActivity {
         gu_name.setText(address);
 
 
-        //Log.e("hi",test+"!");
 
         for (int i=0;i<data.size();i++){
             local_gu = data.get(i).getName() ;
