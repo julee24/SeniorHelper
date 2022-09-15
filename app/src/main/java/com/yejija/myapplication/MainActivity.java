@@ -2,12 +2,17 @@ package com.yejija.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
@@ -22,13 +27,19 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import android.content.pm.Signature;
 import android.widget.Toast;
@@ -43,13 +54,22 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import net.daum.mf.map.api.MapReverseGeoCoder;
+
 import java.util.Calendar;
 import java.util.Locale;
+
+import net.daum.mf.map.api.MapPOIItem;
+import net.daum.mf.map.api.MapPoint;
+import net.daum.mf.map.api.MapReverseGeoCoder;
+import net.daum.mf.map.api.MapView;
+
 
 import org.w3c.dom.Text;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapReverseGeoCoder.ReverseGeoCodingResultListener {
     private TextView txtResult;
     String currentAddress;
     Button btn_tel;
@@ -62,13 +82,23 @@ public class MainActivity extends AppCompatActivity {
     String post;
     private String userName, year, month, day, num;
 
+    String address;
+
     public List<String> dayMorning = new ArrayList<>();
     public List<String> dayAfternoon = new ArrayList<>();
     public List<String> dayDinner = new ArrayList<>();
     public List<String> dayNight = new ArrayList<>();
 
+    private static final int GPS_ENABLE_REQUEST_CODE = 2001;
+    private static final int PERMISSIONS_REQUEST_CODE = 100;
+    private MapView mMapView;
+    double currentLocLat;
+    double currentLocLon;
+    String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION};
 
     public static ArrayList<SeniorCenterVO> SeniorCenterLoc = new ArrayList<>();
+    //LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    // inflater 선언 방법
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +125,17 @@ public class MainActivity extends AppCompatActivity {
         else{
             Intent intent7 = new Intent(getApplicationContext(), SubActivity.class);
             startActivity(intent7);
+        }
+
+        mMapView = (MapView) findViewById(R.id.map_view);
+        mMapView.setCurrentLocationEventListener(this);
+
+        if (!checkLocationServicesStatus()) {
+
+            showDialogForLocationServiceSetting();
+        }else {
+
+            checkRunTimePermission();
         }
 
         //하루 응원 멘트
@@ -192,6 +233,8 @@ public class MainActivity extends AppCompatActivity {
         Button button2 = (Button) findViewById(R.id.button2);
         button2.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), SubActivityMap.class);
+            ConstraintLayout frame = (ConstraintLayout) findViewById(R.id.mainLayout) ;
+            frame.removeView(mMapView) ;
             startActivity(intent);
         });
 
@@ -209,6 +252,14 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+
+        Button button1 = (Button) findViewById(R.id.button1);
+        button1.setOnClickListener(v -> {
+            Intent myIntent = new Intent(MainActivity.this, GuList.class);
+            myIntent.putExtra("address", address);
+            startActivity(myIntent);
+        });
+
         btn_tel = findViewById(R.id.button5);
 
         btn_tel.setOnClickListener(new View.OnClickListener() {
@@ -221,98 +272,218 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        // 위치 관리자 객체 참조하기
-        final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        final Geocoder geocoder = new Geocoder(this);
+//        ConstraintLayout rl = (ConstraintLayout) findViewById(R.id.constraintLayout);
+//        View vi = inflater.inflate(R.layout.activity_map2, null); //log.xml is your file.
 
 
-            if ( Build.VERSION.SDK_INT >= 23 &&
-                    ContextCompat.checkSelfPermission( getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
-                ActivityCompat.requestPermissions( MainActivity.this, new String[] {
-                        android.Manifest.permission.ACCESS_FINE_LOCATION}, 0 );
-            }
-            else{
-                // 가장최근 위치정보 가져오기
-                Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                List<Address> list = null;
-                if(location != null)
-
-                // 위치정보를 원하는 시간, 거리마다 갱신해준다.
-                lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                        1000,
-                        1,
-                        gpsLocationListener);
-                lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
-                        1000,
-                        1,
-                        gpsLocationListener);
-            }
         }
     //        });
 //    }
-    final Geocoder geocoder = new Geocoder(this);
-    final LocationListener gpsLocationListener = new LocationListener() {
-        public void onLocationChanged(Location location) {
-            // 위치 리스너는 위치정보를 전달할 때 호출되므로 onLocationChanged()메소드 안에 위지청보를 처리를 작업을 구현 해야합니다.
-            String provider = location.getProvider();  // 위치정보
-            double longitude = location.getLongitude(); // 위도
-            double latitude = location.getLatitude(); // 경도
-            double altitude = location.getAltitude(); // 고도
-            List<Address> list = null;
-            try {
 
-                list = geocoder.getFromLocation(
-                        latitude, // 위도
-                        longitude, // 경도
-                        10); // 얻어올 값의 개수
-            } catch (IOException e) {
-                e.printStackTrace();
-                Log.e("test", "입출력 오류");
+    //oncreate end
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mMapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading);
+        mMapView.setShowCurrentLocationMarker(false);
+    }
+
+    @Override
+    public void onCurrentLocationUpdate(MapView mapView, MapPoint currentLocation, float accuracyInMeters) {
+        MapPoint.GeoCoordinate mapPointGeo = currentLocation.getMapPointGeoCoord();
+        //Log.i(LOG_TAG, String.format("MapView onCurrentLocationUpdate (%f,%f) accuracy (%f)", mapPointGeo.latitude, mapPointGeo.longitude, accuracyInMeters));
+
+        currentLocLat = mapPointGeo.latitude;
+        currentLocLon = mapPointGeo.longitude;
+
+
+        //내 위치 주소 찾기
+        MapReverseGeoCoder reverseGeoCoder = new MapReverseGeoCoder("7947271957296b6017458678a8697885", currentLocation, MainActivity.this, MainActivity.this);
+
+        reverseGeoCoder.startFindingAddress();
+    }
+
+
+    @Override
+    public void onCurrentLocationDeviceHeadingUpdate(MapView mapView, float v) {
+
+    }
+
+    @Override
+    public void onCurrentLocationUpdateFailed(MapView mapView) {
+
+    }
+
+    @Override
+    public void onCurrentLocationUpdateCancelled(MapView mapView) {
+
+    }
+
+    @Override
+    public void onReverseGeoCoderFoundAddress(MapReverseGeoCoder mapReverseGeoCoder, String s) {
+        Log.v("process1", "running");
+        mapReverseGeoCoder.toString();
+        onFinishReverseGeoCoding(s);
+    }
+
+    @Override
+    public void onReverseGeoCoderFailedToFindAddress(MapReverseGeoCoder mapReverseGeoCoder) {
+        onFinishReverseGeoCoding("Fail");
+        Log.v("process2", "running");
+    }
+
+    private void onFinishReverseGeoCoding(String result) {
+        Log.v("check address", ""+result);
+        String str = result;
+
+        List<String> list = Arrays.asList(str.split(" "));
+        address=list.get(1);
+
+        txtResult.setText(address);
+
+    }
+
+    /*
+     * ActivityCompat.requestPermissions를 사용한 퍼미션 요청의 결과를 리턴받는 메소드입니다.
+     */
+
+    @Override
+    public void onRequestPermissionsResult(int permsRequestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grandResults) {
+        //
+        super.onRequestPermissionsResult(permsRequestCode, permissions, grandResults);
+        if ( permsRequestCode == PERMISSIONS_REQUEST_CODE && grandResults.length == REQUIRED_PERMISSIONS.length) {
+
+            boolean check_result = true;
+
+            for (int result : grandResults) {
+                if (result != PackageManager.PERMISSION_GRANTED) {
+                    check_result = false;
+                    break;
+                }
             }
 
-            
-            //구 만 뽑아내는거
-            if (list != null) {
-                if (list.size() == 0) {
-                    txtResult.setText("해당되는 주소 정보는 없습니다");
-                }
-                else {
-                    currentAddress = null;
 
-                    Address address = list.get(0);
+            if ( check_result ) {
+                Log.d("@@@", "start");
+                mMapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading);
 
-                    if (address.getLocality() != null){
-                        currentAddress = address.getLocality();
-                    }
-                    if (address.getSubLocality() != null){
-                        if (currentAddress != null){
-                            currentAddress += " " + address.getSubLocality();
-                        }
-                        else {
-                            currentAddress = address.getSubLocality();
-                        }
-                    }
-                    txtResult.setText(currentAddress);
-
-                    Button button = (Button) findViewById(R.id.button1);
-                    button.setOnClickListener(v -> {
-                        Intent myIntent = new Intent(MainActivity.this, GuList.class);
-                        myIntent.putExtra("address", currentAddress);
-                        startActivity(myIntent);
-                    });
-                }
+                mMapView.setShowCurrentLocationMarker(false);
 
             }
-            //
+            else {
+                // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
 
-        } public void onStatusChanged(String provider, int status, Bundle extras) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])) {
 
-        } public void onProviderEnabled(String provider) {
+                    Toast.makeText(MainActivity.this, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
+                    finish();
 
-        } public void onProviderDisabled(String provider) {
+
+                }else {
+
+                    Toast.makeText(MainActivity.this, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
+
+                }
+            }
 
         }
-    };
+    }
+
+    void checkRunTimePermission(){
+        //런타임 퍼미션 처리
+
+        int hasFineLocationPermission = ContextCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission.ACCESS_FINE_LOCATION);
+
+
+        if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED ) {
+
+            mMapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading);
+
+
+        } else {
+
+            // 3-1. 사용자가 퍼미션 거부를 한 적이 있는 경우에는
+            if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, REQUIRED_PERMISSIONS[0])) {
+
+                // 3-2. 요청을 진행하기 전에 사용자가에게 퍼미션이 필요한 이유를 설명해줄 필요가 있습니다.
+                Toast.makeText(MainActivity.this, "이 앱을 실행하려면 위치 접근 권한이 필요합니다.", Toast.LENGTH_LONG).show();
+                // 3-3. 사용자게에 퍼미션 요청을 합니다. 요청 결과는 onRequestPermissionResult에서 수신됩니다.
+                ActivityCompat.requestPermissions(MainActivity.this, REQUIRED_PERMISSIONS,
+                        PERMISSIONS_REQUEST_CODE);
+
+
+            } else {
+                // 4-1. 사용자가 퍼미션 거부를 한 적이 없는 경우에는 퍼미션 요청을 바로 합니다.
+                // 요청 결과는 onRequestPermissionResult에서 수신됩니다.
+                ActivityCompat.requestPermissions(MainActivity.this, REQUIRED_PERMISSIONS,
+                        PERMISSIONS_REQUEST_CODE);
+            }
+
+        }
+
+    }
+
+    //여기부터는 GPS 활성화를 위한 메소드들
+    private void showDialogForLocationServiceSetting() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("위치 서비스 비활성화");
+        builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다.\n"
+                + "위치 설정을 수정하실래요?");
+        builder.setCancelable(true);
+        builder.setPositiveButton("설정", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                Intent callGPSSettingIntent
+                        = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivityForResult(callGPSSettingIntent, GPS_ENABLE_REQUEST_CODE);
+            }
+        });
+        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+        builder.create().show();
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+
+            case GPS_ENABLE_REQUEST_CODE:
+
+                //사용자가 GPS 활성 시켰는지 검사
+                if (checkLocationServicesStatus()) {
+                    if (checkLocationServicesStatus()) {
+
+                        Log.d("@@@", "onActivityResult : GPS 활성화 되있음");
+                        checkRunTimePermission();
+                        return;
+                    }
+                }
+
+                break;
+        }
+    }
+
+    public boolean checkLocationServicesStatus() {
+        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+                || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+    }
+
+
 
 
     //번호 저장

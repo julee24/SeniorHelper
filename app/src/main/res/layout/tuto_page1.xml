@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#5CAB7D">
 
     <TextView
         android:id="@+id/textView3"
@@ -12,6 +13,7 @@
         android:gravity="center"
         android:text="안녕하세요!\n어르신을 위한 어플리케이션,\n옹심이 입니다."
         android:textSize="30sp"
+        android:textColor="#ffffff"
         android:lineSpacingExtra ="7dp"
         android:lineSpacingMultiplier="1.15"
         android:fontFamily="@font/pretendardbold"
@@ -19,12 +21,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/guideline29" />
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/ongsim"
+        app:layout_constraintTop_toBottomOf="@+id/guideline51" />
+
+
     <TextView
         android:id="@+id/guide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="계속 진행하시려면\n다음을 눌러주세요."
         android:textSize="23sp"
+        android:textColor="#ffffff"
         android:lineSpacingExtra ="7dp"
         android:fontFamily="@font/pretendardmedium"
         app:layout_constraintBottom_toTopOf="@+id/guideline30"
@@ -55,5 +65,20 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline51"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline60"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.93"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

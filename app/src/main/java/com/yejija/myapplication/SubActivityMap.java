@@ -37,6 +37,7 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
     private TextView txtname;
     private TextView txtaddress;
 
+
     private MapView mMapView;
 
     double currentLocLat;
@@ -61,6 +62,7 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
 
         //layout 설정하는 곳
         setContentView(R.layout.activity_map2);
+
 
 
         mMapView = (MapView) findViewById(R.id.map_view);
@@ -161,6 +163,7 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
     }
 
     private void onFinishReverseGeoCoding(String result) {
+
     }
 
     /*
