@@ -82,19 +82,73 @@
                 app:layout_constraintTop_toBottomOf="@+id/menu_call"
                 tools:ignore="MissingConstraints" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:background="@drawable/info_textbox2"
                 android:elevation="10dp"
-                android:fontFamily="@font/pretendardsemibold"
-                android:gravity="center"
-                android:lineSpacingMultiplier="1"
-                android:text="처음 사용하실 땐\n보호자의 번호를 저장해주세요"
-                android:textAlignment="center"
-                android:textColor="#ffffff"
-                android:textSize="25sp"
-                app:layout_constraintTop_toBottomOf="@id/guideline6"/>
+                app:layout_constraintTop_toBottomOf="@id/guideline6"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pretendardsemibold"
+                    android:gravity="center"
+                    android:lineSpacingMultiplier="1"
+                    android:text="처음 사용하실 땐\n보호자의 번호를 저장해주세요"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:text=" "/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pretendardsemibold"
+                    android:gravity="center"
+                    android:lineSpacingMultiplier="1"
+                    android:text="번호를 입력하시고 아래의"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendardsemibold"
+                        android:gravity="center"
+                        android:layout_margin="5sp"
+                        android:lineSpacingMultiplier="1"
+                        android:text="저장하기"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:background="@drawable/info_textbox"
+                        android:textSize="25sp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendardsemibold"
+                        android:gravity="center"
+                        android:lineSpacingMultiplier="1"
+                        android:text=" 를 눌러주세요"
+                        android:textAlignment="center"
+                        android:textColor="#ffffff"
+                        android:textSize="25sp"/>
+                </LinearLayout>
+            </LinearLayout>
 
             <ImageView
                 android:layout_width="65dp"
@@ -205,7 +259,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.315" />
+                app:layout_constraintGuide_percent="0.31" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline7"
@@ -219,7 +273,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.1315" />
+                app:layout_constraintGuide_percent="0.1" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline9"

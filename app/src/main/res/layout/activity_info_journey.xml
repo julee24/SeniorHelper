@@ -131,7 +131,7 @@
                 android:fontFamily="@font/pretendardsemibold"
                 android:gravity="center"
                 android:lineSpacingMultiplier="1"
-                android:text="이 부분에 일기를 작성해주세요"
+                android:text="일기를 작성해주세요"
                 android:textAlignment="center"
                 android:textColor="#ffffff"
                 android:textSize="25sp"
@@ -154,7 +154,7 @@
                 android:fontFamily="@font/pretendardsemibold"
                 android:gravity="center"
                 android:lineSpacingMultiplier="1"
-                android:text="여기를 누르면\n사진도 올릴 수 있어요!"
+                android:text="여기를 누르시면\n사진을 올릴 수 있어요!"
                 android:textAlignment="center"
                 android:textColor="#ffffff"
                 android:textSize="25sp"
@@ -381,7 +381,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.634" />
+                app:layout_constraintGuide_percent="0.633" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline52"
