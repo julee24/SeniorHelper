@@ -8,8 +8,6 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.yejija.myapplication.Infocitizen;
-
 public class Info extends AppCompatActivity{
     LinearLayout job, citizen, gu, journal, call;
 
@@ -24,44 +22,29 @@ public class Info extends AppCompatActivity{
         journal = (LinearLayout) findViewById(R.id.journal);
         call = (LinearLayout) findViewById(R.id.call);
 
-        job.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), InfoJob.class);
-                startActivity(intent);
-            }
+        job.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), InfoJob.class);
+            startActivity(intent);
         });
 
-        citizen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Infocitizen.class);
-                startActivity(intent);
-            }
+        citizen.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Infocitizen.class);
+            startActivity(intent);
         });
 
-        gu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), InfoGu.class);
-                startActivity(intent);
-            }
+        gu.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), InfoGu.class);
+            startActivity(intent);
         });
 
-        journal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), InfoJourney.class);
-                startActivity(intent);
-            }
+        journal.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), InfoJourney.class);
+            startActivity(intent);
         });
 
-        call.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), InfoCall.class);
-                startActivity(intent);
-            }
+        call.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), InfoCall.class);
+            startActivity(intent);
         });
     }
 

@@ -92,7 +92,6 @@ public class Fragment1 extends Fragment {
         switchButton.setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
             @Override
             public void onSwitch(int position, String tabText) {
-                Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
 
                 adapter.switchLayout(position);
                 adapter.notifyDataSetChanged();
@@ -107,7 +106,6 @@ public class Fragment1 extends Fragment {
 
         adapter = new NoteAdapter();
 
-        //이게 왜 있지
         adapter.addItem(new Note(0, "0", "", "","오늘 너무 행복해!", "0", null, "2월 10일"));
         adapter.addItem(new Note(1, "1", "", "","친구와 재미있게 놀았어", "0", null, "2월 11일"));
         adapter.addItem(new Note(2, "0", "", "","집에 왔는데 너무 피곤해 ㅠㅠ", "0", null, "2월 13일"));
@@ -148,7 +146,6 @@ public class Fragment1 extends Fragment {
 
                 int _id = outCursor.getInt(0);
                 String weather = outCursor.getString(1);
-                //String address = outCursor.getString(2);
                 String locationX = outCursor.getString(2);
                 String locationY = outCursor.getString(3);
                 String contents = outCursor.getString(4);
@@ -165,7 +162,6 @@ public class Fragment1 extends Fragment {
                         }
                         createDateStr = todayDateFormat.format(inDate);
                         AppConstants.println("currentDateString : " + createDateStr);
-                        //createDateStr = AppConstants.dateFormat3.format(inDate);
                     } catch(Exception e) {
                         e.printStackTrace();
                     }

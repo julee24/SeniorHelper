@@ -11,43 +11,27 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
 
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import android.content.pm.Signature;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -60,18 +44,13 @@ import net.daum.mf.map.api.MapReverseGeoCoder;
 import java.util.Calendar;
 import java.util.Locale;
 
-import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
-import net.daum.mf.map.api.MapReverseGeoCoder;
 import net.daum.mf.map.api.MapView;
 
-
-import org.w3c.dom.Text;
 
 
 public class MainActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapReverseGeoCoder.ReverseGeoCodingResultListener {
     private TextView txtResult;
-    String currentAddress;
     Button btn_tel;
     String tel_number;
     private DatabaseReference mDatabase;
@@ -81,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements MapView.CurrentLo
     SharedPreferences.Editor editor2;
     String post;
     private String userName, year, month, day, num;
+    private final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 1000;
 
     String address;
 
@@ -174,51 +154,43 @@ public class MainActivity extends AppCompatActivity implements MapView.CurrentLo
 
         final DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
 
-        findViewById(R.id.imageMenu).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        findViewById(R.id.imageMenu).setOnClickListener(view -> {
 
-                UserProfile(post);
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
+            UserProfile(post);
+            drawerLayout.openDrawer(GravityCompat.START);
         });
 
 
         NavigationView navigationView = findViewById(R.id.navigationView);
         navigationView.setItemIconTintList(null);
 
-        final TextView textTitle = findViewById(R.id.textTitle);
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        navigationView.setNavigationItemSelectedListener(menuItem -> {
 
-                switch (menuItem.getItemId()) {
-                    case R.id.nav_home:
-                        drawerLayout.closeDrawers();
-                        return true;
+            switch (menuItem.getItemId()) {
+                case R.id.nav_home:
+                    drawerLayout.closeDrawers();
+                    return true;
 
-                    case R.id.nav_edit:
-                        updateNum(post);
-                        drawerLayout.closeDrawers();
-                        return true;
+                case R.id.nav_edit:
+                    updateNum(post);
+                    drawerLayout.closeDrawers();
+                    return true;
 
-                    case R.id.nav_profile:
-                        Intent intent3 = new Intent(getApplicationContext(), ProfileActivity.class);
-                        startActivity(intent3);
-                        drawerLayout.closeDrawers();
-                        return true;
+                case R.id.nav_profile:
+                    Intent intent3 = new Intent(getApplicationContext(), ProfileActivity.class);
+                    startActivity(intent3);
+                    drawerLayout.closeDrawers();
+                    return true;
 
-                    case R.id.nav_tuto:
-                        Intent intent4 = new Intent(getApplicationContext(), Info.class);
-                        startActivity(intent4);
-                        drawerLayout.closeDrawers();
-                        return true;
-                }
-
-                return false;
-
+                case R.id.nav_tuto:
+                    Intent intent4 = new Intent(getApplicationContext(), Info.class);
+                    startActivity(intent4);
+                    drawerLayout.closeDrawers();
+                    return true;
             }
+
+            return false;
 
         });
 
@@ -256,15 +228,7 @@ public class MainActivity extends AppCompatActivity implements MapView.CurrentLo
 
         btn_tel = findViewById(R.id.button5);
 
-        btn_tel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                readNum(post);
-
-            }
-
-        });
+        btn_tel.setOnClickListener(view -> readNum(post));
 
     }
 
@@ -347,7 +311,6 @@ public class MainActivity extends AppCompatActivity implements MapView.CurrentLo
 
 
             if ( check_result ) {
-                Log.d("@@@", "start");
                 mMapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading);
 
                 mMapView.setShowCurrentLocationMarker(false);
@@ -358,12 +321,39 @@ public class MainActivity extends AppCompatActivity implements MapView.CurrentLo
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])) {
 
                     Toast.makeText(MainActivity.this, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
+                    try {
+                        Intent intent7 = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                                .setData(Uri.parse("package:"+getPackageName()));
+                        Log.v("packagename", getPackageName());
+                        intent7.addCategory(Intent.CATEGORY_DEFAULT);
+                        intent7.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent7);
+                    } catch(ActivityNotFoundException e){
+                        e.printStackTrace();
+                        Intent intent7 = new Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS);
+                        intent7.addCategory(Intent.CATEGORY_DEFAULT);
+                        intent7.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent7);
+                    }
                     finish();
-
 
                 }else {
 
-                    Toast.makeText(MainActivity.this, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "권한이 거부되었습니다. 설정(앱 정보)에서 권한을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
+                    try {
+                        Intent intent7 = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                                .setData(Uri.parse("package:"+getPackageName()));
+                        intent7.addCategory(Intent.CATEGORY_DEFAULT);
+                        intent7.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent7);
+
+                    } catch(ActivityNotFoundException e){
+                        e.printStackTrace();
+                        Intent intent7 = new Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS);
+                        intent7.addCategory(Intent.CATEGORY_DEFAULT);
+                        intent7.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent7);
+                    }
 
                 }
             }
@@ -410,20 +400,12 @@ public class MainActivity extends AppCompatActivity implements MapView.CurrentLo
         builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다.\n"
                 + "위치 설정을 수정하실래요?");
         builder.setCancelable(true);
-        builder.setPositiveButton("설정", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                Intent callGPSSettingIntent
-                        = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivityForResult(callGPSSettingIntent, GPS_ENABLE_REQUEST_CODE);
-            }
+        builder.setPositiveButton("설정", (dialog, id) -> {
+            Intent callGPSSettingIntent
+                    = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivityForResult(callGPSSettingIntent, GPS_ENABLE_REQUEST_CODE);
         });
-        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-            }
-        });
+        builder.setNegativeButton("취소", (dialog, id) -> dialog.cancel());
         builder.create().show();
     }
 
@@ -439,8 +421,6 @@ public class MainActivity extends AppCompatActivity implements MapView.CurrentLo
                 //사용자가 GPS 활성 시켰는지 검사
                 if (checkLocationServicesStatus()) {
                     if (checkLocationServicesStatus()) {
-
-                        Log.d("@@@", "onActivityResult : GPS 활성화 되있음");
                         checkRunTimePermission();
                         return;
                     }
@@ -512,22 +492,16 @@ public class MainActivity extends AppCompatActivity implements MapView.CurrentLo
         DatabaseReference pushedPostRef = mDatabase.child("users").push();
 
         pushedPostRef.setValue(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
+                .addOnSuccessListener(aVoid -> {
 
-                        post = pushedPostRef.getKey();
-                        editor2.putString("post", post);
-                        editor2.apply();
+                    post = pushedPostRef.getKey();
+                    editor2.putString("post", post);
+                    editor2.apply();
 
-                    }
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        // Write failed
-                        Toast.makeText(getApplicationContext(), "저장을 실패했습니다.", Toast.LENGTH_SHORT).show();
-                    }
+                .addOnFailureListener(e -> {
+                    // Write failed
+                    Toast.makeText(getApplicationContext(), "저장을 실패했습니다.", Toast.LENGTH_SHORT).show();
                 });
 
     }
@@ -555,7 +529,6 @@ public class MainActivity extends AppCompatActivity implements MapView.CurrentLo
                 TextView profile_birth = (TextView) nav_header_view.findViewById(R.id.profile_birth);
                 TextView profile_month = (TextView) nav_header_view.findViewById(R.id.profile_month);
                 TextView profile_day = (TextView) nav_header_view.findViewById(R.id.profile_day);
-                // 위치바꿈
                 profile_name.setText(userName);
                 profile_birth.setText(year);
                 profile_month.setText(month);
@@ -571,17 +544,14 @@ public class MainActivity extends AppCompatActivity implements MapView.CurrentLo
 
     private void readNum(String post) {
 
-        mDatabase.child("users").child(post).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                } else {
+        mDatabase.child("users").child(post).get().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+            } else {
 
-                    User user = task.getResult().getValue(User.class);
-                    num = user.getnum();
+                User user = task.getResult().getValue(User.class);
+                num = user.getnum();
 
-                    button_pressed();
-                }
+                button_pressed();
             }
         });
     }
@@ -593,31 +563,49 @@ public class MainActivity extends AppCompatActivity implements MapView.CurrentLo
             startActivity(intent12);
         } else {
 
-            Intent intent3 = new Intent("android.intent.action.CALL", Uri.parse("tel:"+num));
-            startActivity(intent3);
+            int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
+
+            if (permissionCheck!= PackageManager.PERMISSION_GRANTED)
+            {
+
+                Toast.makeText(MainActivity.this, "권한이 거부되었습니다. 설정(앱 정보)에서 권한을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
+                try {
+                    Intent intent7 = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                            .setData(Uri.parse("package:"+getPackageName()));
+                    intent7.addCategory(Intent.CATEGORY_DEFAULT);
+                    intent7.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent7);
+                } catch(ActivityNotFoundException e){
+                    e.printStackTrace();
+                    Intent intent7 = new Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS);
+                    intent7.addCategory(Intent.CATEGORY_DEFAULT);
+                    intent7.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent7);
+                }
+            }
+            else {
+                Intent intent3 = new Intent("android.intent.action.CALL", Uri.parse("tel:" + num));
+                startActivity(intent3);
+            }
+            }
 
         }
 
-    }
-
     private void updateNum(String post){
 
-        mDatabase.child("users").child(post).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
+        mDatabase.child("users").child(post).get().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+            }
+            else {
+
+                User user = task.getResult().getValue(User.class);
+                num = user.getnum();
+                if (num == null) {
+                    Toast.makeText(getApplicationContext(), "번호를 저장해주세요.", Toast.LENGTH_SHORT).show();
                 }
                 else {
-
-                    User user = task.getResult().getValue(User.class);
-                    num = user.getnum();
-                    if (num == null) {
-                        Toast.makeText(getApplicationContext(), "번호를 저장해주세요.", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        Intent intent2 = new Intent(getApplicationContext(), ReSetting.class);
-                        startActivity(intent2);
-                    }
+                    Intent intent2 = new Intent(getApplicationContext(), ReSetting.class);
+                    startActivity(intent2);
                 }
             }
         });

@@ -20,14 +20,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="안녕하세요!\n어르신을 위한 어플리케이션,\n옹심이 입니다."
+            android:text="안녕하세요!\n어르신을 위한 애플리케이션,\n옹심이 입니다."
             android:textSize="30sp"
             android:lineSpacingExtra ="7dp"
             android:lineSpacingMultiplier="1.15"
             android:fontFamily="@font/pretendardbold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/guideline29" />
+            app:layout_constraintTop_toBottomOf="@+id/guideline29"
+            app:layout_constraintBottom_toTopOf="@+id/needs"/>
+
+        <TextView
+            android:id="@+id/needs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:gravity="center"
+            android:text="앱을 사용하시기 전에,\n· 인터넷 연결이 필요합니다.\n· 위치 권한을 허용해주세요."
+            android:textSize="23sp"
+            android:lineSpacingExtra="6sp"
+            android:lineSpacingMultiplier="1.05"
+            android:fontFamily="@font/pretendardbold"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:layout_constraintBottom_toTopOf="@+id/guide"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"/>
 
         <TextView
             android:id="@+id/guide"
@@ -39,6 +57,7 @@
             android:fontFamily="@font/pretendardmedium"
             app:layout_constraintBottom_toTopOf="@+id/guideline30"
             android:gravity="center"
+            android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -57,14 +76,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.1" />
+            app:layout_constraintGuide_percent="0.12" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline30"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.7" />
+            app:layout_constraintGuide_percent="0.75" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

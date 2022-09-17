@@ -4,14 +4,11 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -69,8 +66,8 @@ public class Setting extends AppCompatActivity {
 
                 } else {
 
+                    Toast.makeText(Setting.this, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
                 }
-                return;
             }
         }
     }
@@ -104,14 +101,9 @@ public class Setting extends AppCompatActivity {
 
         DatabaseReference pushedPostRef = mDatabase.child("users").child(post).child("num");
 
-
         pushedPostRef.setValue(num)
-                .addOnSuccessListener(aVoid -> {
-                        Toast.makeText(getApplicationContext(), "저장을 완료했습니다.", Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(getApplicationContext(), "저장을 실패했습니다.", Toast.LENGTH_SHORT).show();
-                });
+                .addOnSuccessListener(aVoid -> Toast.makeText(getApplicationContext(), "저장을 완료했습니다.", Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e -> Toast.makeText(getApplicationContext(), "저장을 실패했습니다.", Toast.LENGTH_SHORT).show());
 
     }
 }

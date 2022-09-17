@@ -1,58 +1,30 @@
 package com.yejija.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-/**
- * 메모 데이터베이스
- */
 public class NoteDatabase {
 	private static final String TAG = "NoteDatabase";
 
-	/**
-	 * 싱글톤 인스턴스
-	 */
+	@SuppressLint("StaticFieldLeak")
 	private static NoteDatabase database;
 
-	/**
-	 * table name for MEMO
-	 */
 	public static String TABLE_NOTE = "NOTE";
 
-    /**
-     * version
-     */
 	public static int DATABASE_VERSION = 1;
 
+	private SQLiteDatabase db;
 
-    /**
-     * Helper class defined
-     */
-    private DatabaseHelper dbHelper;
+    private final Context context;
 
-    /**
-     * SQLiteDatabase 인스턴스
-     */
-    private SQLiteDatabase db;
-
-    /**
-     * 컨텍스트 객체
-     */
-    private Context context;
-
-    /**
-     * 생성자
-     */
 	private NoteDatabase(Context context) {
 		this.context = context;
 	}
 
-	/**
-	 * 인스턴스 가져오기
-	 */
 	public static NoteDatabase getInstance(Context context) {
 		if (database == null) {
 			database = new NoteDatabase(context);
@@ -61,21 +33,15 @@ public class NoteDatabase {
 		return database;
 	}
 
-	/**
-	 * 데이터베이스 열기
-	 */
     public boolean open() {
     	println("opening database [" + AppConstants.DATABASE_NAME + "].");
 
-    	dbHelper = new DatabaseHelper(context);
+		DatabaseHelper dbHelper = new DatabaseHelper(context);
     	db = dbHelper.getWritableDatabase();
 
     	return true;
     }
 
-    /**
-     * 데이터베이스 닫기
-     */
     public void close() {
     	println("closing database [" + AppConstants.DATABASE_NAME + "].");
     	db.close();
@@ -83,13 +49,6 @@ public class NoteDatabase {
     	database = null;
     }
 
-    /**
-     * execute raw query using the input SQL
-     * close the cursor after fetching any result
-     *
-     * @param SQL
-     * @return
-     */
     public Cursor rawQuery(String SQL) {
 		println("\nexecuteQuery called.\n");
 
@@ -117,10 +76,6 @@ public class NoteDatabase {
 	}
 
 
-
-	/**
-	 * Database Helper inner class
-	 */
     private class DatabaseHelper extends SQLiteOpenHelper {
 
         public DatabaseHelper(Context context) {

@@ -10,18 +10,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -32,15 +28,8 @@ import java.util.ArrayList;
 
 
 public class SubActivityJobs extends AppCompatActivity {
-    private static final String LOG_TAG = "SubActivityJobs";
-    private TextView textView4;
-    private TextView textView5;
-    private TextView textView6;
-    private TextView textView7;
-    private TextView textView8;
     private String name;
     private String all;
-    private String a;
     private ArrayList<String> JobPlace;
     private ArrayList<String> JobType;
     private ArrayList<String> JobAge;
@@ -52,7 +41,6 @@ public class SubActivityJobs extends AppCompatActivity {
 
     ListView mListView = null;
     private BaseAdapterEx mAdapter;
-    BaseAdapterEx mAdapterTemp;
     ArrayList<Jobnotice> mData =null;
 
     EditText searchbox = null;
@@ -66,8 +54,8 @@ public class SubActivityJobs extends AppCompatActivity {
         setContentView(R.layout.job_list);
 
         textView = (TextView) findViewById(R.id.callbutton);
-        mData = new ArrayList<Jobnotice>();
-        mSearchData = new ArrayList<Jobnotice>();
+        mData = new ArrayList<>();
+        mSearchData = new ArrayList<>();
         searchbox = (EditText) findViewById(R.id.job_search);
         mListView = (ListView) findViewById(R.id.list_view);
         Toolbar toolbar = findViewById (R.id.toolbar_job);
@@ -78,12 +66,7 @@ public class SubActivityJobs extends AppCompatActivity {
 
         //전화하기
         textView = (TextView) findViewById(R.id.callbutton);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent("android.intent.action.DIAL", Uri.parse("tel:"+"02-6220-8640")));
-            }
-        });
+        textView.setOnClickListener(view -> startActivity(new Intent("android.intent.action.DIAL", Uri.parse("tel:"+"02-6220-8640"))));
 
 
         searchbox.addTextChangedListener(new TextWatcher() {
@@ -106,17 +89,13 @@ public class SubActivityJobs extends AppCompatActivity {
         });
 
         //온클릭 웹뷰
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                String job = mData.get(position).getUrl();
-                String jobUrl = "https://goldenjob.or.kr/job/find-person_view.asp?idx=" + job;
-                Intent intent = new Intent(SubActivityJobs.this, WebViewActivity.class);
-                intent.putExtra("job", jobUrl);
-                startActivity(intent);
+        mListView.setOnItemClickListener((parent, view, position, id) -> {
+            String job = mData.get(position).getUrl();
+            String jobUrl = "https://goldenjob.or.kr/job/find-person_view.asp?idx=" + job;
+            Intent intent = new Intent(SubActivityJobs.this, WebViewActivity.class);
+            intent.putExtra("job", jobUrl);
+            startActivity(intent);
 
-            }
         });
         //온클릭
     }
@@ -142,71 +121,61 @@ public boolean onCreateOptionsMenu(Menu menu) {
     }
     private void getWebsite() {
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                final StringBuilder builder_name = new StringBuilder();// 직장 이름
-                final StringBuilder builder_all = new StringBuilder();// 나머지
-                //final StringBuilder builder_age = new StringBuilder(); // 나이
+        new Thread(() -> {
+            final StringBuilder builder_name = new StringBuilder();// 직장 이름
+            final StringBuilder builder_all = new StringBuilder();// 나머지
+            //final StringBuilder builder_age = new StringBuilder(); // 나이
 
-                try {
-                    for (int t=1;t<10; t++ ) {
-                        String urlname = "https://goldenjob.or.kr/job/find-person.asp?keyfield=&keyword=&p=" + t;
-                        Log.v("url", urlname);
-                        Document doc = Jsoup.connect(urlname).get(); //크롤링할 주소
-                        Elements links_name = doc.select("a");  //직장 이름
-                        Elements links_all = doc.select("td"); //직종
-                        builder_name.append(links_name).append("\n");
-                        builder_all.append(links_all).append("\n");
-                    }
-                } catch (IOException e) {
-                    builder_name.append("Error");
+            try {
+                for (int t=1;t<10; t++ ) {
+                    String urlname = "https://goldenjob.or.kr/job/find-person.asp?keyfield=&keyword=&p=" + t;
+                    Log.v("url", urlname);
+                    Document doc = Jsoup.connect(urlname).get(); //크롤링할 주소
+                    Elements links_name = doc.select("a");  //직장 이름
+                    Elements links_all = doc.select("td"); //직종
+                    builder_name.append(links_name).append("\n");
+                    builder_all.append(links_all).append("\n");
                 }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
+            } catch (IOException e) {
+                builder_name.append("Error");
+            }
+            runOnUiThread(() -> {
 
-                        name = builder_name.toString();
-                        all = builder_all.toString();
-                        extract_name(name);
-                        extract_type(all);
-                        extract_age(all);
-                        extract_loc(all);
-                        extract_avail(all);
-                        extract_site(name);
+                name = builder_name.toString();
+                all = builder_all.toString();
+                extract_name(name);
+                extract_type(all);
+                extract_age(all);
+                extract_loc(all);
+                extract_avail(all);
+                extract_site(name);
 
-                        for (int i = 0; i < JobPlace.size(); i++){
-                            Jobnotice job = new Jobnotice();
+                for (int i = 0; i < JobPlace.size(); i++){
+                    Jobnotice job = new Jobnotice();
 
-                            if (JobAvail.get(i).equals("state-ing")) {
+                    if (JobAvail.get(i).equals("state-ing")) {
 
-                                job.jname = JobPlace.get(i);
-                                job.jtype = JobType.get(i);
-                                job.jage = JobAge.get(i);
-                                job.jloc = JobLoc.get(i);
-                                job.jurl = JobUrl.get(i);
-                                mData.add(job);
-
-                            }
-                            else break;
-                        }
-                        Jobnotice mSearchData = new Jobnotice();
-                        mAdapter = new BaseAdapterEx(SubActivityJobs.this, mData);
-                        mListView.setAdapter(mAdapter);
+                        job.jname = JobPlace.get(i);
+                        job.jtype = JobType.get(i);
+                        job.jage = JobAge.get(i);
+                        job.jloc = JobLoc.get(i);
+                        job.jurl = JobUrl.get(i);
+                        mData.add(job);
 
                     }
-                });
-            }
+                    else break;
+                }
+                mAdapter = new BaseAdapterEx(SubActivityJobs.this, mData);
+                mListView.setAdapter(mAdapter);
 
-
+            });
         }).start();
     }
 
 
 public void extract_name(String text){
-    boolean isFirst = true; //처음인지 검사
     String text2="";
-    JobPlace = new ArrayList<String>(120);
+    JobPlace = new ArrayList<>(120);
     while(true){
         int index = text.indexOf("ld=\">");   //찾는 문자열 위치 찾기
 
@@ -227,7 +196,7 @@ public void extract_name(String text){
     public void extract_type(String text){
         boolean isFirst = true;
         String text2="";
-        JobType = new ArrayList<String>(120);
+        JobType = new ArrayList<>(120);
         while(true){
             int index = text.indexOf("직종</span>");
 
@@ -246,7 +215,7 @@ public void extract_name(String text){
     public void extract_age(String text){
         boolean isFirst = true;
         String text2="";
-        JobAge = new ArrayList<String>(120);
+        JobAge = new ArrayList<>(120);
         while(true){
             int index = text.indexOf("연령</span>");
 
@@ -265,7 +234,7 @@ public void extract_name(String text){
     public void extract_loc(String text){
         boolean isFirst = true;
         String text2="";
-        JobLoc = new ArrayList<String>(120);
+        JobLoc = new ArrayList<>(120);
         while(true){
             int index = text.indexOf("지역</span>");
 
@@ -283,7 +252,7 @@ public void extract_name(String text){
     public void extract_avail(String text){
         boolean isFirst = true;
         String text2="";
-        JobAvail = new ArrayList<String>(120);
+        JobAvail = new ArrayList<>(120);
         while(true){
             int index = text.indexOf("구인상태</span><span class=\"");
 
@@ -301,7 +270,7 @@ public void extract_name(String text){
     public void extract_site(String text){
         boolean isFirst = true;
         String text2="";
-        JobUrl = new ArrayList<String>(120);
+        JobUrl = new ArrayList<>(120);
         while(true){
             int index = text.indexOf("idx=");
 

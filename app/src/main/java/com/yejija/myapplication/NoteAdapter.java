@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
         implements com.yejija.myapplication.OnNoteItemClickListener {
-    ArrayList<com.yejija.myapplication.Note> items = new ArrayList<com.yejija.myapplication.Note>();
+    ArrayList<com.yejija.myapplication.Note> items = new ArrayList<>();
 
     com.yejija.myapplication.OnNoteItemClickListener listener;
 
@@ -111,14 +110,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
             dateTextView = itemView.findViewById(R.id.dateTextView);
             dateTextView2 = itemView.findViewById(R.id.dateTextView2);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
+            itemView.setOnClickListener(view -> {
+                int position = getAdapterPosition();
 
-                    if (listener != null) {
-                        listener.onItemClick(ViewHolder.this, view, position);
-                    }
+                if (listener != null) {
+                    listener.onItemClick(ViewHolder.this, view, position);
                 }
             });
 

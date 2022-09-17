@@ -14,22 +14,12 @@ public class ManagePublicData
 {
     private static ManagePublicData managePublicData;
 
-    public static final int COORD_TYPE_TM = 1;//아니면 이거... 와 어렵 몰라 힘들...
-    public static final int COORD_TYPE_KTM = 2;
-    public static final int COORD_TYPE_UTM = 3;
-    public static final int COORD_TYPE_CONGNAMUL = 4;
-    public static final int COORD_TYPE_WGS84 = 5;
-    public static final int COORD_TYPE_BESSEL = 6;
-    public static final int COORD_TYPE_WTM = 7;
-    public static final int COORD_TYPE_WKTM = 8; //우리가 사용하는 공공데이터는 WKTM인가보다...
-    public static final int COORD_TYPE_WCONGNAMUL = 10;
-
     public double lati;
     public double longi;
 
     SeniorCenterVO SeniorCenterVO;
 
-    private ArrayList<SeniorCenterVO> SeniorCenterVOArrayList;
+    private final ArrayList<SeniorCenterVO> SeniorCenterVOArrayList;
 
     public ParseSeniorCenter parseSeniorCenter;
 
@@ -47,16 +37,12 @@ public class ManagePublicData
 
     private ManagePublicData() {
         SeniorCenterVO = new SeniorCenterVO();
-        SeniorCenterVOArrayList = new ArrayList<SeniorCenterVO>(120);
+        SeniorCenterVOArrayList = new ArrayList<>(120);
         parseSeniorCenter = new ParseSeniorCenter();
     }
 
     public ArrayList<SeniorCenterVO> getSeniorCenterVOArrayList() {
         return SeniorCenterVOArrayList;
-    }
-
-    public void setSeniorCenterVOArrayList(ArrayList<SeniorCenterVO> SeniorCenterVOArrayList) {
-        this.SeniorCenterVOArrayList = SeniorCenterVOArrayList;
     }
 
     public class ParseSeniorCenter extends AsyncTask<String, Integer, String> {

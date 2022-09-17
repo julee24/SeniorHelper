@@ -10,7 +10,7 @@ public class User {
     public String month;
     public String day;
 
-    public User() {
+    public User(){
 
     }
 
@@ -37,57 +37,30 @@ public class User {
         return num1;
     }
 
-    public void setNum1(String num1) {
-        this.num1 = num1;
-    }
-
     public String getNum2() {
         return num2;
-    }
-
-    public void setNum2(String num2) {
-        this.num2 = num2;
     }
 
     public String getNum3() {
         return num3;
     }
 
-    public void setNum3(String num3) {
-        this.num3 = num3;
-    }
-
     public String getnum() {
         return num;
-    }
-
-    public void setnum(String num) {
-        this.num = num;
     }
 
     public String getyear() {
         return year;
     }
 
-    public void setyear(String year) {
-        this.year = year;
-    }
-
     public String getmonth() {
         return month;
-    }
-
-    public void setmonth(String month) {
-        this.month = month;
     }
 
     public String getday() {
         return day;
     }
 
-    public void setday(String day) {
-        this.day = day;
-    }
     @Override
     public String toString() {
         return "User{" +

@@ -4,8 +4,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.yejija.myapplication.R;
-
 public class InfoCall extends AppCompatActivity {
 
     @Override

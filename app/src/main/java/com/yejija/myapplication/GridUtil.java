@@ -30,7 +30,7 @@ public class GridUtil {
         sf = Math.pow(sf, sn) * Math.cos(slat1) / sn;
         double ro = Math.tan(Math.PI * 0.25 + olat * 0.5);
         ro = re * sf / Math.pow(ro, sn);
-        Map<String, Double> map = new HashMap<String, Double>();
+        Map<String, Double> map = new HashMap<>();
         map.put("lat", v1);
         map.put("lng", v1);
         double ra = Math.tan(Math.PI * 0.25 + (v1) * DEGRAD * 0.5);

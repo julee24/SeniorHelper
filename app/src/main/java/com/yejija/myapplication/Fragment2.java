@@ -2,40 +2,32 @@ package com.yejija.myapplication;
 
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.content.FileProvider;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import com.github.channguyen.rsv.RangeSliderView;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class Fragment2 extends Fragment {
-    private static final String TAG = "Fragment2";
 
     int mMode = com.yejija.myapplication.AppConstants.MODE_INSERT;
-    int _id = -1;
     int weatherIndex = 0;
 
     RangeSliderView moodSlider;
@@ -49,18 +41,13 @@ public class Fragment2 extends Fragment {
 
     ImageView weatherIcon;
     TextView dateTextView;
-    //TextView locationTextView;
 
     EditText contentsInput;
     ImageView pictureImageView;
 
     boolean isPhotoCaptured;
     boolean isPhotoFileSaved;
-    boolean isPhotoCanceled;
 
-    int selectedPhotoMenu;
-
-    Uri uri;
     File file;
     Bitmap resultPhotoBitmap;
 
@@ -68,7 +55,7 @@ public class Fragment2 extends Fragment {
     String currentDateString;
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
         this.context = context;
@@ -114,69 +101,52 @@ public class Fragment2 extends Fragment {
 
         weatherIcon = rootView.findViewById(R.id.weatherIcon);
         dateTextView = rootView.findViewById(R.id.dateTextView);
-        //locationTextView = rootView.findViewById(R.id.locationTextView);
-
         contentsInput = rootView.findViewById(R.id.contentsInput);
 
 
         pictureImageView = rootView.findViewById(R.id.pictureImageView);
-        pictureImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(isPhotoCaptured || isPhotoFileSaved) {
-                    showDialog(com.yejija.myapplication.AppConstants.CONTENT_PHOTO_EX);
-                } else {
-                    showDialog(com.yejija.myapplication.AppConstants.CONTENT_PHOTO);
-                }
+        pictureImageView.setOnClickListener(v -> {
+            if(isPhotoCaptured || isPhotoFileSaved) {
+                showDialog(AppConstants.CONTENT_PHOTO_EX);
+            } else {
+                showDialog(AppConstants.CONTENT_PHOTO);
             }
         });
 
         Button saveButton = rootView.findViewById(R.id.saveButton);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mMode == com.yejija.myapplication.AppConstants.MODE_INSERT) {
-                    saveNote();
-                } else if(mMode == com.yejija.myapplication.AppConstants.MODE_MODIFY) {
-                    modifyNote();
-                }
+        saveButton.setOnClickListener(v -> {
+            if(mMode == AppConstants.MODE_INSERT) {
+                saveNote();
+            } else if(mMode == AppConstants.MODE_MODIFY) {
+                modifyNote();
+            }
 
-                if (listener != null) {
-                    listener.onTabSelected(0);
-                }
+            if (listener != null) {
+                listener.onTabSelected(0);
             }
         });
 
         Button deleteButton = rootView.findViewById(R.id.deleteButton);
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                deleteNote();
+        deleteButton.setOnClickListener(v -> {
+            deleteNote();
 
-                if (listener != null) {
-                    listener.onTabSelected(0);
-                }
+            if (listener != null) {
+                listener.onTabSelected(0);
             }
         });
 
         Button closeButton = rootView.findViewById(R.id.closeButton);
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (listener != null) {
-                    listener.onTabSelected(0);
-                }
+        closeButton.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onTabSelected(0);
             }
         });
 
 
         moodSlider = rootView.findViewById(R.id.sliderView);
-        final RangeSliderView.OnSlideListener listener = new RangeSliderView.OnSlideListener() {
-            @Override
-            public void onSlide(int index) {
-                com.yejija.myapplication.AppConstants.println("moodIndex changed to " + index);
-                moodIndex = index;
-            }
+        final RangeSliderView.OnSlideListener listener = index -> {
+            AppConstants.println("moodIndex changed to " + index);
+            moodIndex = index;
         };
 
         moodSlider.setOnSlideListener(listener);
@@ -220,7 +190,6 @@ public class Fragment2 extends Fragment {
             mMode = com.yejija.myapplication.AppConstants.MODE_MODIFY;
 
             setWeatherIndex(Integer.parseInt(item.getWeather()));
-            //setAddress(item.getAddress());
             setDateString(item.getCreateDateStr());
             setContents(item.getContents());
 
@@ -229,7 +198,6 @@ public class Fragment2 extends Fragment {
 
             if (picturePath == null || picturePath.equals("")) {
                 pictureImageView.setImageResource(R.drawable.insert_picture);
-                //pictureImageView.setImageResource(R.drawable.noimagefound);
             } else {
                 setPicture(item.getPicture(), 1);
             }
@@ -239,11 +207,10 @@ public class Fragment2 extends Fragment {
             mMode = com.yejija.myapplication.AppConstants.MODE_INSERT;
 
             setWeatherIndex(0);
-            //setAddress("");
 
             Date currentDate = new Date();
             if (todayDateFormat == null) {
-                todayDateFormat = new SimpleDateFormat(getResources().getString(R.string.today_date_format));
+                todayDateFormat = new SimpleDateFormat(getResources().getString(R.string.today_date_format), Locale.KOREA);
             }
             currentDateString = todayDateFormat.format(currentDate);
             com.yejija.myapplication.AppConstants.println("currentDateString : " + currentDateString);
@@ -282,8 +249,6 @@ public class Fragment2 extends Fragment {
             } else if (data.equals("눈")) {
                 weatherIcon.setImageResource(R.drawable.weather_7);
                 weatherIndex = 6;
-            } else {
-
             }
         }
     }
@@ -310,14 +275,12 @@ public class Fragment2 extends Fragment {
         } else if (index == 6) {
             weatherIcon.setImageResource(R.drawable.weather_7);
             weatherIndex = 6;
-        } else {
         }
 
     }
 
 
     public void showDialog(int id) {
-        AlertDialog.Builder builder = null;
 
         switch(id) {
 
@@ -427,7 +390,6 @@ public class Fragment2 extends Fragment {
 
     // 데이터베이스 레코드 추가
     private void saveNote() {
-        //String address = locationTextView.getText().toString();
         String contents = contentsInput.getText().toString();
 
         String picturePath = savePicture();
@@ -435,7 +397,6 @@ public class Fragment2 extends Fragment {
         String sql = "insert into " + NoteDatabase.TABLE_NOTE +
                 "(WEATHER, LOCATION_X, LOCATION_Y, CONTENTS, MOOD, PICTURE) values(" +
                 "'"+ weatherIndex + "', " +
-                //"'"+ address + "', " +
                 "'"+ "" + "', " +
                 "'"+ "" + "', " +
                 "'"+ contents + "', " +

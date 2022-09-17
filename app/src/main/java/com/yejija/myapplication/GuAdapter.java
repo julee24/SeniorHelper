@@ -1,21 +1,20 @@
 package com.yejija.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 
 public class GuAdapter extends BaseAdapter {
-    private LayoutInflater inflater;
-    private ArrayList<GuItem> data;
-    private int layout;
+    private final LayoutInflater inflater;
+    private final ArrayList<GuItem> data;
+    private final int layout;
     Context context = null;
 
     public GuAdapter(Context context, int layout, ArrayList<GuItem> data) {
@@ -41,6 +40,7 @@ public class GuAdapter extends BaseAdapter {
     }
 
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
@@ -52,15 +52,15 @@ public class GuAdapter extends BaseAdapter {
         TextView icon = (TextView) convertView.findViewById(R.id.icon);
         TextView info = (TextView) convertView.findViewById(R.id.name);
 
-        if(guItem.getIcon()=="0"){
+        if(guItem.getIcon().equals("0")){
             icon.setText("시청");
             icon.setBackground(context.getResources().getDrawable(R.drawable.magnitude_si_circle));
         }
-        else if(guItem.getIcon()=="1") {
+        else if(guItem.getIcon().equals("1")) {
             icon.setText("의료");
             icon.setBackground(context.getResources().getDrawable(R.drawable.magnitude_medi_circle));
         }
-        else if(guItem.getIcon()=="2"){
+        else if(guItem.getIcon().equals("2")){
             icon.setText("구청");
             icon.setBackground(context.getResources().getDrawable(R.drawable.magnitude_gu_circle));
         }

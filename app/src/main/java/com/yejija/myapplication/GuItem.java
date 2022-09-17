@@ -1,8 +1,8 @@
 package com.yejija.myapplication;
 
 public class GuItem {
-    private String icon;
-    private String name;
+    private final String icon;
+    private final String name;
 
     public String getIcon() {return icon;}
 

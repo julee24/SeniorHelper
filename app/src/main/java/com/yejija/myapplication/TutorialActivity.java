@@ -3,10 +3,8 @@ package com.yejija.myapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +16,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -44,9 +39,7 @@ public class TutorialActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        }
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
         setContentView(R.layout.activity_tutorial);
 
@@ -79,22 +72,19 @@ public class TutorialActivity extends AppCompatActivity {
 
 
         // 조건문을 통해 버튼 하나로 두개의 상황을 실행
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int current = getItem(+1);
-                if (current < layouts.length) {
-                    // 마지막 페이지가 아니라면 다음 페이지로 이동
-                    viewPager.setCurrentItem(current);
-                }
-                else {
-                    // 마지막 페이지라면 메인페이지로 이동
-                    finish();
-                    Intent intent7 = new Intent(getApplicationContext(), SubActivity.class);
-                    startActivity(intent7);
+        btnNext.setOnClickListener(v -> {
+            int current = getItem(+1);
+            if (current < layouts.length) {
+                // 마지막 페이지가 아니라면 다음 페이지로 이동
+                viewPager.setCurrentItem(current);
+            }
+            else {
+                // 마지막 페이지라면 메인페이지로 이동
+                finish();
+                Intent intent7 = new Intent(getApplicationContext(), SubActivity.class);
+                startActivity(intent7);
 
-                    //
-                }
+                //
             }
         });
 
@@ -192,11 +182,9 @@ public class TutorialActivity extends AppCompatActivity {
 
     // 알림 표시줄을 투명하게 만들기
     private void changeStatusBarColor() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
-        }
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(Color.TRANSPARENT);
     }
 
     // 호출기 어댑터
@@ -207,8 +195,9 @@ public class TutorialActivity extends AppCompatActivity {
 
         }
 
+        @NonNull
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        public Object instantiateItem(@NonNull ViewGroup container, int position) {
             layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
             View view = layoutInflater.inflate(layouts[position], container, false);
@@ -223,12 +212,12 @@ public class TutorialActivity extends AppCompatActivity {
         }
 
         @Override
-        public boolean isViewFromObject(View view, Object obj) {
+        public boolean isViewFromObject(@NonNull View view, @NonNull Object obj) {
             return view == obj;
         }
 
         @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
+        public void destroyItem(ViewGroup container, int position, @NonNull Object object) {
             View view = (View) object;
             container.removeView(view);
         }

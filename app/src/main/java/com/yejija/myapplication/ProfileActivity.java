@@ -2,30 +2,19 @@ package com.yejija.myapplication;
 
 
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
@@ -52,18 +41,16 @@ public class ProfileActivity extends AppCompatActivity {
         editTextNumber4 = findViewById(R.id.edtbirth2);
         editTextNumber5 = findViewById(R.id.edtbirth3);
 
-//
+
 
         readUser(post);
 
         btnsave = findViewById(R.id.btnSave);
 
-        btnsave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateUser(post);
-                finish();
-            }
+        btnsave.setOnClickListener(v -> {
+            updateUser(post);
+            Toast.makeText(getApplicationContext(), "저장을 완료했습니다.", Toast.LENGTH_SHORT).show();
+            finish();
         });
     }
 
@@ -72,7 +59,6 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
-                Log.v("유저프린트", ""+user);
 
                 userName = user.getuserName();
 
@@ -113,7 +99,6 @@ public class ProfileActivity extends AppCompatActivity {
                 b2 = editTextNumber4.getText().toString();
                 b3 = editTextNumber5.getText().toString();
                 num = ser.getnum();
-                Log.v(name, n1);
                 User user = new User(name, n1, n2, n3, b1, b2, b3, num);
 
                 mDatabase.child("users").child(post).setValue(user);

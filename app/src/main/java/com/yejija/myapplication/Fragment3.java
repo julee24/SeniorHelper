@@ -3,24 +3,18 @@ package com.yejija.myapplication;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -39,10 +33,8 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class Fragment3 extends Fragment {
-    private static final String TAG = "Fragment2";
 
     Context context;
-
     PieChart chart;
     LineChart chart3;
 
@@ -238,7 +230,7 @@ public class Fragment3 extends Fragment {
         int recordCount = cursor.getCount();
         com.yejija.myapplication.AppConstants.println("recordCount : " + recordCount);
 
-        HashMap<String,Integer> dataHash1 = new HashMap<String,Integer>();
+        HashMap<String,Integer> dataHash1 = new HashMap<>();
         for (int i = 0; i < recordCount; i++) {
             cursor.moveToNext();
 
@@ -263,7 +255,7 @@ public class Fragment3 extends Fragment {
         recordCount = cursor.getCount();
         com.yejija.myapplication.AppConstants.println("recordCount : " + recordCount);
 
-        HashMap<String,Integer> recordsHash = new HashMap<String,Integer>();
+        HashMap<String,Integer> recordsHash = new HashMap<>();
         for (int i = 0; i < recordCount; i++) {
             cursor.moveToNext();
 
@@ -274,8 +266,8 @@ public class Fragment3 extends Fragment {
             recordsHash.put(monthDate, moodCount);
         }
 
-        ArrayList<Float> dataKeys3 = new ArrayList<Float>();
-        ArrayList<Integer> dataValues3 = new ArrayList<Integer>();
+        ArrayList<Float> dataKeys3 = new ArrayList<>();
+        ArrayList<Integer> dataValues3 = new ArrayList<>();
 
         Date todayDate = new Date();
         Calendar cal = Calendar.getInstance();
@@ -299,12 +291,6 @@ public class Fragment3 extends Fragment {
 
         setData3(dataKeys3, dataValues3);
 
-    }
-
-    public String getToday() {
-        Date todayDate = new Date();
-
-        return com.yejija.myapplication.AppConstants.dateFormat5.format(todayDate);
     }
 
     public String getTomorrow() {

@@ -2,17 +2,11 @@ package com.yejija.myapplication;
 
 
 import android.content.Context;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -20,20 +14,17 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.stanfy.gsonxml.GsonXml;
 import com.stanfy.gsonxml.GsonXmlBuilder;
 import com.stanfy.gsonxml.XmlParserCreator;
-import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
 
 import com.yejija.myapplication.data.WeatherItem;
 import com.yejija.myapplication.data.WeatherResult;
-import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -51,7 +42,6 @@ public class SubActivityDiary extends AppCompatActivity implements OnTabItemSele
 
     int locationCount = 0;
     String currentWeather;
-    //String currentAddress;
     String currentDateString;
     Date currentDate;
     SimpleDateFormat todayDateFormat;
@@ -73,29 +63,26 @@ public class SubActivityDiary extends AppCompatActivity implements OnTabItemSele
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment1).commit();
 
         bottomNavigation = findViewById(R.id.bottom_navigation);
-        bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.tab1:
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.container, fragment1).commit();
+        bottomNavigation.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.tab1:
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container, fragment1).commit();
 
-                        return true;
-                    case R.id.tab2:
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.container, fragment2).commit();
+                    return true;
+                case R.id.tab2:
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container, fragment2).commit();
 
-                        return true;
-                    case R.id.tab3:
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.container, fragment3).commit();
+                    return true;
+                case R.id.tab3:
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container, fragment3).commit();
 
-                        return true;
-                }
-
-                return false;
+                    return true;
             }
+
+            return false;
         });
 
         setPicturePath();
@@ -106,17 +93,9 @@ public class SubActivityDiary extends AppCompatActivity implements OnTabItemSele
                         Permission.ACCESS_FINE_LOCATION,
                         Permission.READ_EXTERNAL_STORAGE,
                         Permission.WRITE_EXTERNAL_STORAGE)
-                .onGranted(new Action<List<String>>() {
-                    @Override
-                    public void onAction(List<String> permissions) {
-                        //showToast("허용된 권한 갯수 : " + permissions.size());
-                    }
+                .onGranted(permissions -> {
                 })
-                .onDenied(new Action<List<String>>() {
-                    @Override
-                    public void onAction(List<String> permissions) {
-                        //showToast("거부된 권한 갯수 : " + permissions.size());
-                    }
+                .onDenied(permissions -> {
                 })
                 .start();
 
@@ -184,9 +163,6 @@ public class SubActivityDiary extends AppCompatActivity implements OnTabItemSele
 
     }
 
-    public void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-    }
 
     public void onRequest(String command) {
         if (command != null) {
@@ -201,9 +177,8 @@ public class SubActivityDiary extends AppCompatActivity implements OnTabItemSele
         // set current time
         currentDate = new Date();
 
-        //currentDateString = AppConstants.dateFormat3.format(currentDate);
         if (todayDateFormat == null) {
-            todayDateFormat = new SimpleDateFormat(getResources().getString(R.string.today_date_format));
+            todayDateFormat = new SimpleDateFormat(getResources().getString(R.string.today_date_format), Locale.KOREA);
         }
         currentDateString = todayDateFormat.format(currentDate);
         AppConstants.println("currentDateString : " + currentDateString);
@@ -224,7 +199,6 @@ public class SubActivityDiary extends AppCompatActivity implements OnTabItemSele
                 println(message);
 
                 getCurrentWeather();
-                //getCurrentAddress();
             }
 
             gpsListener = new GPSListener();
@@ -268,7 +242,6 @@ public class SubActivityDiary extends AppCompatActivity implements OnTabItemSele
             println(message);
 
             getCurrentWeather();
-            //getCurrentAddress();
         }
 
         public void onProviderDisabled(String provider) { }
@@ -295,10 +268,8 @@ public class SubActivityDiary extends AppCompatActivity implements OnTabItemSele
         url += "?gridx=" + Math.round(gridX);
         url += "&gridy=" + Math.round(gridY);
 
-        Log.v("roundX", "" +Math.round(gridX));
-        Log.v("roundY", "" +Math.round(gridY));
 
-        Map<String,String> params = new HashMap<String,String>();
+        Map<String,String> params = new HashMap<>();
 
         MyApplication.send(AppConstants.REQ_WEATHER_BY_GRID, Request.Method.GET, url, params, SubActivityDiary.this);
     }
@@ -310,14 +281,11 @@ public class SubActivityDiary extends AppCompatActivity implements OnTabItemSele
                 // Grid 좌표를 이용한 날씨 정보 처리 응답
                 println("response -> " + response);
 
-                XmlParserCreator parserCreator = new XmlParserCreator() {
-                    @Override
-                    public XmlPullParser createParser() {
-                        try {
-                            return XmlPullParserFactory.newInstance().newPullParser();
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
+                XmlParserCreator parserCreator = () -> {
+                    try {
+                        return XmlPullParserFactory.newInstance().newPullParser();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
                     }
                 };
 
@@ -363,7 +331,6 @@ public class SubActivityDiary extends AppCompatActivity implements OnTabItemSele
 
 
             } else {
-                // Unknown request code
                 println("Unknown request code : " + requestCode);
 
             }

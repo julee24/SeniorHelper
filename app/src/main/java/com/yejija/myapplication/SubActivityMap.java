@@ -1,15 +1,12 @@
 package com.yejija.myapplication;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
-import android.view.ViewGroup;
 import android.os.Bundle;
-import android.widget.RelativeLayout;
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapReverseGeoCoder;
@@ -43,7 +40,6 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
     double currentLocLat;
     double currentLocLon;
 
-    public int onlyonce=0;
 
     MapPoint [] markerpoints = new MapPoint[MainActivity.SeniorCenterLoc.size()];
     MapPOIItem [] markers = new MapPOIItem[MainActivity.SeniorCenterLoc.size()];
@@ -82,9 +78,6 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
                 markers[i].setCustomImageResourceId(R.drawable.housepin1);
                 mMapView.addPOIItem(markers[i]);
             }
-            else{
-
-            }
         }
 
 
@@ -116,7 +109,7 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
         txtname = (TextView)findViewById(R.id.txtname);
         txtaddress = (TextView)findViewById(R.id.txtaddress);
 
-        List<Float> distance = new ArrayList<Float>();
+        List<Float> distance = new ArrayList<>();
         float[] result = new float[1];
 
         for (int i=0; i<MainActivity.SeniorCenterLoc.size();i++) {
@@ -165,10 +158,6 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
     private void onFinishReverseGeoCoding(String result) {
 
     }
-
-    /*
-     * ActivityCompat.requestPermissions를 사용한 퍼미션 요청의 결과를 리턴받는 메소드입니다.
-     */
 
     @Override
     public void onRequestPermissionsResult(int permsRequestCode,
@@ -257,20 +246,12 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
         builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다.\n"
                 + "위치 설정을 수정하실래요?");
         builder.setCancelable(true);
-        builder.setPositiveButton("설정", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                Intent callGPSSettingIntent
-                        = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivityForResult(callGPSSettingIntent, GPS_ENABLE_REQUEST_CODE);
-            }
+        builder.setPositiveButton("설정", (dialog, id) -> {
+            Intent callGPSSettingIntent
+                    = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivityForResult(callGPSSettingIntent, GPS_ENABLE_REQUEST_CODE);
         });
-        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-            }
-        });
+        builder.setNegativeButton("취소", (dialog, id) -> dialog.cancel());
         builder.create().show();
     }
 
@@ -287,7 +268,6 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
                 if (checkLocationServicesStatus()) {
                     if (checkLocationServicesStatus()) {
 
-                        Log.d("@@@", "onActivityResult : GPS 활성화 되있음");
                         checkRunTimePermission();
                         return;
                     }
@@ -304,21 +284,5 @@ public class SubActivityMap extends AppCompatActivity implements MapView.Current
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
 
-    public void getDistance(float[] results, double a, double b) {
-        android.location.Location.distanceBetween(currentLocLat,currentLocLon,a,b,results);
-    }
-    //
-
-    public int minDistance(float[] results){
-        float a = results[0];
-        int plac = 0;
-        for (int i = 0; i < results.length; i++){
-            if (a>results[i]){
-                a = results[i];
-                plac = i;
-            }
-        }
-        return plac;
-    }
 
 }

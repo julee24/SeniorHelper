@@ -6,16 +6,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class GuList extends AppCompatActivity {
 
@@ -102,8 +98,8 @@ public class GuList extends AppCompatActivity {
         web = new ArrayList<>();
 
         web.add("https://wis.seoul.go.kr/senior/service/certify.do");
-        web.add("https://www.nhis.or.kr/nhis/index.do");
-        web.add("https://www.nid.or.kr/main/main.aspx");
+        web.add("https://www.longtermcare.or.kr/npbs/e/b/201/npeb201m01.web?menuId=npe0000000080&prevPath=/npbs/e/b/202/npeb202m01.web");
+        web.add("https://m.nid.or.kr/support/c_service.aspx?RC=020000002");
         web.add("http://gangnam.go.kr/pitapatgn/0802_elderlywelfare.html#two");
         web.add("https://www.gangdong.go.kr/web/newportal/contents/gdp_005_001_007_001_001");
         web.add("https://www.gangbuk.go.kr/www/contents.do?key=401");
@@ -118,13 +114,13 @@ public class GuList extends AppCompatActivity {
         web.add("https://www.dongjak.go.kr/portal/main/contents.do?menuNo=200331");
         web.add("https://www.mapo.go.kr/site/main/content/mapo05011204");
         web.add("https://www.sdm.go.kr/welfare/old/careservice.do");
-        web.add("https://www.seocho.go.kr/site/seocho/04/10402030100002015070710.jsp");
         web.add("https://www.sd.go.kr/main/contents.do?key=1541&");
         web.add("https://www.sb.go.kr/main/mainPage.do");
+        web.add("https://www.seocho.go.kr/site/seocho/04/10402030100002015070710.jsp");
         web.add("https://www.songpa.go.kr/www/contents.do?key=2983&");
-        web.add("https://www.yangcheon.go.kr/site/yangcheon/ex/bbs/List.do?cbIdx=368");
         web.add("https://www.ydp.go.kr/www/contents.do?key=3806&");
         web.add("https://www.yongsan.go.kr/portal/main/contents.do?menuNo=200515");
+        web.add("https://www.yangcheon.go.kr/site/yangcheon/ex/bbs/List.do?cbIdx=368");
         web.add("https://www.ep.go.kr/www/contents.do?key=892");
         web.add("https://www.jongno.go.kr/portalMain.do;jsessionid=AWZALW4ng5ttDgXSJwuio58FzQJ7Vxuar69tjuZu6zNRPMu7bOygzNYaAh6dlzQB.was_servlet_engine1");
         web.add("http://www.junggu.seoul.kr/content.do?cmsid=14386&sf_text4=G");
@@ -163,7 +159,6 @@ public class GuList extends AppCompatActivity {
                 Log.v("hi", web.get(i)+"!!");
                 local_web = web.get(i);
             }
-            else{continue;}
         }
 
         gu_name.setOnClickListener(new View.OnClickListener() {

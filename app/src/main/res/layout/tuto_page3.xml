@@ -51,11 +51,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline30"
-        app:layout_constraintBottom_toTopOf="@+id/guideline31"
+        app:layout_constraintBottom_toTopOf="@+id/explanation2"
         android:src="@drawable/tuto3"
         tools:ignore="ContentDescription" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/explanation2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
@@ -107,14 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.35" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline31"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.65" />
+        app:layout_constraintGuide_percent="0.38" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/middle"
@@ -122,14 +116,5 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
-
-    <!--    <ImageView-->
-    <!--        android:layout_width="181dp"-->
-    <!--        android:layout_height="221dp"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/middle"-->
-    <!--        android:elevation="7dp"-->
-    <!--        app:srcCompat="@drawable/hand" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

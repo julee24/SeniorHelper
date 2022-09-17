@@ -76,7 +76,7 @@ public class BaseAdapterEx extends BaseAdapter{
 
         return itemLayout;
     }
-    //
+
     public void filter(String searchText) {
         mSearchData.clear();
 

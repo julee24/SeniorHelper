@@ -1,13 +1,10 @@
 package com.yejija.myapplication;
 
-import android.app.Application;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -54,24 +51,18 @@ public class MyApplication extends Save_tel {
         StringRequest request = new StringRequest(
                 requestMethod,
                 url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d(TAG, "Response for " + requestCode + " -> " + response);
+                response -> {
+                    Log.d(TAG, "Response for " + requestCode + " -> " + response);
 
-                        if (listener != null) {
-                            listener.processResponse(requestCode, 200, response);
-                        }
+                    if (listener != null) {
+                        listener.processResponse(requestCode, 200, response);
                     }
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d(TAG, "Error for " + requestCode + " -> " + error.getMessage());
+                error -> {
+                    Log.d(TAG, "Error for " + requestCode + " -> " + error.getMessage());
 
-                        if (listener != null) {
-                            listener.processResponse(requestCode, 400, error.getMessage());
-                        }
+                    if (listener != null) {
+                        listener.processResponse(requestCode, 400, error.getMessage());
                     }
                 }
         ) {
@@ -89,7 +80,6 @@ public class MyApplication extends Save_tel {
 
         if (MyApplication.requestQueue != null) {
             MyApplication.requestQueue.add(request);
-        } else {
         }
     }
 

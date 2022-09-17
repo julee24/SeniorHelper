@@ -81,7 +81,7 @@
             app:layout_constraintStart_toEndOf="@+id/phonenumber"
             app:layout_constraintEnd_toEndOf="parent"
             android:gravity="center"
-            android:background="@drawable/jobcall"
+            android:background="@drawable/main_button"
             android:elevation="7dp"
             />
 

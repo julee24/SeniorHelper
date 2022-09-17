@@ -3,17 +3,13 @@ package com.yejija.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-//import android.support.v7.app.AppCompatActivity;
-import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class WebViewActivity extends AppCompatActivity {
-    private String TAG = WebViewActivity.class.getSimpleName();
 
     private WebView webView = null;
     public String urlString;
