@@ -14,9 +14,11 @@
         android:text=" 주변 구청" />
 
     <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="78dp"
         android:gravity="start|center_vertical"
+        android:background="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
         <TextView

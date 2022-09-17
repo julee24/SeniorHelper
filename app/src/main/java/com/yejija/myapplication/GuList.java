@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ public class GuList extends AppCompatActivity {
         ListView listView2 = (ListView) findViewById(R.id.gu_listview);
         TextView gu_icon = (TextView) findViewById(R.id.gu_icon);
         TextView gu_name = (TextView) findViewById(R.id.gu_name);
+        LinearLayout linear = (LinearLayout) findViewById(R.id.linear);
 
 
         data = new ArrayList<>();
@@ -161,7 +163,7 @@ public class GuList extends AppCompatActivity {
             }
         }
 
-        gu_name.setOnClickListener(new View.OnClickListener() {
+        linear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(local_web));
