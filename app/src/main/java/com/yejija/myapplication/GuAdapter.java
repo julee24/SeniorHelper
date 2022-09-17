@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class GuAdapter extends BaseAdapter {
     private LayoutInflater inflater;
-    private ArrayList<GuItem> data; //Item 목록을 담을 배열
+    private ArrayList<GuItem> data;
     private int layout;
     Context context = null;
 
@@ -35,12 +35,11 @@ public class GuAdapter extends BaseAdapter {
         return data.get(position).getName();
     }
 
-    //
     @Override
     public long getItemId(int position) {
         return position;
     }
-    //
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

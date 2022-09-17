@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -284,7 +283,7 @@ public class Fragment2 extends Fragment {
                 weatherIcon.setImageResource(R.drawable.weather_7);
                 weatherIndex = 6;
             } else {
-                Log.d("Fragment2", "Unknown weather string : " + data);
+
             }
         }
     }
@@ -312,7 +311,6 @@ public class Fragment2 extends Fragment {
             weatherIcon.setImageResource(R.drawable.weather_7);
             weatherIndex = 6;
         } else {
-            Log.d("Fragment2", "Unknown weather index : " + index);
         }
 
     }
@@ -352,18 +350,13 @@ public class Fragment2 extends Fragment {
         if (intent != null) {
             switch (requestCode) {
                 case com.yejija.myapplication.AppConstants.REQ_PHOTO_CAPTURE:  // 사진 찍는 경우
-                    Log.d(TAG, "onActivityResult() for REQ_PHOTO_CAPTURE.");
 
-                    Log.d(TAG, "resultCode : " + resultCode);
-
-                    //setPicture(file.getAbsolutePath(), 8);
                     resultPhotoBitmap = decodeSampledBitmapFromResource(file, pictureImageView.getWidth(), pictureImageView.getHeight());
                     pictureImageView.setImageBitmap(resultPhotoBitmap);
 
                     break;
 
                 case com.yejija.myapplication.AppConstants.REQ_PHOTO_SELECTION:  // 사진을 앨범에서 선택하는 경우
-                    Log.d(TAG, "onActivityResult() for REQ_PHOTO_SELECTION.");
 
                     Uri fileUri = intent.getData();
 
@@ -449,7 +442,6 @@ public class Fragment2 extends Fragment {
                 "'"+ moodIndex + "', " +
                 "'"+ picturePath + "')";
 
-        Log.d(TAG, "sql : " + sql);
         NoteDatabase database = NoteDatabase.getInstance(context);
         database.execSQL(sql);
 
@@ -474,7 +466,6 @@ public class Fragment2 extends Fragment {
                     " where " +
                     "   _id = " + item._id;
 
-            Log.d(TAG, "sql : " + sql);
             NoteDatabase database = NoteDatabase.getInstance(context);
             database.execSQL(sql);
         }
@@ -491,7 +482,6 @@ public class Fragment2 extends Fragment {
                     " where " +
                     "   _id = " + item._id;
 
-            Log.d(TAG, "sql : " + sql);
             NoteDatabase database = NoteDatabase.getInstance(context);
             database.execSQL(sql);
         }
@@ -506,7 +496,6 @@ public class Fragment2 extends Fragment {
         File photoFolder = new File(com.yejija.myapplication.AppConstants.FOLDER_PHOTO);
 
         if(!photoFolder.isDirectory()) {
-            Log.d(TAG, "creating photo folder : " + photoFolder);
             photoFolder.mkdirs();
         }
 

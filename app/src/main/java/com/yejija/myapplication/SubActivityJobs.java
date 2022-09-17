@@ -166,11 +166,8 @@ public boolean onCreateOptionsMenu(Menu menu) {
                     @Override
                     public void run() {
 
-                        //result.setText(extract_temp(builder_name.toString()) + ", " + extract_cast(builder_all.toString()));
                         name = builder_name.toString();
                         all = builder_all.toString();
-                        //Log.v("hello1", all);
-                        //Log.v("hello2", name);
                         extract_name(name);
                         extract_type(all);
                         extract_age(all);

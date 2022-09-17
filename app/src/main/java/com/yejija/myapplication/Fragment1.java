@@ -3,7 +3,6 @@ package com.yejija.myapplication;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -120,7 +119,6 @@ public class Fragment1 extends Fragment {
             public void onItemClick(NoteAdapter.ViewHolder holder, View view, int position) {
                 Note item = adapter.getItem(position);
 
-                Log.d(TAG, "아이템 선택됨 : " + item.get_id());
 
                 if (listener != null) {
                     listener.showFragment2(item);
@@ -130,9 +128,6 @@ public class Fragment1 extends Fragment {
 
     }
 
-    /**
-     * 리스트 데이터 로딩
-     */
     public int loadNoteListData() {
         AppConstants.println("loadNoteListData called.");
 

@@ -11,7 +11,7 @@ public class User {
     public String day;
 
     public User() {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
+
     }
 
     public User(String userName, String num1, String num2, String num3, String year, String month, String day, String num) {

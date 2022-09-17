@@ -1,13 +1,11 @@
 package com.yejija.myapplication;
 
 import android.os.Handler;
-import android.util.Log;
 
 import java.text.SimpleDateFormat;
 
 public class AppConstants {
 
-    //public static final int REQ_LOCATION_BY_ADDRESS = 101;
     public static final int REQ_WEATHER_BY_GRID = 102;
 
     public static final int REQ_PHOTO_CAPTURE = 103;
@@ -39,7 +37,6 @@ public class AppConstants {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                Log.d(TAG, data);
             }
         });
     }

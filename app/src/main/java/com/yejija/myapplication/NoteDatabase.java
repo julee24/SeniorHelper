@@ -108,10 +108,8 @@ public class NoteDatabase {
 		println("\nexecute called.\n");
 
 		try {
-			Log.d(TAG, "SQL : " + SQL);
 			db.execSQL(SQL);
 	    } catch(Exception ex) {
-			Log.e(TAG, "Exception in executeQuery", ex);
 			return false;
 		}
 

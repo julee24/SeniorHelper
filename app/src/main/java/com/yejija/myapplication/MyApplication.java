@@ -89,10 +89,7 @@ public class MyApplication extends Save_tel {
 
         if (MyApplication.requestQueue != null) {
             MyApplication.requestQueue.add(request);
-            Log.d(TAG, "Request sent : " + requestCode);
-            Log.d(TAG, "Request url : " + url);
         } else {
-            Log.d(TAG, "Request queue is null.");
         }
     }
 

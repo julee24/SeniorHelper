@@ -1,7 +1,7 @@
 package com.yejija.myapplication;
 
 import android.content.Context;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class BaseAdapterEx extends BaseAdapter{
     Context mContext = null;
@@ -79,27 +79,23 @@ public class BaseAdapterEx extends BaseAdapter{
     //
     public void filter(String searchText) {
         mSearchData.clear();
-        Log.v("searchtext", " " + searchText);
+
         if(searchText.length() == 0)
         {
             mSearchData.addAll(mData);
         }
         else
         {
-            Log.v("hello", "size: " + mData.size() );
             for (int i = 0; i < mData.size(); i++)
-            //Jobnotice item : mData
+
             {
-                Log.v("hello-for", "yup hello");
-                //Log.v("itemname", item.getName());
                 if(mData.get(i).getName().contains(searchText) || mData.get(i).getType().contains(searchText) || mData.get(i).getLoc().contains(searchText) || mData.get(i).getAge().contains(searchText))
                 {
                     mSearchData.add(mData.get(i));
                 }
             }
         }
-        notifyDataSetChanged(); //이거 위치 바꿔야 하나..?
-        Log.v("hello2", "yup hello");
+        notifyDataSetChanged();
     }
-    //
+
 }

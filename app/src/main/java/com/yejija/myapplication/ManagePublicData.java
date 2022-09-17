@@ -121,7 +121,6 @@ public class ManagePublicData
                     e.printStackTrace();
                 }
             }
-            Log.v("size", SeniorCenterVOArrayList.size() + " ");
             return "";
         }
 

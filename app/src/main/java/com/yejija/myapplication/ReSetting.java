@@ -62,7 +62,7 @@ public class ReSetting extends AppCompatActivity{
                 num = edit_tel.getText().toString();
 
                 mDatabase.child("users").child(post).child("num").setValue(num);
-                Toast.makeText(getApplicationContext(), "번호가 수정되었습니다.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "번호가 수정되었습니다.", Toast.LENGTH_SHORT).show();
 
                 finish();
             }
