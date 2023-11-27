@@ -1,7 +1,7 @@
 # SeniorHelper
 Application aimed to help senior Korean citizens in acquiring info on welfare programs.
 
-Five main functions of the app;
+:white_check_mark: &nbsp; **Five main functions of the app;**
 * Search senior job recruitment info
 * Locate Senior clubs in the area
 * Access official district office website page on welfare programs 
@@ -14,3 +14,12 @@ It will be advised to allow the app to use location services.\
 Instructions on how to use the app is included in the menu (three bar icon).
 
 Made with Android Studio in Java.
+
+# Application
+
+![application_ongsim](https://github.com/julee24/SeniorHelper/assets/77472171/6d4118cb-434c-4ec0-a9c1-3dfd44958758)
+
+
+
+
+
